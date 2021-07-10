@@ -1,5 +1,8 @@
 package by.academy.lesson3;
 
+//Составьте программу, составьте программу, которая вычисляет произведение чисел от 1 до n.n
+// вводится с клавиатуры.
+
 import java.util.Scanner;
 
 public class Task8 {

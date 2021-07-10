@@ -1,5 +1,7 @@
 package by.academy.lesson3;
 
+//В сберкассу на трёхпроцентный вклад положили S рублей.Какой станет сумма вклада через N лет.
+
 import java.util.Scanner;
 
 public class Task10 {

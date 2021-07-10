@@ -1,5 +1,7 @@
 package by.academy.lesson3;
 
+//Ввести с консоли 2 числа, найти большее, меньшее, среднее арифметическое.
+
 import java.util.Scanner;
 
 public class Task5 {

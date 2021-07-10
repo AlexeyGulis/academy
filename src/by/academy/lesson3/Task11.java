@@ -1,5 +1,7 @@
 package by.academy.lesson3;
 
+//Ввести с клавиатуры 10 пар чисел. сравнить числа в каждой паре и напечатать большие из них.
+
 import java.util.Scanner;
 
 public class Task11 {

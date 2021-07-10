@@ -1,5 +1,7 @@
 package by.academy.lesson3;
 
+//Составьте программу, котораЯ вычисляет сумму чисел от 1 до n.значение n вводится с клавиатуры.
+
 import java.util.Scanner;
 
 public class Task7 {
