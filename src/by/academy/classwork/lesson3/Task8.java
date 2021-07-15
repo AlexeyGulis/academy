@@ -1,4 +1,4 @@
-package by.academy.lesson3;
+package by.academy.classwork.lesson3;
 
 //Составьте программу, составьте программу, которая вычисляет произведение чисел от 1 до n.n
 // вводится с клавиатуры.

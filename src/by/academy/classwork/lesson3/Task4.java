@@ -1,4 +1,4 @@
-package by.academy.lesson3;
+package by.academy.classwork.lesson3;
 
 // Перепишите программу:
 //public class Main {

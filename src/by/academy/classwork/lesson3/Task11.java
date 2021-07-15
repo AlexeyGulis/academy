@@ -1,4 +1,4 @@
-package by.academy.lesson3;
+package by.academy.classwork.lesson3;
 
 //Ввести с клавиатуры 10 пар чисел. сравнить числа в каждой паре и напечатать большие из них.
 

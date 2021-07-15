@@ -1,4 +1,4 @@
-package by.academy.lesson3;
+package by.academy.classwork.lesson3;
 
 //Создайте число. Определите, является ли число четным или не четным,
 //вывести текстовое сообщение

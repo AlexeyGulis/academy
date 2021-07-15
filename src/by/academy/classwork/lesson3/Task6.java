@@ -1,4 +1,4 @@
-package by.academy.lesson3;
+package by.academy.classwork.lesson3;
 
 //Составьте программу, выводящую на экран квадраты чисел от 10 до 20.
 

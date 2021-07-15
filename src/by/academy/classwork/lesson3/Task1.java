@@ -1,4 +1,4 @@
-package by.academy.lesson3;
+package by.academy.classwork.lesson3;
 // . Ввести через консоль название месяца ->
 //вывести номер месяца (использовать switch/case)
 //1. Проинициализировать 3 целочисленных числа:

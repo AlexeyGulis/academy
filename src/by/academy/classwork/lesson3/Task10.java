@@ -1,4 +1,4 @@
-package by.academy.lesson3;
+package by.academy.classwork.lesson3;
 
 //В сберкассу на трёхпроцентный вклад положили S рублей.Какой станет сумма вклада через N лет.
 

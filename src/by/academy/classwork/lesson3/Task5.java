@@ -1,4 +1,4 @@
-package by.academy.lesson3;
+package by.academy.classwork.lesson3;
 
 //Ввести с консоли 2 числа, найти большее, меньшее, среднее арифметическое.
 

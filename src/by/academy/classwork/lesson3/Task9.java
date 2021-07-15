@@ -1,4 +1,4 @@
-package by.academy.lesson3;
+package by.academy.classwork.lesson3;
 
 //С клавиатуры вводятся n чисел.
 //Составьте программу, которая определяет кол-во отрицательных,
