@@ -5,7 +5,7 @@ public class IndexOf {
         String str = "Для работы со строками в языке Java используются классы String, StringBuilder, StringBuffer";
         int indexOfnum = str.indexOf("S");;
         while(indexOfnum!=-1){
-            System.out.println("Элемент S содержится в массиве под номером "+ indexOfnum);
+            System.out.println("Элемент S содержится в строке под номером "+ indexOfnum);
             indexOfnum=str.indexOf("S",indexOfnum+1);
         }
     }
