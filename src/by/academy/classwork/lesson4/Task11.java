@@ -7,8 +7,8 @@ public class Task11 {
         String str = "I like Java!!!";
 
         System.out.println(str.charAt(str.length()-1));
-        //String str1 = str.substring(str.indexOf("Java"),str.lastIndexOf("Java"));
-        //System.out.println(str1);
+        String str1 = str.substring(str.indexOf("Java"),str.lastIndexOf("Java")+4);
+        System.out.println(str1);
         System.out.println(str.endsWith("!!!"));
         System.out.println(str.startsWith("I like"));
         System.out.println(str.contains("Java"));
