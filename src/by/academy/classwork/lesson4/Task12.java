@@ -1,5 +1,15 @@
 package by.academy.classwork.lesson4;
 
+//а) Дано два числа, например 3 и 56, необходимо составить следующие строки:
+// 3 + 56 = 59
+// 3 – 56 = -53
+// 3 * 56 = 168.
+// Используем метод StringBuilder.append().
+//б) Замените символ “=” на слово “равно”.
+//Используйте методы StringBuilder.insert(), StringBuilder.deleteCharAt().
+//в) Замените символ “=” на слово “равно”.
+//Используйте методы StringBuilder.replace().
+
 public class Task12 {
     public static void main(String[] args) {
         int num1 = 3;
