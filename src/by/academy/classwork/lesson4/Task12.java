@@ -12,6 +12,7 @@ package by.academy.classwork.lesson4;
 
 public class Task12 {
     public static void main(String[] args) {
+
         int num1 = 3;
         int num2 = 56;
         StringBuilder str = new StringBuilder();

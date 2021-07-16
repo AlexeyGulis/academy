@@ -15,7 +15,6 @@ import java.util.Locale;
 public class Task11 {
     public static void main(String[] args) {
         String str = "I like Java!!!";
-
         System.out.println(str.charAt(str.length()-1));
         String str1 = str.substring(str.indexOf("Java"),str.lastIndexOf("Java")+4);
         System.out.println(str1);
