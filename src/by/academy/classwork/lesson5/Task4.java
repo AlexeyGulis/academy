@@ -22,18 +22,27 @@ public class Task4 {
     static Pattern pattern1 = Pattern.compile("[a-zA-Z]+\\s*");
     static Pattern pattern2 = Pattern.compile("[a-zA-Z][\\s|[,.!?]]");
     static Pattern pattern3 = Pattern.compile("[a-zA-Z]");
+    //6
     static Pattern email = Pattern.compile("[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z]+");
     public static void main(String[] args) {
         String str = "I,Like java.!!...";
         System.out.println(str);
+        //1
         System.out.println("Количество знаков припенания: " + match(pattern,str));
+        //2
         System.out.println("Количество слов в предложении: " + match(pattern1,str));
+        //3
         Matcher matcher1 = pattern2.matcher(str);
         while (matcher1.find()){
             Matcher matcher3 = pattern3.matcher(matcher1.group());
             while (matcher3.find()){System.out.print(matcher3.group());}
         }
+        System.out.println();
+        //4
+
+        //5
         String str1 = " Hey      There!     How      Are you doing";
+        System.out.println(str1.strip().replaceAll(" +"," "));
 
     }
     public static int match(Pattern p,String s){
