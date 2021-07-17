@@ -6,6 +6,8 @@ public class Cat {
     private int money;
     private char initials;
     private boolean isHomeAnimal;
+
+
     public void grow(){
         age++;
     }
