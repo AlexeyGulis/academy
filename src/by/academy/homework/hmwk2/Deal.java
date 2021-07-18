@@ -2,6 +2,8 @@ package by.academy.homework.hmwk2;
 
 import java.util.Scanner;
 
+// Сколько раздач должна имитировать программа???
+
 public class Deal {
     static String cardname = "";
     static String cardtype = "";
