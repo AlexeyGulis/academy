@@ -12,12 +12,12 @@ public class Deal {
     public static void main(String[] args) {
         int cardDeal = 5;
         createCard();
-        System.out.println("Введите количество игроков (<5)");
+        System.out.println("Введите количество игроков ");
         Scanner scanner = new Scanner(System.in);
         int countPlayers = scanner.nextInt();
         scanner.nextLine();
         while(true){
-            if (countPlayers > 0 && countPlayers < 5) {
+            if (countPlayers > 0 && countPlayers*cardDeal < (52 - 5) ) {
 
                 System.out.println("Раздача карт");
                 System.out.println();
