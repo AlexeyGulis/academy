@@ -32,6 +32,7 @@ public class Task2 {
                 min=i;
             }
         }
+        scanner.close();
         System.out.println("Слово с минимальным количеством неповторяющихся символов -> " + strs[min]);
     }
 }

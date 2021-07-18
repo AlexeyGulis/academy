@@ -25,6 +25,7 @@ public class Task3 {
         System.out.println("Первая строка " + str[0]);
         System.out.println("Вторая строка " + str[1]);
         System.out.println(strb.toString());
+        scanner.close();
 
     }
     public static boolean chet(String str){

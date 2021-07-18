@@ -29,6 +29,7 @@ public class Deal {
                         System.out.println();
                     }
                 }
+                scanner.close();
                 break;
             }else {
                 System.out.println("Введите количество игроков (<5)");
