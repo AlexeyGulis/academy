@@ -5,9 +5,16 @@ import java.util.Scanner;
 public class Task2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите количество слов: ");
-        int count = scanner.nextInt();
-        scanner.nextLine();
+        int count;
+        while(true){
+            System.out.print("Введите количество слов: ");
+            count = scanner.nextInt();
+            scanner.nextLine();
+            if(count>0) {
+                break;
+            }
+            System.out.println("Введено некоректное значение (<=0)");
+        }
         System.out.println("Введите слова: ");
         String[] strs = new String[count];
         int result = -10;
