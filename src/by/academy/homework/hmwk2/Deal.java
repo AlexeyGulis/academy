@@ -29,7 +29,6 @@ public class Deal {
                         System.out.println();
                     }
                 }
-                scanner.close();
                 break;
             }else {
                 System.out.println("Введите количество игроков (<5)");
@@ -37,6 +36,7 @@ public class Deal {
                 scanner.nextLine();
             }
         }
+        scanner.close();
     }
     public static void createCard(){
         System.out.println("Создание колоды");
