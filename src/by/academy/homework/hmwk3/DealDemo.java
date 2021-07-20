@@ -20,8 +20,10 @@ public class DealDemo {
             System.out.println("Would you like to make a deal? (1) - yes,(2) - no");
             if(scan.nextInt()==1){
                 System.out.println("Enter buyer infromation (Name true/false dd.mm.yyyy)");
-                String[] nk = scan.nextLine().split(" ");
-                if(nk.length==3){
+                String[] nk1 = scan.nextLine().split(" ");
+                System.out.println("Enter seller infromation (Name true/false dd.mm.yyyy)");
+                String[] nk2 = scan.nextLine().split(" ");
+                if(nk1.length==3 && nk2.length==3){
                     int count = 0;
                     System.out.println("Insert count of all products ");
                     count = scan.nextInt();
