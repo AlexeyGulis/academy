@@ -31,23 +31,23 @@ public class DealDemo {
                     user1 = new User(nk1[0],Boolean.valueOf(nk1[1]),nk1[2]);
                     user2 = new User(nk2[0],Boolean.valueOf(nk2[1]),nk2[2]);
                     int count = 0;
-                    System.out.println("Count of all products ");
+                    System.out.println("Count of all products: ");
                     count = scan.nextInt();
                     scan.nextLine();
                     String[] products = new String[count];
                     double[] price = new double[count];
                     int[] countElem = new int[count];
                     for (int j = 0; j < products.length; j++) {
-                        System.out.print("Name of product ");
+                        System.out.print("Name of product: ");
                         products[j]=scan.nextLine();
-                        System.out.print("Price of product ");
+                        System.out.print("Price of product: ");
                         price[j] = scan.nextDouble();
                         scan.nextLine();
-                        System.out.print("Count elements of product ");
+                        System.out.print("Count elements of product: ");
                         countElem[j] = scan.nextInt();
                         scan.nextLine();
                     }
-                    System.out.print("Date of deal: (dd.mm.yyyy/dd-mm-yyyy)");
+                    System.out.print("Date of deal (dd.mm.yyyy/dd-mm-yyyy): ");
                     deals[i] = new Deal(user1,user2,products,price,countElem,scan.nextLine());
                     deals[i].getDeal();
                     i++;
