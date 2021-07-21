@@ -8,7 +8,15 @@ public class Type1 extends Product{
 
     @Override
     public double getPrice() {
-        return super.getPrice()*discount;
+        return super.getPrice()-super.getPrice()*discount;
+    }
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Product{");
+        sb.append("name='").append(super.getName()).append('\'');
+        sb.append(", price=").append(getPrice());
+        sb.append(", count=").append(super.getCount());
+        sb.append('}');
+        return sb.toString();
     }
 }
 

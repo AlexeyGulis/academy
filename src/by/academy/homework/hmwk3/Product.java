@@ -13,12 +13,21 @@ public class Product {
         return price*count;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
     @Override
     public String toString() {
-        return "Product{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                ", count=" + count +
-                '}';
+        final StringBuffer sb = new StringBuffer("Product{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", price=").append(price);
+        sb.append(", count=").append(count);
+        sb.append('}');
+        return sb.toString();
     }
 }

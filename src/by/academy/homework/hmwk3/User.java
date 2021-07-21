@@ -20,7 +20,7 @@ public class User {
     @Override
     public String toString() {
         if(sellerOrbuyer){
-            return "Name seller - " + name + ", ";
-        }else return "Name buyer - " + name + ", ";
+            return "Seller name - " + name + ", ";
+        }else return "Buyer name - " + name + ", ";
     }
 }

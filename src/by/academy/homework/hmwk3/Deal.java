@@ -11,10 +11,13 @@ public class Deal {
         this.user2 = user2;
         this.products = new Product[nameProduct.length];
         for (int i = 0; i < nameProduct.length; i++) {
-            if("p1".equals(nameProduct)){
+            if("p1".equals(nameProduct[i])){
                 products[i] = new Type1(nameProduct[i],price[i],count[i]);
-            }
-            products[i] = new Product(nameProduct[i],price[i],count[i]);
+            }else if("p2".equals(nameProduct[i])){
+                products[i] = new Type1(nameProduct[i],price[i],count[i]);
+            }else if("p3".equals(nameProduct[i])){
+                products[i] = new Type1(nameProduct[i],price[i],count[i]);
+            }else products[i] = new Product(nameProduct[i],price[i],count[i]);
         }
         this.date = date;
     }
