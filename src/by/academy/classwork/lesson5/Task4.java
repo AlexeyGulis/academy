@@ -23,7 +23,7 @@ public class Task4 {
     static Pattern pattern2 = Pattern.compile("[a-zA-Z][\\s|[,.!?]]");
     static Pattern pattern3 = Pattern.compile("[a-zA-Z]");
     //6
-    static Pattern email = Pattern.compile("[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z]+");
+    static Pattern email = Pattern.compile("[a-zA-Z0-9_]+@[a-zA-Z0-9]+\\.[a-zA-Z]");
     public static void main(String[] args) {
         String str = "I,Like java.!!...";
         System.out.println(str);
