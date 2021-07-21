@@ -11,10 +11,10 @@ public class Type2 extends Product{
         return super.getPrice()-super.getPrice()*discount;
     }
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Product{");
-        sb.append("name='").append(super.getName()).append('\'');
-        sb.append(", price=").append(getPrice());
-        sb.append(", count=").append(super.getCount());
+        final StringBuffer sb = new StringBuffer();
+        sb.append("{Product name = '").append(super.getName()).append('\'');
+        sb.append(", count = ").append(super.getCount());
+        sb.append(", price (included discount) = ").append(getPrice());
         sb.append('}');
         return sb.toString();
     }

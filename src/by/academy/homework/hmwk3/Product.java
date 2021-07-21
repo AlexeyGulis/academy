@@ -23,10 +23,10 @@ public class Product {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Product{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", price=").append(price);
-        sb.append(", count=").append(count);
+        final StringBuffer sb = new StringBuffer();
+        sb.append("{Product name = '").append(name).append('\'');
+        sb.append(", count = ").append(count);
+        sb.append(", price = ").append(price);
         sb.append('}');
         return sb.toString();
     }
