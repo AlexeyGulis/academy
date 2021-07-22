@@ -30,12 +30,16 @@ public class User {
     public String toString() {
         StringBuilder str = new StringBuilder();
         if(sellerOrbuyer){
-            str.append("Seller name - ").append(name).append(", ");
-            str.append("Date of birth - ").append(dateOfbirth).append(";");
+            str.append("Buyer name - ").append(name).append(", ");
+            str.append("Date of birth - ").append(dateOfbirth).append(", ");
+            str.append("Phone - ").append(phone).append(", ");
+            str.append("Email - ").append(email).append(";");
             return str.toString();
         }else {
-            str.append("Buyer name - ").append(name).append(", ");
-            str.append("Date of birth - ").append(dateOfbirth).append(";");
+            str.append("Seller name - ").append(name).append(", ");
+            str.append("Date of birth - ").append(dateOfbirth).append(", ");
+            str.append("Phone - ").append(phone).append(", ");
+            str.append("Email - ").append(email).append(";");
             return str.toString();
         }
     }

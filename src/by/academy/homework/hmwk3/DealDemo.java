@@ -28,9 +28,9 @@ public class DealDemo {
             System.out.println("Would you like to make a deal? (1) - yes,(2) - no");
             if(scan.nextInt()==1){
                 scan.nextLine();
-                System.out.println("Buyer information (Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd.mm.yyyy|dd/mm/yyyy) Email(XXXXX@XXX.XX)): ");
+                System.out.println("Buyer information (Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXXX@XXX.XX)): ");
                 String[] nk1 = scan.nextLine().split(" ");
-                System.out.println("Seller information (Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd.mm.yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)): ");
+                System.out.println("Seller information (Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)): ");
                 String[] nk2 = scan.nextLine().split(" ");
                 if(nk1.length==4 && nk2.length==4
                         && TimeValidator.dateValidate(nk1[2]) && TimeValidator.dateValidate(nk2[2])
@@ -56,7 +56,7 @@ public class DealDemo {
                         countElem[j] = scan.nextInt();
                         scan.nextLine();
                     }
-                    System.out.print("Date of deal (dd.mm.yyyy|dd/mm/yyyy): ");
+                    System.out.print("Date of deal (dd-MM-yyyy|dd/MM/yyyy): ");
                     String dateDeal = scan.nextLine();
                     if(!TimeValidator.dateValidate(dateDeal)){
                         System.out.println("Incorrect info");

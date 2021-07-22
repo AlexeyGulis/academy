@@ -42,7 +42,7 @@ public class TimeValidator {
             } else if(Integer.valueOf(match2.group(2))==2 && Integer.valueOf(match2.group(1))>28){
                 return false;
             } else {
-                Date date = new SimpleDateFormat("dd/MM/yyyy").parse(match2.group());
+                Date date = new SimpleDateFormat("dd-MM-yyyy").parse(match2.group());
                 if(new Date().before(date)){return false;} else {
                     calendar.setTime(date);
                     strB.append("Day: <").append(calendar.get(Calendar.DAY_OF_MONTH)).append("> ");

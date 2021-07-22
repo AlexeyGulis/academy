@@ -1,5 +1,6 @@
 package by.academy.homework.hmwk3;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Deal {
@@ -8,6 +9,7 @@ public class Deal {
     User user2;
     String date;
     String deadlineDate;
+    Date date1;
     Deal(User user1, User user2,String[] nameProduct,double[] price,int[] count,String date){
         this.user1 = user1;
         this.user2 = user2;
@@ -22,7 +24,10 @@ public class Deal {
             }else products[i] = new Product(nameProduct[i],price[i],count[i]);
         }
         this.date = date;
-        Date date1 = new Date();
+        date1 = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date1);
+        calendar.set(Calendar.DAY_OF_MONTH,+10);
     }
     public void getDeal(){
         StringBuilder str = new StringBuilder();
