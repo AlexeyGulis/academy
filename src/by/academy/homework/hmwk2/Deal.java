@@ -47,7 +47,14 @@ public class Deal {
                 stck.push(temp);
             }
         }
-        /*for (int i = 0; i < 13; i++) {
+        System.out.println("Перетасовка карт");
+        stck.shuffle();
+
+    }
+}
+
+/* first version create cards
+for (int i = 0; i < 13; i++) {
             switch (i){
                 case 0:
                     cardname = "Туз";
@@ -112,8 +119,3 @@ public class Deal {
                 stck.push(temp);
             }
         }*/
-        System.out.println("Перетасовка карт");
-        stck.shuffle();
-
-    }
-}
