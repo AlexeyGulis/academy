@@ -1,5 +1,6 @@
 package by.academy.homework.hmwk3;
 
+import java.text.ParseException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,7 +9,7 @@ public class DealDemo {
     //static Pattern email = Pattern.compile("[a-zA-Z0-9._]+@[a-zA-Z0-9]+\\.[a-zA-Z]");
     static Pattern email = Pattern.compile("^.*?@.*?\\..*$");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         System.out.println("Deals");
         Validator emailValidator = new Validator() {
             @Override
@@ -27,18 +28,17 @@ public class DealDemo {
             System.out.println("Would you like to make a deal? (1) - yes,(2) - no");
             if(scan.nextInt()==1){
                 scan.nextLine();
-                System.out.println("Buyer information (Name Phone(+375XXXXXXXX|+1XXXXXXXX) Date of birth(dd.mm.yyyy|dd/mm/yyyy) Email(XXXXX@XXX.XX)): ");
+                System.out.println("Buyer information (Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd.mm.yyyy|dd/mm/yyyy) Email(XXXXX@XXX.XX)): ");
                 String[] nk1 = scan.nextLine().split(" ");
-                System.out.println("Seller information (Name Phone(+375XXXXXXXX|+1XXXXXXXX) Date of birth(dd.mm.yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)): ");
+                System.out.println("Seller information (Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd.mm.yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)): ");
                 String[] nk2 = scan.nextLine().split(" ");
                 if(nk1.length==4 && nk2.length==4
                         && TimeValidator.dateValidate(nk1[2]) && TimeValidator.dateValidate(nk2[2])
                         && (new BelarusPhoneValidator().validate(nk1[1]) || new AmericanPhoneValidator().validate(nk1[1]))
                         && (new BelarusPhoneValidator().validate(nk2[1]) || new AmericanPhoneValidator().validate(nk2[1]))
                         && emailValidator.validate(nk1[3]) && emailValidator.validate(nk2[3])){
-                    if(Boolean.valueOf(nk1[1]))nk2[1]="false";else nk2[1]="true";
-                    user1 = new User(nk1[0],true,nk1[2]);
-                    user2 = new User(nk2[0],false,nk2[2]);
+                    user1 = new User(nk1[0],true,nk1[2],nk1[1],nk1[3]);
+                    user2 = new User(nk2[0],false,nk2[2],nk2[1],nk2[3]);
                     int count = 0;
                     System.out.println("Count of all products: ");
                     count = scan.nextInt();
@@ -76,9 +76,9 @@ public class DealDemo {
             scan.nextLine();
             for (int j = 0; j < deals.length; j++) {
                 if(deals[j]!=null){
+                    deals[j].getDeal();
                     System.out.println("Would you like to correct this deal? (1) - yes,(2) - no");
                     if(scan.nextInt()==1){
-
                     }
                 }
             }
