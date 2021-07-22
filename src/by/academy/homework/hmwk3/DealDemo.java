@@ -79,6 +79,27 @@ public class DealDemo {
                     deals[j].getDeal();
                     System.out.println("Would you like to correct this deal? (1) - yes,(2) - no");
                     if(scan.nextInt()==1){
+                        System.out.println("Would you like? (1) - remove product,(2) - add product,(3) - nothing");
+                        if(scan.nextInt()==1){
+                            scan.nextLine();
+                            System.out.println("Name removal product ");
+                            deals[i].removeProduct(scan.nextLine());
+                        }
+                        if(scan.nextInt()==2){
+                            String name = "";
+                            double price = 0.0;
+                            int count = 0;
+                            scan.nextLine();
+                            System.out.println("Name addition product ");
+                            name = scan.nextLine();
+                            System.out.print("Price of product: ");
+                            price = scan.nextDouble();
+                            scan.nextLine();
+                            System.out.print("Count elements of product: ");
+                            count = scan.nextInt();
+                            scan.nextLine();
+                            deals[i].addProduct(name,price,count);
+                        }
                     }
                 }
             }

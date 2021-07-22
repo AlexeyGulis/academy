@@ -10,26 +10,27 @@ public class Deal {
     String date;
     Calendar deadlineDate;
 
-    Deal(User user1, User user2,String[] nameProduct,double[] price,int[] count,String date){
+    Deal(User user1, User user2, String[] nameProduct, double[] price, int[] count, String date) {
         this.user1 = user1;
         this.user2 = user2;
         this.products = new Product[nameProduct.length];
         for (int i = 0; i < nameProduct.length; i++) {
-            if("p1".equals(nameProduct[i])){
-                products[i] = new Type1(nameProduct[i],price[i],count[i]);
-            }else if("p2".equals(nameProduct[i])){
-                products[i] = new Type2(nameProduct[i],price[i],count[i]);
-            }else if("p3".equals(nameProduct[i])){
-                products[i] = new Type3(nameProduct[i],price[i],count[i]);
-            }else products[i] = new Product(nameProduct[i],price[i],count[i]);
+            if ("p1".equals(nameProduct[i])) {
+                products[i] = new Type1(nameProduct[i], price[i], count[i]);
+            } else if ("p2".equals(nameProduct[i])) {
+                products[i] = new Type2(nameProduct[i], price[i], count[i]);
+            } else if ("p3".equals(nameProduct[i])) {
+                products[i] = new Type3(nameProduct[i], price[i], count[i]);
+            } else products[i] = new Product(nameProduct[i], price[i], count[i]);
         }
         this.date = date;
         Date currentDate = new Date();
         deadlineDate = Calendar.getInstance();
         deadlineDate.setTime(currentDate);
-        deadlineDate.set(Calendar.DAY_OF_MONTH,+10);
+        deadlineDate.set(Calendar.DAY_OF_MONTH, +10);
     }
-    public void getDeal(){
+
+    public void getDeal() {
         StringBuilder str = new StringBuilder();
         str.append(user1);
         System.out.println(str.toString());
@@ -49,17 +50,48 @@ public class Deal {
         }
 
     }
-    public void addProduct(String name,double price,int count){
 
+    public void addProduct(String name, double price, int count) {
+        Product[] temp = new Product[products.length + 1];
+        for (int i = 0; i < products.length; i++) {
+            temp[i] = products[i];
+        }
+        if ("p1".equals(name)) {
+            temp[products.length + 1] = new Type1(name, price, count);
+        } else if ("p2".equals(name)) {
+            temp[products.length + 1] = new Type2(name, price, count);
+        } else if ("p3".equals(name)) {
+            temp[products.length + 1] = new Type3(name, price, count);
+        } else temp[products.length + 1] = new Product(name, price, count);
+        products = temp;
     }
-    public void removeProduct(String name){
 
+    public void removeProduct(String name) {
+        if(products.length!=0 && name!=null) {
+            Product[] temp = new Product[products.length - 1];
+            int index_rem = -10;
+            for (int i = 0; i < products.length; i++) {
+                if(name.equals(products[i])){
+                    index_rem = i;
+                }
+            }
+            if(index_rem!=10){
+                for (int i = 0; i < products.length; i++) {
+                    if(index_rem!=i) {
+                        temp[i]=products[i];
+                    }
+                }
+                products = temp;
+            }
+
+        }
     }
-    public double getSumDeal(){
+
+    public double getSumDeal() {
         double sumdeal = 0;
         for (int i = 0; i < products.length; i++) {
-            if(products[i]!=null) {
-                sumdeal+=products[i].getPrice();
+            if (products[i] != null) {
+                sumdeal += products[i].getPrice();
             }
         }
         return sumdeal;
