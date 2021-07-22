@@ -46,31 +46,31 @@ public class Deal {
                     cardname = "Туз";
                     break;
                 case 1:
-                    cardname = "2";
+                    cardname = "Двойка";
                     break;
                 case 2:
-                    cardname = "3";
+                    cardname = "Тройка";
                     break;
                 case 3:
-                    cardname = "4";
+                    cardname = "Четверка";
                     break;
                 case 4:
-                    cardname = "5";
+                    cardname = "Пятерка";
                     break;
                 case 5:
-                    cardname = "6";
+                    cardname = "Шестерка";
                     break;
                 case 6:
-                    cardname = "7";
+                    cardname = "Семерка";
                     break;
                 case 7:
-                    cardname = "8";
+                    cardname = "Восьмерка";
                     break;
                 case 8:
-                    cardname = "9";
+                    cardname = "Девятка";
                     break;
                 case 9:
-                    cardname = "10";
+                    cardname = "Десятка";
                     break;
                 case 10:
                     cardname = "Валет";
@@ -105,7 +105,7 @@ public class Deal {
                 stck.push(temp);
             }
         }
-        System.out.println("Перетусовка колоды");
+        System.out.println("Перетасовка карт");
         stck.shuffle();
 
     }

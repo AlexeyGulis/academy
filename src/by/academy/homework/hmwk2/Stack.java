@@ -22,9 +22,7 @@ public class Stack {
         }else return stck[tos--];
     }
     public void shuffle(){
-        List<Integer> indexes = new ArrayList<>(stck.length);
         Random rnd = new Random();
-        int count = 0;
         Card temp;
         for(int i = 0; i < stck.length; i++) {
             int index = rnd.nextInt(stck.length);
@@ -32,7 +30,6 @@ public class Stack {
             stck[index] = stck[i];
             stck[i] = temp;
         }
-        temp=null;
     }
 
 }
