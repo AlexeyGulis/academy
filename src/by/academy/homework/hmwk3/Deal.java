@@ -1,11 +1,13 @@
 package by.academy.homework.hmwk3;
 
-public class Deal {
+import java.util.Date;
 
+public class Deal {
     Product[] products;
     User user1;
     User user2;
     String date;
+    String deadlineDate;
     Deal(User user1, User user2,String[] nameProduct,double[] price,int[] count,String date){
         this.user1 = user1;
         this.user2 = user2;
@@ -20,14 +22,19 @@ public class Deal {
             }else products[i] = new Product(nameProduct[i],price[i],count[i]);
         }
         this.date = date;
+        Date date1 = new Date();
     }
     public void getDeal(){
         StringBuilder str = new StringBuilder();
         str.append(user1);
+        System.out.println(str.toString());
+        str.setLength(0);
         str.append(user2);
+        System.out.println(str.toString());
+        str.setLength(0);
         str.append("Sum of deal: ");
         str.append(getSumDeal());
-        str.append(", Date : ");
+        str.append(", Date of deal: ");
         str.append(date);
         str.append(";");
         System.out.println(str.toString());

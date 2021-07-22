@@ -1,35 +1,44 @@
 package by.academy.homework.hmwk3;
 
-import javax.sound.midi.Soundbank;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DealDemo {
+    //static Pattern email = Pattern.compile("[a-zA-Z0-9._]+@[a-zA-Z0-9]+\\.[a-zA-Z]");
+    static Pattern email = Pattern.compile("^.*?@.*?\\..*$");
+
     public static void main(String[] args) {
         System.out.println("Deals");
+        Validator emailValidator = new Validator() {
+            @Override
+            public boolean validate(String t) {
+                Matcher matcher = email.matcher(t);
+                return matcher.find();
+            }
+        };
         //Количество сделок неопределено, поэтому возьму значение 20, можно написать чтобы массив динамически расширялся (2хдлины) доходя до границы.
         Deal[] deals = new Deal[20];
         User user1;
         User user2;
-        /*test
-        User user1 = new User("Vanya",true,"16.09.1993");
-        User user2 = new User("Vitya",false,"26.02.1997");
-        Deal deal1 = new Deal(user1,user2, new String[]{"product1", "product2", "product3"},new double[]{500.0,215.0,123.0},new int[]{1,4,3},"20.07.2021");
-        deal1.getDeal();
-        */
         Scanner scan = new Scanner(System.in);
         int i = 0;
         while(i<20) {
             System.out.println("Would you like to make a deal? (1) - yes,(2) - no");
             if(scan.nextInt()==1){
                 scan.nextLine();
-                System.out.println("Buyer infromation (Name true/false dd.mm.yyyy/dd-mm-yyyy)");
+                System.out.println("Buyer information (Name Phone(+375XXXXXXXX|+1XXXXXXXX) Date of birth(dd.mm.yyyy|dd/mm/yyyy) Email(XXXXX@XXX.XX)): ");
                 String[] nk1 = scan.nextLine().split(" ");
-                System.out.println("Seller infromation (Name true/false dd.mm.yyyy/dd-mm-yyyy)");
+                System.out.println("Seller information (Name Phone(+375XXXXXXXX|+1XXXXXXXX) Date of birth(dd.mm.yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)): ");
                 String[] nk2 = scan.nextLine().split(" ");
-                if(nk1.length==3 && nk2.length==3){
+                if(nk1.length==4 && nk2.length==4
+                        && TimeValidator.dateValidate(nk1[2]) && TimeValidator.dateValidate(nk2[2])
+                        && (new BelarusPhoneValidator().validate(nk1[1]) || new AmericanPhoneValidator().validate(nk1[1]))
+                        && (new BelarusPhoneValidator().validate(nk2[1]) || new AmericanPhoneValidator().validate(nk2[1]))
+                        && emailValidator.validate(nk1[3]) && emailValidator.validate(nk2[3])){
                     if(Boolean.valueOf(nk1[1]))nk2[1]="false";else nk2[1]="true";
-                    user1 = new User(nk1[0],Boolean.valueOf(nk1[1]),nk1[2]);
-                    user2 = new User(nk2[0],Boolean.valueOf(nk2[1]),nk2[2]);
+                    user1 = new User(nk1[0],true,nk1[2]);
+                    user2 = new User(nk2[0],false,nk2[2]);
                     int count = 0;
                     System.out.println("Count of all products: ");
                     count = scan.nextInt();
@@ -47,8 +56,13 @@ public class DealDemo {
                         countElem[j] = scan.nextInt();
                         scan.nextLine();
                     }
-                    System.out.print("Date of deal (dd.mm.yyyy/dd-mm-yyyy): ");
-                    deals[i] = new Deal(user1,user2,products,price,countElem,scan.nextLine());
+                    System.out.print("Date of deal (dd.mm.yyyy|dd/mm/yyyy): ");
+                    String dateDeal = scan.nextLine();
+                    if(!TimeValidator.dateValidate(dateDeal)){
+                        System.out.println("Incorrect info");
+                        continue;
+                    }
+                    deals[i] = new Deal(user1,user2,products,price,countElem,dateDeal);
                     deals[i].getDeal();
                     i++;
                 }else {
@@ -56,6 +70,18 @@ public class DealDemo {
                     continue;
                 }
             }else break;
+        }
+        System.out.println("Would you like to correct any deal? (1) - yes,(2) - no");
+        if(scan.nextInt()==1){
+            scan.nextLine();
+            for (int j = 0; j < deals.length; j++) {
+                if(deals[j]!=null){
+                    System.out.println("Would you like to correct this deal? (1) - yes,(2) - no");
+                    if(scan.nextInt()==1){
+
+                    }
+                }
+            }
         }
         scan.close();
     }

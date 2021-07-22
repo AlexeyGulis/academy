@@ -7,13 +7,19 @@ public class Type3 extends Product {
     }
 
     @Override
+    public String getName(){
+        return super.getName();
+    }
+    public int getCount() {
+        return super.getCount();
+    }
     public double getPrice() {
         return super.getPrice()-super.getPrice()*discount;
     }
     public String toString() {
         final StringBuffer sb = new StringBuffer();
-        sb.append("{Product name = '").append(super.getName()).append('\'');
-        sb.append(", count = ").append(super.getCount());
+        sb.append("{Product name = '").append(getName()).append('\'');
+        sb.append(", count = ").append(getCount());
         sb.append(", price (included discount) = ").append(getPrice());
         sb.append('}');
         return sb.toString();
