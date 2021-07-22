@@ -49,6 +49,12 @@ public class Deal {
         }
 
     }
+    public void addProduct(String name,double price,int count){
+
+    }
+    public void removeProduct(String name){
+
+    }
     public double getSumDeal(){
         double sumdeal = 0;
         for (int i = 0; i < products.length; i++) {
