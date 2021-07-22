@@ -31,7 +31,7 @@ public class Deal {
                 }
                 break;
             }else {
-                System.out.println("Введите количество игроков (<5)");
+                System.out.println("Введите количество игроков ");
                 countPlayers = scanner.nextInt();
                 scanner.nextLine();
             }
