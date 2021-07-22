@@ -5,9 +5,10 @@ import java.util.Scanner;
 // Сколько раздач должна имитировать программа???
 
 public class Deal {
-    static String cardname = "";
-    static String cardtype = "";
-    static Stack stck = new Stack();
+    static String[] cardname = {"Туз","Двойка","Тройка","Четверка","Пятёрка","Шестёрка","Семёрка","Восьмёрка",
+            "Девятка","Десятка","Валет","Дама","Король"};
+    static String[] cardtype = {"Буби","Черви","Пики","Крести"};
+    static Stack stck = new Stack(cardname.length*cardtype.length);
 
     public static void main(String[] args) {
         int cardDeal = 5;
@@ -17,7 +18,7 @@ public class Deal {
         int countPlayers = scanner.nextInt();
         scanner.nextLine();
         while(true){
-            if (countPlayers > 0 && countPlayers*cardDeal < (52 - 5) ) {
+            if (countPlayers > 0 && countPlayers*cardDeal <= (cardname.length*cardtype.length - 5) ) {
 
                 System.out.println("Раздача карт");
                 System.out.println();
@@ -40,7 +41,13 @@ public class Deal {
     }
     public static void createCard(){
         System.out.println("Создание колоды");
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < cardname.length; i++) {
+            for (int j = 0; j < cardtype.length; j++) {
+                Card temp = new Card(cardname[i],cardtype[j]);
+                stck.push(temp);
+            }
+        }
+        /*for (int i = 0; i < 13; i++) {
             switch (i){
                 case 0:
                     cardname = "Туз";
@@ -104,7 +111,7 @@ public class Deal {
                 Card temp = new Card(cardname,cardtype);
                 stck.push(temp);
             }
-        }
+        }*/
         System.out.println("Перетасовка карт");
         stck.shuffle();
 

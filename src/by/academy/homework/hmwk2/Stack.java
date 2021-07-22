@@ -3,11 +3,10 @@ package by.academy.homework.hmwk2;
 import java.util.*;
 
 public class Stack {
-    final static int NUMBER_OF_CARDS=52;
     private Card[] stck;
     private static int tos;
-    Stack(){
-        stck = new Card[NUMBER_OF_CARDS];
+    Stack(int numberCards){
+        stck = new Card[numberCards];
         tos = -1;
     }
     public void push(Card ojb){
