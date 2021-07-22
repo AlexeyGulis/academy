@@ -6,11 +6,11 @@ public class Task2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int count;
-        while(true){
+        while (true) {
             System.out.print("Введите количество слов: ");
             count = scanner.nextInt();
             scanner.nextLine();
-            if(count>0) {
+            if (count > 0) {
                 break;
             }
             System.out.println("Введено некоректное значение (<=0)");
@@ -26,17 +26,17 @@ public class Task2 {
             for (int j = 0; j < ch.length; j++) {
                 t++;
                 for (int k = 0; k < ch.length; k++) {
-                    if(ch[j]==ch[k] && j!=k){
+                    if (ch[j] == ch[k] && j != k) {
                         t--;
                         break;
                     }
                 }
             }
-            if(result==-10){
+            if (result == -10) {
                 result = t;
-            }else if(result>t){
+            } else if (result > t) {
                 result = t;
-                min=i;
+                min = i;
             }
         }
         scanner.close();

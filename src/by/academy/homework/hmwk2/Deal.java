@@ -5,10 +5,10 @@ import java.util.Scanner;
 // Сколько раздач должна имитировать программа???
 
 public class Deal {
-    static String[] cardname = {"Туз","Двойка","Тройка","Четверка","Пятёрка","Шестёрка","Семёрка","Восьмёрка",
-            "Девятка","Десятка","Валет","Дама","Король"};
-    static String[] cardtype = {"Буби","Черви","Пики","Крести"};
-    static Stack stck = new Stack(cardname.length*cardtype.length);
+    static String[] cardname = {"Туз", "Двойка", "Тройка", "Четверка", "Пятёрка", "Шестёрка", "Семёрка", "Восьмёрка",
+            "Девятка", "Десятка", "Валет", "Дама", "Король"};
+    static String[] cardtype = {"Буби", "Черви", "Пики", "Крести"};
+    static Stack stck = new Stack(cardname.length * cardtype.length);
 
     public static void main(String[] args) {
         int cardDeal = 5;
@@ -17,8 +17,8 @@ public class Deal {
         Scanner scanner = new Scanner(System.in);
         int countPlayers = scanner.nextInt();
         scanner.nextLine();
-        while(true){
-            if (countPlayers > 0 && countPlayers*cardDeal <= (cardname.length*cardtype.length - 5) ) {
+        while (true) {
+            if (countPlayers > 0 && countPlayers * cardDeal <= (cardname.length * cardtype.length - 5)) {
 
                 System.out.println("Раздача карт");
                 System.out.println();
@@ -31,7 +31,7 @@ public class Deal {
                     }
                 }
                 break;
-            }else {
+            } else {
                 System.out.println("Введите количество игроков ");
                 countPlayers = scanner.nextInt();
                 scanner.nextLine();
@@ -39,11 +39,12 @@ public class Deal {
         }
         scanner.close();
     }
-    public static void createCard(){
+
+    public static void createCard() {
         System.out.println("Создание колоды");
         for (int i = 0; i < cardname.length; i++) {
             for (int j = 0; j < cardtype.length; j++) {
-                Card temp = new Card(cardname[i],cardtype[j]);
+                Card temp = new Card(cardname[i], cardtype[j]);
                 stck.push(temp);
             }
         }

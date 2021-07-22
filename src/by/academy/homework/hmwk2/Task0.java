@@ -10,12 +10,12 @@ public class Task0 {
         // write code here
         int[] arrtemp = new int[arr.length];
         for (int i = 0; i < arrtemp.length; i++) {
-            arrtemp[i]=0;
+            arrtemp[i] = 0;
         }
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr.length; j++) {
-                if(arr[i]-arr[j]==k && arrtemp[i]==0){
-                    arrtemp[i]=1;
+                if (arr[i] - arr[j] == k && arrtemp[i] == 0) {
+                    arrtemp[i] = 1;
                     pairsCount++;
                 }
             }
