@@ -38,7 +38,8 @@ public class DealDemo {
             if (scan.nextInt() == 1) {
                 scan.nextLine();
                 String[] temp;
-                System.out.println("Buyer information (Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXXX@XXX.XX)): ");
+                System.out.println("Buyer information");
+                System.out.println("Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)");
                 String[] nk1 = scan.nextLine().split(" ");
                 temp = chekUser(nk1);
                 if (temp != null) {
@@ -48,7 +49,8 @@ public class DealDemo {
                     continue;
                 }
                 user1 = new User(nk1[0], true, nk1[2], nk1[1], nk1[3]);
-                System.out.println("Seller information (Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)): ");
+                System.out.println("Seller information");
+                System.out.println("Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)");
                 String[] nk2 = scan.nextLine().split(" ");
                 temp = chekUser(nk2);
                 if (temp != null) {
