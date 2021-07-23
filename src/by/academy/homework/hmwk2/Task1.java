@@ -11,7 +11,6 @@ public class Task1 {
         System.out.print("Введите вторую строку : ");
         String str2 = scan.nextLine();
         System.out.print(" -> ");
-        //  Метод использует реплейс. т.к. в реплейсе есть цикл, тогда выполнение данного кода будет i^2 итераций
         if (str1.length() != str2.length()) {
             System.out.println(flag);
         } else {

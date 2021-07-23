@@ -24,11 +24,10 @@ public class Deal {
                 System.out.println();
                 for (int i = 0; i < countPlayers; i++) {
                     System.out.println("Игрок " + (i + 1));
-                    System.out.println();
                     for (int j = 0; j < cardDeal; j++) {
                         System.out.println(stck.pop().toString());
-                        System.out.println();
                     }
+                    System.out.println();
                 }
                 break;
             } else {
