@@ -38,9 +38,7 @@ public class Deal {
         str.append(user2);
         System.out.println(str.toString());
         str.setLength(0);
-        str.append("Sum of deal: ");
-        str.append(getSumDeal());
-        str.append(", Date of deal: ");
+        str.append("Date of deal: ");
         str.append(date);
         str.append(";");
         System.out.println(str.toString());
@@ -57,33 +55,39 @@ public class Deal {
             temp[i] = products[i];
         }
         if ("p1".equals(name)) {
-            temp[products.length + 1] = new Type1(name, price, count);
+            temp[products.length] = new Type1(name, price, count);
         } else if ("p2".equals(name)) {
-            temp[products.length + 1] = new Type2(name, price, count);
+            temp[products.length] = new Type2(name, price, count);
         } else if ("p3".equals(name)) {
-            temp[products.length + 1] = new Type3(name, price, count);
-        } else temp[products.length + 1] = new Product(name, price, count);
+            temp[products.length] = new Type3(name, price, count);
+        } else temp[products.length] = new Product(name, price, count);
         products = temp;
     }
 
     public void removeProduct(String name) {
-        if(products.length!=0 && name!=null) {
+        if (products.length != 0 && name != null) {
             Product[] temp = new Product[products.length - 1];
             int index_rem = -10;
             for (int i = 0; i < products.length; i++) {
-                if(name.equals(products[i])){
+                if (name.equals(products[i].getName())) {
                     index_rem = i;
                 }
             }
-            if(index_rem!=10){
+            if (index_rem != -10) {
+                int j = 0;
                 for (int i = 0; i < products.length; i++) {
-                    if(index_rem!=i) {
-                        temp[i]=products[i];
+                    if (index_rem != i) {
+                        temp[j] = products[i];
+                        j++;
                     }
                 }
                 products = temp;
+            } else {
+                System.out.println("Product not available with this name");
             }
 
+        } else {
+            System.out.println("Products not exist");
         }
     }
 
@@ -91,7 +95,7 @@ public class Deal {
         double sumdeal = 0;
         for (int i = 0; i < products.length; i++) {
             if (products[i] != null) {
-                sumdeal += products[i].getPrice();
+                sumdeal += products[i].getSumPrice();
             }
         }
         return sumdeal;
