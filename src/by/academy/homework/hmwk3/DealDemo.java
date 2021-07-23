@@ -1,6 +1,5 @@
 package by.academy.homework.hmwk3;
 
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -64,15 +63,15 @@ public class DealDemo {
                 System.out.println("Count of all products: ");
                 count = scan.nextInt();
                 scan.nextLine();
-                String[] products = new String[count];
+                String[] nameproduct = new String[count];
                 double[] price = new double[count];
                 int[] countElem = new int[count];
                 String[] nk3;
-                for (int j = 0; j < products.length; j++) {
+                for (int j = 0; j < nameproduct.length; j++) {
                     System.out.println("Enter products #" + (j + 1));
                     System.out.println("Name Price Count");
                     nk3 = scan.nextLine().split(" ");
-                    products[j] = nk3[0];
+                    nameproduct[j] = nk3[0];
                     price[j] = Double.valueOf(nk3[1]);
                     countElem[j] = Integer.valueOf(nk3[2]);
                 }
@@ -81,23 +80,23 @@ public class DealDemo {
                 if (!TimeValidator.dateValidate(dateDeal)) {
                     dateDeal = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
                 }
-                deals[i] = new Deal(user1, user2, products, price, countElem, dateDeal);
+                deals[i] = new Deal(user1, user2, nameproduct, price, countElem, dateDeal);
                 deals[i].getDeal();
                 i++;
             } else break;
         }
         // можно сделать меню, основываясь на не нулевых элементах массива deals и предлагать ввести номер сделки (Пример, создали 7,
         // проверили массив на не нулевые, узнали что их 7, предложили пользователю выбрать сделку 1-7)
-        System.out.println("Would you like check|correct any deal? (1) - yes,(2) - no");
+        System.out.println("Would you like check|correct any deal? (1) - yes,(2) - exit");
         if (scan.nextInt() == 1) {
             scan.nextLine();
             for (int j = 0; j < deals.length; j++) {
                 if (deals[j] != null) {
                     deals[j].getDeal();
-                    System.out.println("Would you like check|correct this deal? (1) - yes,(2) - no");
+                    System.out.println("Would you like check|correct this deal? (1) - yes,(2) - next deal");
                     if (scan.nextInt() == 1) {
                         while (true) {
-                            System.out.println("Would you like? (1) - remove product,(2) - add product,(3) - calculate sum of deal, (4) - exit");
+                            System.out.println("Would you like? (1) - remove product,(2) - add product,(3) - calculate sum of deal, (4) - next deal");
                             int menu = scan.nextInt();
                             scan.nextLine();
                             if (menu == 1) {

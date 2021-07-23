@@ -34,7 +34,7 @@ public class TimeValidator {
                     strB.append("Day: <").append(calendar.get(Calendar.DAY_OF_MONTH)).append("> ");
                     System.out.println(strB);
                     strB.setLength(0);
-                    strB.append("Month: <").append(calendar.get(Calendar.MONTH)).append("> ");
+                    strB.append("Month: <").append((calendar.get(Calendar.MONTH)+1)).append("> ");
                     System.out.println(strB);
                     strB.setLength(0);
                     strB.append("Year: <").append(calendar.get(Calendar.YEAR)).append("> ");
@@ -59,7 +59,7 @@ public class TimeValidator {
                     strB.append("Day: <").append(calendar.get(Calendar.DAY_OF_MONTH)).append("> ");
                     System.out.println(strB);
                     strB.setLength(0);
-                    strB.append("Month: <").append(calendar.get(Calendar.MONTH + 1)).append("> ");
+                    strB.append("Month: <").append((calendar.get(Calendar.MONTH)+1)).append("> ");
                     System.out.println(strB);
                     strB.setLength(0);
                     strB.append("Year: <").append(calendar.get(Calendar.YEAR)).append("> ");
