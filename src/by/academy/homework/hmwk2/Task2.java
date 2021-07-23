@@ -13,33 +13,40 @@ public class Task2 {
             if (count > 0) {
                 break;
             }
-            System.out.println("Введено некоректное значение (<=0)");
+            System.out.println("Введено некоректное значение");
         }
         System.out.println("Введите слова: ");
         String[] strs = new String[count];
-        int result = -10;
-        int min = 0;
+        int[] arrTemp;
+        int countLetterMin = -10;
+        int indexMin = 0;
         for (int i = 0; i < count; i++) {
             strs[i] = scanner.nextLine();
             char[] ch = strs[i].toCharArray();
-            int t = 0;
+            arrTemp = new int[ch.length];
             for (int j = 0; j < ch.length; j++) {
-                t++;
-                for (int k = 0; k < ch.length; k++) {
-                    if (ch[j] == ch[k] && j != k) {
-                        t--;
-                        break;
+                arrTemp[j] = 0;
+            }
+            int countLetter = 0;
+            for (int j = 0; j < ch.length; j++) {
+                if (arrTemp[j] == 0) {
+                    countLetter++;
+                    for (int k = 0; k < ch.length; k++) {
+                        if (ch[j] == ch[k] && arrTemp[k] == 0) {
+                            arrTemp[k] = 1;
+                        }
                     }
                 }
             }
-            if (result == -10) {
-                result = t;
-            } else if (result > t) {
-                result = t;
-                min = i;
+            if (countLetterMin == -10) {
+                countLetterMin = countLetter;
+                indexMin = i;
+            } else if (countLetterMin > countLetter) {
+                countLetterMin = countLetter;
+                indexMin = i;
             }
         }
         scanner.close();
-        System.out.println("Слово с минимальным количеством неповторяющихся символов -> " + strs[min]);
+        System.out.println("Слово с минимальным количеством различных символов -> " + strs[indexMin]);
     }
 }

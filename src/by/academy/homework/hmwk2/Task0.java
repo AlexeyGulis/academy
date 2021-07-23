@@ -8,6 +8,7 @@ public class Task0 {
     static int pairs(int k, int[] arr) {
         int pairsCount = 0;
         // write code here
+        /* проверять повторяющиеся элементы
         int[] arrtemp = new int[arr.length];
         for (int i = 0; i < arrtemp.length; i++) {
             arrtemp[i] = 0;
@@ -16,6 +17,14 @@ public class Task0 {
             for (int j = 0; j < arr.length; j++) {
                 if (arr[i] - arr[j] == k && arrtemp[i] == 0) {
                     arrtemp[i] = 1;
+                    pairsCount++;
+                }
+            }
+        }*/
+        //без проверки
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[i] - arr[j] == k) {
                     pairsCount++;
                 }
             }
