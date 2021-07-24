@@ -5,43 +5,28 @@ import java.util.Date;
 
 public class Deal {
     Product[] products;
-    User user1;
-    User user2;
+    User seller;
+    User buyer;
     String date;
     Calendar deadlineDate;
 
-    /*Deal(User user1, User user2, String[] nameProduct, double[] price, int[] count, String date) {
-        this.user1 = user1;
-        this.user2 = user2;
-        this.products = new Product[nameProduct.length];
-        for (int i = 0; i < nameProduct.length; i++) {
-            if ("p1".equals(nameProduct[i])) {
-                products[i] = new Tea(nameProduct[i], price[i], count[i]);
-            } else if ("p2".equals(nameProduct[i])) {
-                products[i] = new Peach(nameProduct[i], price[i], count[i]);
-            } else if ("p3".equals(nameProduct[i])) {
-                products[i] = new Chips(nameProduct[i], price[i], count[i]);
-            } //else products[i] = new Product(nameProduct[i], price[i], count[i]);
-        }
+    public Deal(User buyer, User seller, Product[] products, String date) {
+        this.seller = seller;
+        this.buyer = buyer;
+        this.products = products;
         this.date = date;
         Date currentDate = new Date();
         deadlineDate = Calendar.getInstance();
         deadlineDate.setTime(currentDate);
         deadlineDate.set(Calendar.DAY_OF_MONTH, +10);
-    }*/
-    public Deal(User buyer,User seller,Product[] products,String date){
-        user1 = buyer;
-        user2 = seller;
-        this.products = products;
-        this.date = date;
     }
 
     public void getDeal() {
         StringBuilder str = new StringBuilder();
-        str.append(user1);
+        str.append(seller);
         System.out.println(str.toString());
         str.setLength(0);
-        str.append(user2);
+        str.append(buyer);
         System.out.println(str.toString());
         str.setLength(0);
         str.append("Date of deal: ");
@@ -55,18 +40,12 @@ public class Deal {
 
     }
 
-    public void addProduct(String name, double price, int count) {
+    public void addProduct(Product product) {
         Product[] temp = new Product[products.length + 1];
         for (int i = 0; i < products.length; i++) {
             temp[i] = products[i];
         }
-        if ("p1".equals(name)) {
-            temp[products.length] = new Tea(name, price, count);
-        } else if ("p2".equals(name)) {
-            temp[products.length] = new Peach(name, price, count);
-        } else if ("p3".equals(name)) {
-            temp[products.length] = new Chips(name, price, count);
-        } //else temp[products.length] = new Product(name, price, count);
+        temp[products.length] = product;
         products = temp;
     }
 
@@ -89,7 +68,7 @@ public class Deal {
                 }
                 products = temp;
             } else {
-                System.out.println("Product not available with this name");
+                System.out.println("Product not exist with this name");
             }
 
         } else {

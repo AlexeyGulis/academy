@@ -11,6 +11,9 @@ public class DealDemo {
     static Deal[] deals = new Deal[20];
     static Validator emailValidator;
     static Product[] products;
+    static Product product;
+    final static String[] avaibleProducts = {"Tea", "Peach", "Chips"};
+    static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) throws ParseException {
         System.out.println("Deals");
@@ -29,14 +32,16 @@ public class DealDemo {
         //Количество сделок неопределено, поэтому возьму значение 20, можно написать чтобы массив динамически расширялся (2хдлины) доходя до границы.
         User seller;
         User buyer;
-        Scanner scan = new Scanner(System.in);
+
         int i = 0;
+        String[] nk1;
+        String[] nk2;
+        String[] nk3;
+        String[] nk4;
         while (i < 20) {
             System.out.println("Would you like to make a deal? (1) - yes,(2) - no");
             if (scan.nextInt() == 1) {
                 scan.nextLine();
-                String[] nk1;
-                String[] nk2;
                 while (true) {
                     System.out.println("Buyer information");
                     System.out.println("Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)");
@@ -71,23 +76,17 @@ public class DealDemo {
                 count = scan.nextInt();
                 scan.nextLine();
                 products = new Product[count];
-                String[] nk3;
                 for (int j = 0; j < count; j++) {
-                    System.out.println("Enter info about product #" + (j + 1));
-                    System.out.println("Name Price Quantity");
-                    nk3 = scan.nextLine().split(" ");
-                    if ("p1".equals(nk3[0])) {
-                        products[j] = new Tea(nk3[0],Double.valueOf(nk3[1]),Integer.valueOf(nk3[2]));
-                    } else if ("p2".equals(nk3[0])) {
-                        products[j] = new Peach(nk3[0],Double.valueOf(nk3[1]),Integer.valueOf(nk3[2]));
-                    } else if ("p3".equals(nk3[0])) {
-                        products[j] = new Chips(nk3[0],Double.valueOf(nk3[1]),Integer.valueOf(nk3[2]));
-                    } //else { products[j] = new Product(nk3[0],Double.valueOf(nk3[1]),Integer.valueOf(nk3[2])); }
+                    product = createProduct();
+                    if (product != null) {
+                        products[j] = product;
+                    }
+                    System.out.println("Product added");
                 }
                 String dateDeal;
-                while(true){
+                while (true) {
                     System.out.print("Deal date (dd-MM-yyyy|dd/MM/yyyy): ");
-                     dateDeal = scan.nextLine();
+                    dateDeal = scan.nextLine();
                     if (TimeValidator.dateValidate(dateDeal)) {
                         break;
                     }
@@ -114,23 +113,29 @@ public class DealDemo {
                             int menu = scan.nextInt();
                             scan.nextLine();
                             if (menu == 1) {
+                                deals[j].getDeal();
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||");
                                 System.out.println("The name of the product you want to remove ");
                                 deals[j].removeProduct(scan.nextLine());
                                 System.out.println("Product removed");
                             } else if (menu == 2) {
-                                System.out.println("Enter info about product");
-                                System.out.println("Name Price Quantity");
-                                String[] nk3 = scan.nextLine().split(" ");
-                                deals[j].addProduct(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]));
+                                deals[j].getDeal();
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||");
+                                product = createProduct();
+                                if (product != null) {
+                                    deals[j].addProduct(product);
+                                }
                                 System.out.println("Product added");
                             } else if (menu == 3) {
+                                deals[j].getDeal();
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||");
                                 System.out.println("Sum of deal: " + deals[j].getSumDeal());
-                                System.out.println();
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||");
                                 System.out.println();
                             } else if (menu == 4) {
                                 break;
                             }
-                            deals[j].getDeal();
+
                         }
                     }
                 }
@@ -151,4 +156,47 @@ public class DealDemo {
             return false;
         }
     }
+
+    public static Product createProduct() {
+        String nk3[];
+        String nk4[];
+        Product product;
+        while (true) {
+            System.out.println("Enter info about product");
+            System.out.println("Name Price Quantity");
+            nk3 = scan.nextLine().split(" ");
+            if (avaibleProducts[0].equals(nk3[0])) {
+                System.out.println("Type CountPackets");
+                nk4 = scan.nextLine().split(" ");
+                if (nk4.length == 2) {
+                    product = new Tea(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), Integer.valueOf(nk4[1]), nk4[0]);
+                    break;
+                } else {
+                    System.out.println("Incorrect info");
+                }
+            } else if (avaibleProducts[1].equals(nk3[0])) {
+                System.out.println("Age Type");
+                nk4 = scan.nextLine().split(" ");
+                if (nk4.length == 2) {
+                    product = new Peach(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), Double.valueOf(nk4[0]), nk4[1]);
+                    break;
+                } else {
+                    System.out.println("Incorrect info");
+                }
+            } else if (avaibleProducts[2].equals(nk3[0])) {
+                System.out.println("Name Type");
+                nk4 = scan.nextLine().split(" ");
+                if (nk4.length == 2) {
+                    product = new Chips(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), nk4[0], nk4[1]);
+                    break;
+                } else {
+                    System.out.println("Incorrect info");
+                }
+            } else {
+                System.out.println("Product not exist with this name");
+            }
+        }
+        return product;
+    }
+
 }

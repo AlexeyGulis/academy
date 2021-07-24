@@ -11,22 +11,34 @@ public abstract class Product {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    protected abstract double getDiscount();
-
-    public double getSumPrice() {
-        return price * quantity;
-    }
-
     public String getName() {
         return name;
     }
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public double getPrice() {
+        return price * (1 - getDiscount());
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    protected abstract double getDiscount();
+
+    public double getSumPrice() {
+        return (1.0 - getDiscount()) * price * quantity;
     }
 
     @Override
