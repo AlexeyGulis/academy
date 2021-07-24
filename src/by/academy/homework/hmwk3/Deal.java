@@ -28,15 +28,14 @@ public class Deal {
         str.setLength(0);
         str.append(buyer);
         System.out.println(str.toString());
-        str.setLength(0);
-        str.append("Date of deal: ");
-        str.append(date);
-        str.append(";");
-        System.out.println(str.toString());
         System.out.println("Table of products:");
         for (int i = 0; i < products.length; i++) {
             System.out.println(products[i]);
         }
+        str.setLength(0);
+        str.append("Date of deal: ");
+        str.append(date).append(";");
+        System.out.println(str.toString());
 
     }
 
