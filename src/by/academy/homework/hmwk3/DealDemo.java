@@ -14,6 +14,7 @@ public class DealDemo {
     static Product product;
     final static String[] avaibleProducts = {"Tea", "Peach", "Chips"};
     static Scanner scan = new Scanner(System.in);
+    static User[] users = new User[2];
 
     public static void main(String[] args) throws ParseException {
         System.out.println("Deals");
@@ -30,47 +31,16 @@ public class DealDemo {
             }
         };
         //Количество сделок неопределено, поэтому возьму значение 20, можно написать чтобы массив динамически расширялся (2хдлины) доходя до границы.
-        User seller;
-        User buyer;
-
         int i = 0;
-        String[] nk1;
         String[] nk2;
-        String[] nk3;
-        String[] nk4;
         while (i < 20) {
             System.out.println("Would you like to make a deal? (1) - yes,(2) - no");
             if (scan.nextInt() == 1) {
                 scan.nextLine();
-                while (true) {
-                    System.out.println("Buyer information");
-                    System.out.println("Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)");
-                    nk1 = scan.nextLine().split(" ");
-                    if (chekUser(nk1)) {
-                        break;
-                    } else {
-                        System.out.println("Incorrect info");
-                        System.out.println("Please re-enter info");
-                    }
-
-                }
-
-                buyer = new User(nk1[0], true, nk1[2], nk1[1], nk1[3]);
-
-                while (true) {
-                    System.out.println("Seller information");
-                    System.out.println("Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)");
-                    nk2 = scan.nextLine().split(" ");
-                    if (chekUser(nk2)) {
-                        break;
-                    } else {
-                        System.out.println("Incorrect info");
-                        System.out.println("Please re-enter info");
-                    }
-
-                }
-
-                seller = new User(nk2[0], false, nk2[2], nk2[1], nk2[3]);
+                System.out.println("Buyer information");
+                createUser(true);
+                System.out.println("Seller information");
+                createUser(false);
                 int count = 0;
                 System.out.println("Number of all products: ");
                 count = scan.nextInt();
@@ -91,7 +61,7 @@ public class DealDemo {
                         break;
                     }
                 }
-                deals[i] = new Deal(buyer, seller, products, dateDeal);
+                deals[i] = new Deal(users[0], users[1], products, dateDeal);
                 //deals[i].getDeal();
                 //Можно показать сделку, можно просто написать сделка добавлена
                 System.out.println("Deal added");
@@ -144,6 +114,25 @@ public class DealDemo {
         }
         System.out.println("Thanks for deals");
         scan.close();
+    }
+
+    public static void createUser(boolean isBuyer) throws ParseException {
+        String[] nk1;
+        while (true) {
+            System.out.println("Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)");
+            nk1 = scan.nextLine().split(" ");
+            if (chekUser(nk1)) {
+                break;
+            } else {
+                System.out.println("Incorrect info");
+                System.out.println("Please re-enter info");
+            }
+        }
+        if (isBuyer) {
+            users[0] = new User(nk1[0], true, nk1[2], nk1[1], nk1[3]);
+        } else {
+            users[1] = new User(nk1[0], false, nk1[2], nk1[1], nk1[3]);
+        }
     }
 
     // Когда проверяю поля с помощью валидаторов повторно просить ввести данные если что-то неправильно введено
