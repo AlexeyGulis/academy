@@ -1,10 +1,23 @@
 package by.academy.homework.hmwk3;
 
-public class Type1 extends Product {
-    private double discount = 0.25;
+import java.util.Date;
 
-    public Type1(String name, double price, int quantity) {
+public class Peach extends Product {
+    static private double weightDis = 12.0;
+    static private String typeDis = "Frost";
+    private String type;
+    private double weight;
+    private double discount = 0.15;
+
+    public Peach(String name, double price, int quantity) {
         super(name, price, quantity);
+    }
+
+    protected double getDiscount(){
+        if(weight>=weightDis && typeDis.equals(type)){
+            return discount;
+        }
+        return 0.0;
     }
 
     @Override
@@ -34,4 +47,3 @@ public class Type1 extends Product {
         return sb.toString();
     }
 }
-

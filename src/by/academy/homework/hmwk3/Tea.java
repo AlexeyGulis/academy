@@ -1,9 +1,20 @@
 package by.academy.homework.hmwk3;
 
-public class Type3 extends Product {
-    private double discount = 0.05;
+public class Tea extends Product {
+    private static String typeDis = "Chernyi";
+    private static int countPackDis = 20;
+    private int countPack;
+    private String type;
+    private double discount = 0.25;
 
-    public Type3(String name, double price, int quantity) {
+    protected double getDiscount(){
+        if(countPack>=countPackDis && typeDis.equals(type)){
+            return discount;
+        }
+        return 0.0;
+    }
+
+    public Tea(String name, double price, int quantity) {
         super(name, price, quantity);
     }
 
@@ -34,3 +45,4 @@ public class Type3 extends Product {
         return sb.toString();
     }
 }
+

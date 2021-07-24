@@ -1,6 +1,6 @@
 package by.academy.homework.hmwk3;
 
-public class Product {
+public abstract class Product {
     protected String name;
     protected double price;
     protected int quantity;
@@ -14,6 +14,8 @@ public class Product {
     public double getPrice() {
         return price;
     }
+
+    protected abstract double getDiscount();
 
     public double getSumPrice() {
         return price * quantity;

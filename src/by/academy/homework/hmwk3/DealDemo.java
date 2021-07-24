@@ -77,14 +77,12 @@ public class DealDemo {
                     System.out.println("Name Price Quantity");
                     nk3 = scan.nextLine().split(" ");
                     if ("p1".equals(nk3[0])) {
-                        products[j] = new Type1(nk3[0],Double.valueOf(nk3[1]),Integer.valueOf(nk3[2]));
+                        products[j] = new Tea(nk3[0],Double.valueOf(nk3[1]),Integer.valueOf(nk3[2]));
                     } else if ("p2".equals(nk3[0])) {
-                        products[j] = new Type2(nk3[0],Double.valueOf(nk3[1]),Integer.valueOf(nk3[2]));
+                        products[j] = new Peach(nk3[0],Double.valueOf(nk3[1]),Integer.valueOf(nk3[2]));
                     } else if ("p3".equals(nk3[0])) {
-                        products[j] = new Type3(nk3[0],Double.valueOf(nk3[1]),Integer.valueOf(nk3[2]));
-                    } else {
-                        products[j] = new Product(nk3[0],Double.valueOf(nk3[1]),Integer.valueOf(nk3[2]));
-                    }
+                        products[j] = new Chips(nk3[0],Double.valueOf(nk3[1]),Integer.valueOf(nk3[2]));
+                    } //else { products[j] = new Product(nk3[0],Double.valueOf(nk3[1]),Integer.valueOf(nk3[2])); }
                 }
                 String dateDeal;
                 while(true){

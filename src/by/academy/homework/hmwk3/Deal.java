@@ -10,25 +10,25 @@ public class Deal {
     String date;
     Calendar deadlineDate;
 
-    Deal(User user1, User user2, String[] nameProduct, double[] price, int[] count, String date) {
+    /*Deal(User user1, User user2, String[] nameProduct, double[] price, int[] count, String date) {
         this.user1 = user1;
         this.user2 = user2;
         this.products = new Product[nameProduct.length];
         for (int i = 0; i < nameProduct.length; i++) {
             if ("p1".equals(nameProduct[i])) {
-                products[i] = new Type1(nameProduct[i], price[i], count[i]);
+                products[i] = new Tea(nameProduct[i], price[i], count[i]);
             } else if ("p2".equals(nameProduct[i])) {
-                products[i] = new Type2(nameProduct[i], price[i], count[i]);
+                products[i] = new Peach(nameProduct[i], price[i], count[i]);
             } else if ("p3".equals(nameProduct[i])) {
-                products[i] = new Type3(nameProduct[i], price[i], count[i]);
-            } else products[i] = new Product(nameProduct[i], price[i], count[i]);
+                products[i] = new Chips(nameProduct[i], price[i], count[i]);
+            } //else products[i] = new Product(nameProduct[i], price[i], count[i]);
         }
         this.date = date;
         Date currentDate = new Date();
         deadlineDate = Calendar.getInstance();
         deadlineDate.setTime(currentDate);
         deadlineDate.set(Calendar.DAY_OF_MONTH, +10);
-    }
+    }*/
     public Deal(User buyer,User seller,Product[] products,String date){
         user1 = buyer;
         user2 = seller;
@@ -61,12 +61,12 @@ public class Deal {
             temp[i] = products[i];
         }
         if ("p1".equals(name)) {
-            temp[products.length] = new Type1(name, price, count);
+            temp[products.length] = new Tea(name, price, count);
         } else if ("p2".equals(name)) {
-            temp[products.length] = new Type2(name, price, count);
+            temp[products.length] = new Peach(name, price, count);
         } else if ("p3".equals(name)) {
-            temp[products.length] = new Type3(name, price, count);
-        } else temp[products.length] = new Product(name, price, count);
+            temp[products.length] = new Chips(name, price, count);
+        } //else temp[products.length] = new Product(name, price, count);
         products = temp;
     }
 
