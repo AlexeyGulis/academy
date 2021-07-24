@@ -1,10 +1,10 @@
 package by.academy.homework.hmwk3;
 
 public class Type3 extends Product {
-    double discount = 0.05;
+    private double discount = 0.05;
 
-    Type3(String name, double price, int count) {
-        super(name, price, count);
+    public Type3(String name, double price, int quantity) {
+        super(name, price, quantity);
     }
 
     @Override
@@ -12,8 +12,8 @@ public class Type3 extends Product {
         return super.getName();
     }
 
-    public int getCount() {
-        return super.getCount();
+    public int getQuantity() {
+        return super.getQuantity();
     }
 
     public double getSumPrice() {
@@ -27,8 +27,8 @@ public class Type3 extends Product {
     public String toString() {
         final StringBuffer sb = new StringBuffer();
         sb.append("{Product name = '").append(getName()).append('\'');
-        sb.append(", price (included discount) = ").append(getPrice());
-        sb.append(", count = ").append(getCount());
+        sb.append(", price (included disquantity) = ").append(getPrice());
+        sb.append(", quantity = ").append(getQuantity());
         sb.append(", sumPrice = ").append(getSumPrice());
         sb.append('}');
         return sb.toString();

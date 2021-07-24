@@ -9,9 +9,10 @@ public class AmericanPhoneValidator implements Validator {
     public boolean validate(String t) {
         Matcher matcher = phoneUSA.matcher(t);
         if (matcher.find()) {
+            System.out.println("Phone number from USA");
             return true;
         } else {
-            System.out.println("Incorrect phone number");
+            System.out.println("Phone number not from USA");
             return false;
         }
     }

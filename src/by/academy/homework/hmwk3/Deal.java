@@ -29,6 +29,12 @@ public class Deal {
         deadlineDate.setTime(currentDate);
         deadlineDate.set(Calendar.DAY_OF_MONTH, +10);
     }
+    public Deal(User buyer,User seller,Product[] products,String date){
+        user1 = buyer;
+        user2 = seller;
+        this.products = products;
+        this.date = date;
+    }
 
     public void getDeal() {
         StringBuilder str = new StringBuilder();

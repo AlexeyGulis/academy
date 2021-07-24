@@ -1,14 +1,14 @@
 package by.academy.homework.hmwk3;
 
 public class Product {
-    private String name;
-    private double price;
-    private int count;
+    protected String name;
+    protected double price;
+    protected int quantity;
 
-    Product(String name, double price, int count) {
+    Product(String name, double price, int quantity) {
         this.name = name;
         this.price = price;
-        this.count = count;
+        this.quantity = quantity;
     }
 
     public double getPrice() {
@@ -16,15 +16,15 @@ public class Product {
     }
 
     public double getSumPrice() {
-        return price * count;
+        return price * quantity;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getCount() {
-        return count;
+    public int getQuantity() {
+        return quantity;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class Product {
         final StringBuffer sb = new StringBuffer();
         sb.append("{Product name = '").append(name).append('\'');
         sb.append(", price = ").append(price);
-        sb.append(", count = ").append(count);
+        sb.append(", quantity = ").append(quantity);
         sb.append(", sumPrice = ").append(getSumPrice());
         sb.append('}');
         return sb.toString();

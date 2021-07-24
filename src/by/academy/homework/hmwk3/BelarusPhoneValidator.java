@@ -9,9 +9,10 @@ public class BelarusPhoneValidator implements Validator {
     public boolean validate(String t) {
         Matcher matcher = phoneBLR.matcher(t);
         if (matcher.find()) {
+            System.out.println("Phone number from BLR");
             return true;
         } else {
-            System.out.println("Incorrect phone number");
+            System.out.println("Phone number not from BLR");
             return false;
         }
     }
