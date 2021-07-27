@@ -12,7 +12,7 @@ public class DealDemo {
     static Validator emailValidator;
     static Product[] products;
     static Product product;
-    final static String[] avaibleProducts = {"Tea", "Peach", "Chips"};
+    final static String[] availableProducts = {"Tea", "Peach", "Chips"};
     static Scanner scan = new Scanner(System.in);
     static User[] users = new User[2];
 
@@ -32,7 +32,6 @@ public class DealDemo {
         };
         //Количество сделок неопределено, поэтому возьму значение 20, можно написать чтобы массив динамически расширялся (2хдлины) доходя до границы.
         int i = 0;
-        String[] nk2;
         while (i < 20) {
             System.out.println("Would you like to make a deal? (1) - yes,(2) - no");
             if (scan.nextInt() == 1) {
@@ -154,7 +153,7 @@ public class DealDemo {
             System.out.println("Enter info about product");
             System.out.println("Name Price Quantity");
             nk3 = scan.nextLine().split(" ");
-            if (avaibleProducts[0].equals(nk3[0])) {
+            if (availableProducts[0].equals(nk3[0])) {
                 System.out.println("Type CountPackets");
                 nk4 = scan.nextLine().split(" ");
                 if (nk4.length == 2) {
@@ -163,7 +162,7 @@ public class DealDemo {
                 } else {
                     System.out.println("Incorrect info");
                 }
-            } else if (avaibleProducts[1].equals(nk3[0])) {
+            } else if (availableProducts[1].equals(nk3[0])) {
                 System.out.println("Age Type");
                 nk4 = scan.nextLine().split(" ");
                 if (nk4.length == 2) {
@@ -172,7 +171,7 @@ public class DealDemo {
                 } else {
                     System.out.println("Incorrect info");
                 }
-            } else if (avaibleProducts[2].equals(nk3[0])) {
+            } else if (availableProducts[2].equals(nk3[0])) {
                 System.out.println("Name Type");
                 nk4 = scan.nextLine().split(" ");
                 if (nk4.length == 2) {
