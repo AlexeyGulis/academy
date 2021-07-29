@@ -3,8 +3,8 @@ package by.academy.homework.hmwk3;
 import java.util.Date;
 
 public class Peach extends Product {
-    static private double ageDis = 5.0;
-    static private String typeDis = "Frost";
+    private static double ageDis = 5.0;
+    private static String typeDis = "Frost";
     private String type;
     private double age;
     private double discount = 0.15;
@@ -43,12 +43,12 @@ public class Peach extends Product {
 
     public String toString() {
         final StringBuffer sb = new StringBuffer();
-        sb.append("{Product name = '").append(getName()).append('\'');
-        sb.append(", type = ").append(getType());
-        sb.append(", age = ").append(getAge());
-        sb.append(", price (included discount) = ").append(String.format("%.2f",getPrice()));
-        sb.append(", quantity = ").append(getQuantity());
-        sb.append(", sumPrice = ").append(String.format("%.2f",getSumPrice()));
+        sb.append("{Имя продукта = '").append(getName()).append('\'');
+        sb.append(", Тип персика = ").append(getType());
+        sb.append(", Возраст = ").append(getAge());
+        sb.append(", Цена (включая скидку) = ").append(String.format("%.2f",getPrice()));
+        sb.append(", Количество = ").append(getQuantity());
+        sb.append(", Общая цена = ").append(String.format("%.2f",getSumPrice()));
         sb.append('}');
         return sb.toString();
     }

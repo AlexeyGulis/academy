@@ -6,6 +6,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DealDemo {
+    //ПЕРЕДЕЛАТЬ: каждое поле вводится отдельно
+    //поменять поля String date на LocalDate date
+    //добавить распечатку чека (StringBuilder форматирование по столбцу)
+    //добавить в методе removeProduct функциональность на удаление i-ого элемента или всех
     //static Pattern email = Pattern.compile("[a-zA-Z0-9._]+@[a-zA-Z0-9]+\\.[a-zA-Z]");
     static Pattern email = Pattern.compile("^.*?@.*?\\..*$");
     static Deal[] deals = new Deal[20];
@@ -35,7 +39,7 @@ public class DealDemo {
         //Количество сделок неопределено, поэтому возьму значение 20, можно написать чтобы массив динамически расширялся (2хдлины) доходя до границы.
         int i = 0;
         while (i < 20) {
-            System.out.println("Would you like to make a deal? (1) - yes,(2) - no");
+            System.out.println("Would you like? (1) - Create Deal,(2) - Go to Menu");
             if (scan.nextInt() == 1) {
                 scan.nextLine();
                 System.out.println("Buyer information");
@@ -71,16 +75,16 @@ public class DealDemo {
         }
         // можно сделать меню, основываясь на не нулевых элементах массива deals и предлагать ввести номер сделки (Пример, создали 7,
         // проверили массив на не нулевые, узнали что их 7, предложили пользователю выбрать сделку 1-7)
-        System.out.println("Would you like check|correct any deal? (1) - yes,(2) - exit");
+        System.out.println("Would you like? (1) - Check deals,(2) - print all PriceLists");
         if (scan.nextInt() == 1) {
             scan.nextLine();
             for (int j = 0; j < deals.length; j++) {
                 if (deals[j] != null) {
                     deals[j].getDeal();
-                    System.out.println("Would you like check|correct this deal? (1) - yes,(2) - next deal");
+                    System.out.println("Would you like? (1) - go to Menu,(2) - go to next deal");
                     if (scan.nextInt() == 1) {
                         while (true) {
-                            System.out.println("Would you like? (1) - remove product,(2) - add product,(3) - calculate sum of deal, (4) - next deal");
+                            System.out.println("Would you like? (1) - remove product,(2) - add product,(3) - calculate sum of deal, (4) - next deal, (5) - print pricelist");
                             int menu = scan.nextInt();
                             scan.nextLine();
                             if (menu == 1) {
@@ -120,7 +124,7 @@ public class DealDemo {
     public static void createUser(boolean isBuyer){
         String[] nk1;
         while (true) {
-            System.out.println("Name Phone(+375XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)");
+            System.out.println("Name Phone(+375**-***-**-**) DateOfBirth(dd-MM-yyyy|dd/mm/yyyy) Email(*****@**.**)");
             nk1 = scan.nextLine().split(" ");
             if (chekUser(nk1)) {
                 break;
@@ -129,9 +133,9 @@ public class DealDemo {
             }
         }
         if (isBuyer) {
-            users[0] = new User(nk1[0], true, nk1[2], nk1[1], nk1[3]);
+            users[0] = new User(nk1[0], isBuyer, nk1[2], nk1[1], nk1[3]);
         } else {
-            users[1] = new User(nk1[0], false, nk1[2], nk1[1], nk1[3]);
+            users[1] = new User(nk1[0], isBuyer, nk1[2], nk1[1], nk1[3]);
         }
     }
 
@@ -154,6 +158,11 @@ public class DealDemo {
         Product product;
         while (true) {
             System.out.println("Enter info about product");
+            System.out.println("Available products:");
+            for (String str:availableProducts
+                 ) {
+                System.out.println(str);
+            }
             System.out.println("Name Price Quantity");
             nk3 = scan.nextLine().split(" ");
             if (availableProducts[0].equals(nk3[0]) && nk3.length==3) {

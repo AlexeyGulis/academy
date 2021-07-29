@@ -42,12 +42,12 @@ public class Chips extends Product {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer();
-        sb.append("{Product name = '").append(getName()).append('\'');
-        sb.append(", nameChips = ").append(getNameChips());
-        sb.append(", taste = ").append(getTaste());
-        sb.append(", price (included discount) = ").append(String.format("%.2f",getPrice()));
-        sb.append(", quantity = ").append(getQuantity());
-        sb.append(", sumPrice = ").append(String.format("%.2f",getSumPrice()));
+        sb.append("{Имя продукта = '").append(getName()).append('\'');
+        sb.append(", Название чипсов = ").append(getNameChips());
+        sb.append(", Вкус чипсов = ").append(getTaste());
+        sb.append(", Цена (включая скидку) = ").append(String.format("%.2f",getPrice()));
+        sb.append(", Количество = ").append(getQuantity());
+        sb.append(", Общая цена = ").append(String.format("%.2f",getSumPrice()));
         sb.append('}');
         return sb.toString();
     }

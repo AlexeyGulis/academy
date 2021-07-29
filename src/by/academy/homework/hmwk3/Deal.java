@@ -4,10 +4,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Deal {
-    Product[] products;
-    User seller;
-    User buyer;
-    String date;
+    private Product[] products;
+    private User seller;
+    private User buyer;
+    private String date;
     Calendar deadlineDate;
 
     public Deal(User buyer, User seller, Product[] products, String date) {
@@ -28,15 +28,31 @@ public class Deal {
         str.setLength(0);
         str.append(buyer);
         System.out.println(str.toString());
-        System.out.println("Table of products:");
+        System.out.println("Таблица продуктов:");
         for (int i = 0; i < products.length; i++) {
             System.out.println(products[i]);
         }
         str.setLength(0);
-        str.append("Date of deal: ");
+        str.append("Дата сделки: ");
         str.append(date).append(";");
         System.out.println(str.toString());
 
+    }
+    public void getPriceList(){
+        StringBuilder str = new StringBuilder();
+        str.append(seller);
+        System.out.println(str.toString());
+        str.setLength(0);
+        str.append(buyer);
+        System.out.println(str.toString());
+        System.out.println("Таблица продуктов:");
+        for (int i = 0; i < products.length; i++) {
+            System.out.println(products[i]);
+        }
+        str.setLength(0);
+        str.append("Дата сделки: ");
+        str.append(date).append(";");
+        System.out.println(str.toString());
     }
 
     public void addProduct(Product product) {
@@ -67,11 +83,11 @@ public class Deal {
                 }
                 products = temp;
             } else {
-                System.out.println("Product not exist with this name");
+                System.out.println("Продукта с таким именем не существует");
             }
 
         } else {
-            System.out.println("Products not exist");
+            System.out.println("Продукта с таким именем не существует");
         }
     }
 

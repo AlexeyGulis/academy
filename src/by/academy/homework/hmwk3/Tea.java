@@ -40,12 +40,12 @@ public class Tea extends Product {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer();
-        sb.append("{Product name = '").append(getName()).append('\'');
-        sb.append(", type = ").append(getType());
-        sb.append(", countPackets = ").append(getCountPack());
-        sb.append(", price (included discount) = ").append(String.format("%.2f",getPrice()));
-        sb.append(", quantity = ").append(getQuantity());
-        sb.append(", sumPrice = ").append(String.format("%.2f",getSumPrice()));
+        sb.append("{Имя продукта = '").append(getName()).append('\'');
+        sb.append(", Тип чая = ").append(getType());
+        sb.append(", Количество пакетиков = ").append(getCountPack());
+        sb.append(", Цена (включая скидку) = ").append(String.format("%.2f",getPrice()));
+        sb.append(", Количество = ").append(getQuantity());
+        sb.append(", Общая цена = ").append(String.format("%.2f",getSumPrice()));
         sb.append('}');
         return sb.toString();
     }

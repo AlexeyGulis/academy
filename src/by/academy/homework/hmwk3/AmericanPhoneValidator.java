@@ -10,10 +10,10 @@ public class AmericanPhoneValidator implements Validator {
         Matcher matcher = phoneUSA.matcher(t);
         boolean result;
         if (matcher.find()) {
-            System.out.println("Phone number from USA");
+            System.out.println("Телефонный номер из США");
             result = true;
         } else {
-            System.out.println("Phone number not from USA");
+            System.out.println("Телефонный номер не из США");
             result = false;
         }
         return result;

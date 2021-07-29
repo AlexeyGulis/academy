@@ -30,7 +30,7 @@ public class TimeValidator {
                 flag = true;
             }
             catch(ParseException e){
-                System.out.println("Incorrect date");
+                System.out.println("Дата введена неправильно");
                 return false;
             }
             if (flag) {
@@ -40,7 +40,7 @@ public class TimeValidator {
                     return false;
                 }
                 if (new Date().before(date)) {
-                    System.out.println("Incorrect date");
+                    System.out.println("Дата введена неправильно");
                     result = false;
                 } else {
                     // SimpleDateFormat вывод Day: <> Month: <> Year: <>
@@ -66,7 +66,7 @@ public class TimeValidator {
                 flag = true;
             }
             catch(ParseException e){
-                System.out.println("Incorrect date");
+                System.out.println("Дата введена неправильно");
                 return false;
             }
             if (flag) {
@@ -76,7 +76,7 @@ public class TimeValidator {
                     return false;
                 }
                 if (new Date().before(date)) {
-                    System.out.println("Incorrect date");
+                    System.out.println("Дата введена неправильно");
                     result = false;
                 } else {
                     // SimpleDateFormat вывод Day: <> Month: <> Year: <>

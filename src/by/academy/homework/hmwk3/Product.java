@@ -44,10 +44,10 @@ public abstract class Product {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer();
-        sb.append("{Product name = '").append(name).append('\'');
-        sb.append(", price = ").append(price);
-        sb.append(", quantity = ").append(quantity);
-        sb.append(", sumPrice = ").append(getSumPrice());
+        sb.append("{Название продукта = '").append(name).append('\'');
+        sb.append(", Цена = ").append(price);
+        sb.append(", Количество = ").append(quantity);
+        sb.append(", Общая цена = ").append(getSumPrice());
         sb.append('}');
         return sb.toString();
     }
