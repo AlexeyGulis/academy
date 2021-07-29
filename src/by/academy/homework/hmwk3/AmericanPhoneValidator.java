@@ -8,12 +8,14 @@ public class AmericanPhoneValidator implements Validator {
 
     public boolean validate(String t) {
         Matcher matcher = phoneUSA.matcher(t);
+        boolean result;
         if (matcher.find()) {
             System.out.println("Phone number from USA");
-            return true;
+            result = true;
         } else {
             System.out.println("Phone number not from USA");
-            return false;
+            result = false;
         }
+        return result;
     }
 }

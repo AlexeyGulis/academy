@@ -16,18 +16,20 @@ public class DealDemo {
     static Scanner scan = new Scanner(System.in);
     static User[] users = new User[2];
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args){
         System.out.println("Deals");
         emailValidator = new Validator() {
             @Override
             public boolean validate(String t) {
                 Matcher matcher = email.matcher(t);
+                boolean result;
                 if (matcher.find()) {
-                    return true;
+                    result = true;
                 } else {
                     System.out.println("Incorrect email");
-                    return false;
+                    result = false;
                 }
+                return result;
             }
         };
         //Количество сделок неопределено, поэтому возьму значение 20, можно написать чтобы массив динамически расширялся (2хдлины) доходя до границы.
@@ -115,15 +117,14 @@ public class DealDemo {
         scan.close();
     }
 
-    public static void createUser(boolean isBuyer) throws ParseException {
+    public static void createUser(boolean isBuyer){
         String[] nk1;
         while (true) {
-            System.out.println("Name Phone(+375XXXXXXX|+1XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)");
+            System.out.println("Name Phone(+375XXXXXXX) Date of birth(dd-MM-yyyy|dd/mm/yyyy) Email(XXXX@XXX.XX)");
             nk1 = scan.nextLine().split(" ");
             if (chekUser(nk1)) {
                 break;
             } else {
-                System.out.println("Incorrect info");
                 System.out.println("Please re-enter info");
             }
         }
@@ -135,14 +136,16 @@ public class DealDemo {
     }
 
     // Когда проверяю поля с помощью валидаторов повторно просить ввести данные если что-то неправильно введено
-    public static boolean chekUser(String[] str) throws ParseException {
+    public static boolean chekUser(String[] str) {
+        boolean result;
         if (str.length == 4 && str[0] != null && TimeValidator.dateValidate(str[2])
-                && (new BelarusPhoneValidator().validate(str[1]) || new AmericanPhoneValidator().validate(str[1]))
+                && new BelarusPhoneValidator().validate(str[1])
                 && emailValidator.validate(str[3])) {
-            return true;
+            result = true;
         } else {
-            return false;
+            result = false;
         }
+        return result;
     }
 
     public static Product createProduct() {
@@ -153,7 +156,7 @@ public class DealDemo {
             System.out.println("Enter info about product");
             System.out.println("Name Price Quantity");
             nk3 = scan.nextLine().split(" ");
-            if (availableProducts[0].equals(nk3[0])) {
+            if (availableProducts[0].equals(nk3[0]) && nk3.length==3) {
                 System.out.println("Type CountPackets");
                 nk4 = scan.nextLine().split(" ");
                 if (nk4.length == 2) {
@@ -162,7 +165,7 @@ public class DealDemo {
                 } else {
                     System.out.println("Incorrect info");
                 }
-            } else if (availableProducts[1].equals(nk3[0])) {
+            } else if (availableProducts[1].equals(nk3[0]) && nk3.length==3) {
                 System.out.println("Age Type");
                 nk4 = scan.nextLine().split(" ");
                 if (nk4.length == 2) {
@@ -171,7 +174,7 @@ public class DealDemo {
                 } else {
                     System.out.println("Incorrect info");
                 }
-            } else if (availableProducts[2].equals(nk3[0])) {
+            } else if (availableProducts[2].equals(nk3[0]) && nk3.length==3) {
                 System.out.println("Name Type");
                 nk4 = scan.nextLine().split(" ");
                 if (nk4.length == 2) {
@@ -181,7 +184,7 @@ public class DealDemo {
                     System.out.println("Incorrect info");
                 }
             } else {
-                System.out.println("Product not exist with this name");
+                System.out.println("Product not exist with this parameters");
             }
         }
         return product;

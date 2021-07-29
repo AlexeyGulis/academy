@@ -8,10 +8,11 @@ public class Tea extends Product {
     private double discount = 0.25;
 
     protected double getDiscount() {
+        double result = 0.0;
         if (countPack >= countPackDis && typeDis.equals(type)) {
-            return discount;
+            result = discount;
         }
-        return 0.0;
+        return result;
     }
 
     public Tea(String name, double price, int quantity, int countPack, String type) {
@@ -42,9 +43,9 @@ public class Tea extends Product {
         sb.append("{Product name = '").append(getName()).append('\'');
         sb.append(", type = ").append(getType());
         sb.append(", countPackets = ").append(getCountPack());
-        sb.append(", price (included discount) = ").append(getPrice());
+        sb.append(", price (included discount) = ").append(String.format("%.2f",getPrice()));
         sb.append(", quantity = ").append(getQuantity());
-        sb.append(", sumPrice = ").append(getSumPrice());
+        sb.append(", sumPrice = ").append(String.format("%.2f",getSumPrice()));
         sb.append('}');
         return sb.toString();
     }

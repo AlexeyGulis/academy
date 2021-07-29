@@ -16,10 +16,11 @@ public class Peach extends Product {
     }
 
     protected double getDiscount() {
+        double result = 0.0;
         if (age >= ageDis && typeDis.equals(type)) {
-            return discount;
+            result = discount;
         }
-        return 0.0;
+        return result;
     }
 
     public String getType() {
@@ -45,9 +46,9 @@ public class Peach extends Product {
         sb.append("{Product name = '").append(getName()).append('\'');
         sb.append(", type = ").append(getType());
         sb.append(", age = ").append(getAge());
-        sb.append(", price (included disquantity) = ").append(getPrice());
+        sb.append(", price (included discount) = ").append(String.format("%.2f",getPrice()));
         sb.append(", quantity = ").append(getQuantity());
-        sb.append(", sumPrice = ").append(getSumPrice());
+        sb.append(", sumPrice = ").append(String.format("%.2f",getSumPrice()));
         sb.append('}');
         return sb.toString();
     }

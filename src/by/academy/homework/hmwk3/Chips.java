@@ -16,10 +16,11 @@ public class Chips extends Product {
     }
 
     protected double getDiscount() {
+        double result = 0.0;
         if (nameDis.equals(name) && tasteDis.equals(taste)) {
-            return discount;
+            result = discount;
         }
-        return 0.0;
+        return result;
     }
 
     public String getNameChips() {
@@ -44,9 +45,9 @@ public class Chips extends Product {
         sb.append("{Product name = '").append(getName()).append('\'');
         sb.append(", nameChips = ").append(getNameChips());
         sb.append(", taste = ").append(getTaste());
-        sb.append(", price (included disquantity) = ").append(getPrice());
+        sb.append(", price (included discount) = ").append(String.format("%.2f",getPrice()));
         sb.append(", quantity = ").append(getQuantity());
-        sb.append(", sumPrice = ").append(getSumPrice());
+        sb.append(", sumPrice = ").append(String.format("%.2f",getSumPrice()));
         sb.append('}');
         return sb.toString();
     }
