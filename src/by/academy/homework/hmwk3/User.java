@@ -55,15 +55,15 @@ public class User {
     public String toString() {
         StringBuilder str = new StringBuilder();
         if (sellerOrbuyer) {
-            str.append("Buyer name - ").append(name).append(", ");
-            str.append("Date of birth - ").append(dateOfbirth).append(", ");
-            str.append("Phone - ").append(phone).append(", ");
-            str.append("Email - ").append(email).append(";");
+            str.append("Имя продовца - ").append(name).append(", ");
+            str.append("Дата рождения - ").append(dateOfbirth).append(", ");
+            str.append("Номер телефона - ").append(phone).append(", ");
+            str.append("Электронный ящик - ").append(email).append(";");
         } else {
-            str.append("Seller name - ").append(name).append(", ");
-            str.append("Date of birth - ").append(dateOfbirth).append(", ");
-            str.append("Phone - ").append(phone).append(", ");
-            str.append("Email - ").append(email).append(";");
+            str.append("Имя покупателя - ").append(name).append(", ");
+            str.append("Дата рождения - ").append(dateOfbirth).append(", ");
+            str.append("Номер телефона - ").append(phone).append(", ");
+            str.append("Электронный ящик - ").append(email).append(";");
         }
         return str.toString();
     }

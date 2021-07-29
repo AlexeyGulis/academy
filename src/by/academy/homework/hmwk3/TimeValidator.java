@@ -35,7 +35,7 @@ public class TimeValidator {
             }
             if (flag) {
                 try{
-                    date = new SimpleDateFormat("dd-MM-yyyy").parse(match1.group());
+                    date = new SimpleDateFormat("dd/MM/yyyy").parse(match1.group());
                 }catch(ParseException e){
                     return false;
                 }
@@ -81,13 +81,13 @@ public class TimeValidator {
                 } else {
                     // SimpleDateFormat вывод Day: <> Month: <> Year: <>
                     calendar.setTime(date);
-                    strB.append("Day: <").append(calendar.get(Calendar.DAY_OF_MONTH)).append("> ");
+                    strB.append("День: <").append(calendar.get(Calendar.DAY_OF_MONTH)).append("> ");
                     System.out.println(strB);
                     strB.setLength(0);
-                    strB.append("Month: <").append((calendar.get(Calendar.MONTH)+1)).append("> ");
+                    strB.append("Месяц: <").append((calendar.get(Calendar.MONTH)+1)).append("> ");
                     System.out.println(strB);
                     strB.setLength(0);
-                    strB.append("Year: <").append(calendar.get(Calendar.YEAR)).append("> ");
+                    strB.append("Год: <").append(calendar.get(Calendar.YEAR)).append("> ");
                     System.out.println(strB);
                     result = true;
                 }

@@ -1,12 +1,12 @@
 package by.academy.homework.hmwk3;
 
-import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DealDemo {
-    //ПЕРЕДЕЛАТЬ: каждое поле вводится отдельно
+    //ПЕРЕДЕЛАТЬ:
     //поменять поля String date на LocalDate date
     //добавить распечатку чека (StringBuilder форматирование по столбцу)
     //добавить в методе removeProduct функциональность на удаление i-ого элемента или всех
@@ -20,8 +20,8 @@ public class DealDemo {
     static Scanner scan = new Scanner(System.in);
     static User[] users = new User[2];
 
-    public static void main(String[] args){
-        System.out.println("Deals");
+    public static void main(String[] args) {
+        System.out.println("Сделки");
         emailValidator = new Validator() {
             @Override
             public boolean validate(String t) {
@@ -30,7 +30,7 @@ public class DealDemo {
                 if (matcher.find()) {
                     result = true;
                 } else {
-                    System.out.println("Incorrect email");
+                    System.out.println("Неправильно введена электронная почта");
                     result = false;
                 }
                 return result;
@@ -39,15 +39,15 @@ public class DealDemo {
         //Количество сделок неопределено, поэтому возьму значение 20, можно написать чтобы массив динамически расширялся (2хдлины) доходя до границы.
         int i = 0;
         while (i < 20) {
-            System.out.println("Would you like? (1) - Create Deal,(2) - Go to Menu");
+            System.out.println("Выберите вариант: (1) - Создать сделку,(2) - Зайти в меню сделок");
             if (scan.nextInt() == 1) {
                 scan.nextLine();
-                System.out.println("Buyer information");
+                System.out.println("Информация о продавце");
                 createUser(true);
-                System.out.println("Seller information");
+                System.out.println("Информация о покупателе");
                 createUser(false);
                 int count = 0;
-                System.out.println("Number of all products: ");
+                System.out.println("Введите число продуктов: ");
                 count = scan.nextInt();
                 scan.nextLine();
                 products = new Product[count];
@@ -56,11 +56,11 @@ public class DealDemo {
                     if (product != null) {
                         products[j] = product;
                     }
-                    System.out.println("Product added");
+                    System.out.println("Продукт добавлен");
                 }
                 String dateDeal;
                 while (true) {
-                    System.out.print("Deal date (dd-MM-yyyy|dd/MM/yyyy): ");
+                    System.out.print("Дата сделки (Форма даты: dd-MM-yyyy|dd/MM/yyyy)");
                     dateDeal = scan.nextLine();
                     if (TimeValidator.dateValidate(dateDeal)) {
                         break;
@@ -69,30 +69,31 @@ public class DealDemo {
                 deals[i] = new Deal(users[0], users[1], products, dateDeal);
                 //deals[i].getDeal();
                 //Можно показать сделку, можно просто написать сделка добавлена
-                System.out.println("Deal added");
+                System.out.println("Сделка добавлена");
                 i++;
             } else break;
         }
         // можно сделать меню, основываясь на не нулевых элементах массива deals и предлагать ввести номер сделки (Пример, создали 7,
         // проверили массив на не нулевые, узнали что их 7, предложили пользователю выбрать сделку 1-7)
-        System.out.println("Would you like? (1) - Check deals,(2) - print all PriceLists");
+        System.out.println("Выберите вариант: (1) - Проверить сделки,(2) - Напечатать чеки всех сделок");
         if (scan.nextInt() == 1) {
             scan.nextLine();
             for (int j = 0; j < deals.length; j++) {
                 if (deals[j] != null) {
                     deals[j].getDeal();
-                    System.out.println("Would you like? (1) - go to Menu,(2) - go to next deal");
+                    System.out.println("Выберите вариант: (1) - Зайти в меню сделки,(2) - Перейти к следующей сделке");
                     if (scan.nextInt() == 1) {
                         while (true) {
-                            System.out.println("Would you like? (1) - remove product,(2) - add product,(3) - calculate sum of deal, (4) - next deal, (5) - print pricelist");
+                            System.out.println("Выберите вариант: (1) - Удалить продукт,(2) - Добавить продукт,(3) - Высчитать сумму сделки, (4) - Перейти к следующей сделке, (5) - Напечатать чек");
                             int menu = scan.nextInt();
                             scan.nextLine();
                             if (menu == 1) {
                                 deals[j].getDeal();
-                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||");
-                                System.out.println("The name of the product you want to remove ");
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                                System.out.println("Введите название продукта, который вы хотите удалить");
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||");
                                 deals[j].removeProduct(scan.nextLine());
-                                System.out.println("Product removed");
+                                System.out.println("Продукт удален");
                             } else if (menu == 2) {
                                 deals[j].getDeal();
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||");
@@ -100,11 +101,11 @@ public class DealDemo {
                                 if (product != null) {
                                     deals[j].addProduct(product);
                                 }
-                                System.out.println("Product added");
+                                System.out.println("Продукт добавлен");
                             } else if (menu == 3) {
                                 deals[j].getDeal();
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||");
-                                System.out.println("Sum of deal: " + deals[j].getSumDeal());
+                                System.out.println("Сумма сделки: " + deals[j].getSumDeal());
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||");
                                 System.out.println();
                             } else if (menu == 4) {
@@ -115,21 +116,27 @@ public class DealDemo {
                     }
                 }
             }
-            System.out.println("End of deals");
+            System.out.println("Сделки закончились");
         }
-        System.out.println("Thanks for deals");
+        System.out.println("Спасибо за сделки");
         scan.close();
     }
 
-    public static void createUser(boolean isBuyer){
-        String[] nk1;
+    public static void createUser(boolean isBuyer) {
+        String[] nk1 = new String[4];
         while (true) {
-            System.out.println("Name Phone(+375**-***-**-**) DateOfBirth(dd-MM-yyyy|dd/mm/yyyy) Email(*****@**.**)");
-            nk1 = scan.nextLine().split(" ");
+            System.out.println("Введите имя");
+            nk1[0] = scan.nextLine();
+            System.out.println("Введите номер телефона (Формат:+375-**-***-**-**)");
+            nk1[1] = scan.nextLine();
+            System.out.println("Введите дату рождения (Формат:dd-MM-yyyy или dd/MM/yyyy)");
+            nk1[2] = scan.nextLine();
+            System.out.println("Введите электронную почту(Формат: *@*.* где * - n-ое количество знаков)");
+            nk1[3] = scan.nextLine();
             if (chekUser(nk1)) {
                 break;
             } else {
-                System.out.println("Please re-enter info");
+                System.out.println("Пожалуйста повторите ввод");
             }
         }
         if (isBuyer) {
@@ -153,47 +160,44 @@ public class DealDemo {
     }
 
     public static Product createProduct() {
-        String nk3[];
-        String nk4[];
+        String nk3[] = new String[5];
         Product product;
         while (true) {
-            System.out.println("Enter info about product");
-            System.out.println("Available products:");
-            for (String str:availableProducts
-                 ) {
+            System.out.println("Введите информацию о продукте");
+            System.out.println("Доступные продкуты:");
+            for (String str : availableProducts
+            ) {
                 System.out.println(str);
             }
-            System.out.println("Name Price Quantity");
-            nk3 = scan.nextLine().split(" ");
-            if (availableProducts[0].equals(nk3[0]) && nk3.length==3) {
-                System.out.println("Type CountPackets");
-                nk4 = scan.nextLine().split(" ");
-                if (nk4.length == 2) {
-                    product = new Tea(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), Integer.valueOf(nk4[1]), nk4[0]);
-                    break;
-                } else {
-                    System.out.println("Incorrect info");
-                }
-            } else if (availableProducts[1].equals(nk3[0]) && nk3.length==3) {
-                System.out.println("Age Type");
-                nk4 = scan.nextLine().split(" ");
-                if (nk4.length == 2) {
-                    product = new Peach(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), Double.valueOf(nk4[0]), nk4[1]);
-                    break;
-                } else {
-                    System.out.println("Incorrect info");
-                }
-            } else if (availableProducts[2].equals(nk3[0]) && nk3.length==3) {
-                System.out.println("Name Type");
-                nk4 = scan.nextLine().split(" ");
-                if (nk4.length == 2) {
-                    product = new Chips(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), nk4[0], nk4[1]);
-                    break;
-                } else {
-                    System.out.println("Incorrect info");
-                }
+            System.out.println("Введите название продукта");
+            nk3[0] = scan.nextLine();
+            System.out.println("Введите ценну продукта");
+            nk3[1] = scan.nextLine();
+            System.out.println("Введите колличество продукта");
+            nk3[2] = scan.nextLine();
+            if (availableProducts[0].equals(nk3[0])) {
+                System.out.println("Введите тип чая");
+                nk3[3] = scan.nextLine();
+                System.out.println("Введите количество пакетиков");
+                nk3[4] = scan.nextLine();
+                product = new Tea(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), Integer.valueOf(nk3[4]), nk3[3]);
+                break;
+            } else if (availableProducts[1].equals(nk3[0])) {
+                System.out.println("Введите тип персиков");
+                nk3[3] = scan.nextLine();
+                System.out.println("Введите возраст персиков");
+                nk3[4] = scan.nextLine();
+                product = new Peach(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), Double.valueOf(nk3[4]), nk3[3]);
+                break;
+            } else if (availableProducts[2].equals(nk3[0])) {
+                System.out.println("Введите название чипсов");
+                nk3[3] = scan.nextLine();
+                System.out.println("Введите с каким фкусом");
+                nk3[4] = scan.nextLine();
+                product = new Chips(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), nk3[3], nk3[4]);
+                break;
             } else {
-                System.out.println("Product not exist with this parameters");
+                System.out.println("Продукт с таким названием не доступен");
             }
         }
         return product;
