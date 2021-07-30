@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 public class DealDemo {
     //Вопросы: что на счет методов, добавлять все сеттеры геттеры хеш и иквлс или можно удалять неюзаемые
+    //Весь проект будет лежать в папке homework/hmwrk3?
     //
     //static Pattern email = Pattern.compile("[a-zA-Z0-9._]+@[a-zA-Z0-9]+\\.[a-zA-Z]");
     static Pattern date1 = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19[0-9]{2}|2[0-9][0-9][0-9])$");
