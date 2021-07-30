@@ -1,7 +1,5 @@
 package by.academy.homework.hmwk3;
 
-import java.util.Date;
-
 public class Peach extends Product {
     protected static double ageDis = 5.0;
     protected static String typeDis = "Кардинал";
