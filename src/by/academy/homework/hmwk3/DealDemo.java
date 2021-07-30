@@ -143,8 +143,10 @@ public class DealDemo {
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                             } else if (menu == 5 && j!=deals.length-1) {
                                 j++;
+                                break;
                             } else if (menu == 6 && j!=0) {
                                 j--;
+                                break;
                             } else if(menu == 7){
                                 break;
                             }
@@ -156,6 +158,11 @@ public class DealDemo {
                     }else if(menu == 4){
                         break;
                     }
+                }else if(j==0 || j==deals.length-1){
+                    System.out.println("Сделки закончились");
+                    break;
+                }else {
+                    j--;
                 }
             }
             System.out.println("Сделки закончились");
@@ -171,7 +178,7 @@ public class DealDemo {
                 }
             }
         }
-        System.out.println("Спасибо за сделки");
+        System.out.println("Спасибо");
         scan.close();
     }
 
@@ -252,6 +259,15 @@ public class DealDemo {
                 nk3[3] = scan.nextLine();
                 System.out.println("Введите количество пакетиков");
                 nk3[4] = scan.nextLine();
+                try{
+                    Double.valueOf(nk3[1]);
+                    Integer.valueOf(nk3[2]);
+                    Integer.valueOf(nk3[4]);
+                }
+                catch(NumberFormatException e){
+                    System.out.println("Некоректные данные");
+                    continue;
+                }
                 product = new Tea(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), Integer.valueOf(nk3[4]), nk3[3]);
                 break;
             } else if (availableProducts[1].equals(nk3[0])) {
@@ -259,6 +275,15 @@ public class DealDemo {
                 nk3[3] = scan.nextLine();
                 System.out.println("Введите возраст персиков");
                 nk3[4] = scan.nextLine();
+                try{
+                    Double.valueOf(nk3[1]);
+                    Integer.valueOf(nk3[2]);
+                    Double.valueOf(nk3[4]);
+                }
+                catch(NumberFormatException e){
+                    System.out.println("Некоректные данные");
+                    continue;
+                }
                 product = new Peach(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), Double.valueOf(nk3[4]), nk3[3]);
                 break;
             } else if (availableProducts[2].equals(nk3[0])) {
@@ -266,6 +291,14 @@ public class DealDemo {
                 nk3[3] = scan.nextLine();
                 System.out.println("Введите с каким вкусом");
                 nk3[4] = scan.nextLine();
+                try{
+                    Double.valueOf(nk3[1]);
+                    Integer.valueOf(nk3[2]);
+                }
+                catch(NumberFormatException e){
+                    System.out.println("Некоректные данные");
+                    continue;
+                }
                 product = new Chips(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), nk3[3], nk3[4]);
                 break;
             } else {
