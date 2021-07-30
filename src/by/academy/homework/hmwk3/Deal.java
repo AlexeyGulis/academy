@@ -10,17 +10,15 @@ public class Deal {
     private User seller;
     private User buyer;
     private LocalDate dateOfDeal;
-    Calendar deadlineDate;
+    private LocalDate deadlineDate;
 
     public Deal(User buyer, User seller, Product[] products, LocalDate dateOfDeal) {
         this.seller = seller;
         this.buyer = buyer;
         this.products = products;
         this.dateOfDeal = dateOfDeal;
-        Date currentDate = new Date();
-        deadlineDate = Calendar.getInstance();
-        deadlineDate.setTime(currentDate);
-        deadlineDate.set(Calendar.DAY_OF_MONTH, +10);
+        LocalDate currentDate = LocalDate.now();
+        deadlineDate = currentDate.plusDays(10L);
     }
 
     public void getDeal() {

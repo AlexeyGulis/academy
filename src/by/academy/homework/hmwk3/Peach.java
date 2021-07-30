@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Peach extends Product {
     protected static double ageDis = 5.0;
-    protected static String typeDis = "Frost";
+    protected static String typeDis = "Кардинал";
     protected String type;
     protected double age;
     protected double discount = 0.15;

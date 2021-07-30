@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DealDemo {
+    //Вопросы: что на счет методов, добавлять все сеттеры геттеры хеш и иквлс или можно удалять неюзаемые
+    //
     //static Pattern email = Pattern.compile("[a-zA-Z0-9._]+@[a-zA-Z0-9]+\\.[a-zA-Z]");
     static Pattern date1 = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19[0-9]{2}|2[0-9][0-9][0-9])$");
     static String format1 = "dd/MM/yyyy";
@@ -17,7 +19,7 @@ public class DealDemo {
     static Validator emailValidator;
     static Product[] products;
     static Product product;
-    final static String[] availableProducts = {"Tea", "Peach", "Chips"};
+    final static String[] availableProducts = {"Чай", "Персик", "Чипсы"};
     public static Scanner scan = new Scanner(System.in);
     static User[] users = new User[2];
     static LocalDate dateOfDeal;
@@ -82,6 +84,8 @@ public class DealDemo {
                                 .append(">, Год: <").append(dateOfDeal.getYear()).append(">");
                         System.out.println(strb);
                         break;
+                    }else {
+                        System.out.println("Дата введена неправильно");
                     }
                 }
                 deals[i] = new Deal(users[0], users[1], products, dateOfDeal);
@@ -97,16 +101,18 @@ public class DealDemo {
         System.out.println("Выберите вариант: (1) - Проверить сделки,(2) - Напечатать чеки всех сделок, (3) - Выйти из программы");
         menu = scan.nextInt();
         scan.nextLine();
+        int j = 0;
         if (menu == 1) {
-            for (int j = 0; j < deals.length; j++) {
+             while(j<deals.length){
                 if (deals[j] != null) {
                     deals[j].getDeal();
-                    System.out.println("Выберите вариант: (1) - Зайти в меню сделки,(2) - Перейти к следующей сделке");
+                    System.out.println("Выберите вариант: (1) - Зайти в меню сделки,(2) - Перейти к следующей сделке,(3) - Перейти к предыдущей сделке, (4) - Выйти из программы");
                     menu = scan.nextInt();
                     scan.nextLine();
                     if (menu == 1) {
                         while (true) {
-                            System.out.println("Выберите вариант: (1) - Удалить продукт,(2) - Добавить продукт,(3) - Высчитать сумму сделки, (4) - Напечатать чек, (5) - Перейти к следующей сделке");
+                            System.out.println("Выберите вариант: (1) - Удалить продукт,(2) - Добавить продукт,(3) - Высчитать сумму сделки, (4) - Напечатать чек, " +
+                                    "(5) - Перейти к следующей сделке, (6) - Перейти к предыдущей сделке, (7) - Выйти из меню");
                             menu = scan.nextInt();
                             scan.nextLine();
                             if (menu == 1) {
@@ -134,11 +140,20 @@ public class DealDemo {
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                                 deals[j].getPriceList();
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-                            } else if (menu == 5) {
+                            } else if (menu == 5 && j!=deals.length-1) {
+                                j++;
+                            } else if (menu == 6 && j!=0) {
+                                j--;
+                            } else if(menu == 7){
                                 break;
                             }
-
                         }
+                    }else if(menu == 2 && j!=deals.length-1){
+                        j++;
+                    }else if(menu == 3 && j!=0){
+                        j--;
+                    }else if(menu == 4){
+                        break;
                     }
                 }
             }
@@ -164,7 +179,7 @@ public class DealDemo {
         while (true) {
             System.out.println("Введите имя");
             nk1[0] = scan.nextLine();
-            System.out.println("Введите номер телефона (Формат:+375-**-***-**-**)");
+            System.out.println("Введите номер телефона (Формат:+375-**-***-**-** где * - цифра)");
             nk1[1] = scan.nextLine();
             System.out.println("Введите дату рождения (Формат:dd-MM-yyyy или dd/MM/yyyy)");
             nk1[2] = scan.nextLine();
@@ -206,6 +221,8 @@ public class DealDemo {
                         .append(">, Год: <").append(dateOfBirth.getYear()).append(">");
                 System.out.println(strb);
                 result = true;
+            }else {
+                System.out.println("Дата введена неправильно");
             }
         } else {
             result = false;
@@ -246,7 +263,7 @@ public class DealDemo {
             } else if (availableProducts[2].equals(nk3[0])) {
                 System.out.println("Введите название чипсов");
                 nk3[3] = scan.nextLine();
-                System.out.println("Введите с каким фкусом");
+                System.out.println("Введите с каким вкусом");
                 nk3[4] = scan.nextLine();
                 product = new Chips(nk3[0], Double.valueOf(nk3[1]), Integer.valueOf(nk3[2]), nk3[3], nk3[4]);
                 break;

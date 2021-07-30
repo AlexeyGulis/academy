@@ -1,7 +1,7 @@
 package by.academy.homework.hmwk3;
 
 public class Tea extends Product {
-    protected static String typeDis = "Chernyi";
+    protected static String typeDis = "Черный";
     protected static int countPackDis = 20;
     protected int countPack;
     protected String type;

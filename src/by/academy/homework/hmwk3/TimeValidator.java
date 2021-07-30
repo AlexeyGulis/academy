@@ -21,11 +21,9 @@ public class TimeValidator {
                 dateLocal = LocalDate.parse(str, formatter);
                 result = true;
             } catch (DateTimeException e) {
-                System.out.println("Дата введена неправильно");
                 return false;
             }
             if (LocalDate.now().isBefore(dateLocal)) {
-                System.out.println("Дата введена неправильно");
                 result = false;
             } else {
                 result = true;

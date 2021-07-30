@@ -1,10 +1,8 @@
 package by.academy.homework.hmwk3;
 
-import java.util.Date;
-
 public class Chips extends Product {
-    private String nameDis = "Lays";
-    private String tasteDis = "Cheese";
+    private String nameDis = "Лейс";
+    private String tasteDis = "С сыром";
     private String name;
     private String taste;
     private double discount = 0.05;
