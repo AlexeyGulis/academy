@@ -1,24 +1,27 @@
 package by.academy.homework.hmwk3;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DealDemo {
-    //ПЕРЕДЕЛАТЬ:
-    //поменять поля String date на LocalDate date
-    //добавить распечатку чека (StringBuilder форматирование по столбцу)
-    //добавить в методе removeProduct функциональность на удаление i-ого элемента или всех
     //static Pattern email = Pattern.compile("[a-zA-Z0-9._]+@[a-zA-Z0-9]+\\.[a-zA-Z]");
+    static Pattern date1 = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19[0-9]{2}|2[0-9][0-9][0-9])$");
+    static String format1 = "dd/MM/yyyy";
+    static Pattern date2 = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9]{2}|2[0-9][0-9][0-9])$");
+    static String format2 = "dd-MM-yyyy";
     static Pattern email = Pattern.compile("^.*?@.*?\\..*$");
     static Deal[] deals = new Deal[20];
     static Validator emailValidator;
     static Product[] products;
     static Product product;
     final static String[] availableProducts = {"Tea", "Peach", "Chips"};
-    static Scanner scan = new Scanner(System.in);
+    public static Scanner scan = new Scanner(System.in);
     static User[] users = new User[2];
+    static LocalDate dateOfDeal;
+    static LocalDate dateOfBirth;
 
     public static void main(String[] args) {
         System.out.println("Сделки");
@@ -62,11 +65,26 @@ public class DealDemo {
                 while (true) {
                     System.out.print("Дата сделки (Форма даты: dd-MM-yyyy|dd/MM/yyyy)");
                     dateDeal = scan.nextLine();
-                    if (TimeValidator.dateValidate(dateDeal)) {
+                    StringBuilder strb = new StringBuilder();
+                    if (TimeValidator.dateValidate(dateDeal, format1, date1)) {
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format1);
+                        dateOfDeal = LocalDate.parse(dateDeal, formatter);
+                        strb.append("День: <").append(dateOfDeal.getDayOfMonth())
+                                .append(">, Месяц: <").append(dateOfDeal.getMonthValue())
+                                .append(">, Год: <").append(dateOfDeal.getYear()).append(">");
+                        System.out.println(strb);
+                        break;
+                    } else if (TimeValidator.dateValidate(dateDeal, format2, date2)) {
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format2);
+                        dateOfDeal = LocalDate.parse(dateDeal, formatter);
+                        strb.append("День: <").append(dateOfDeal.getDayOfMonth())
+                                .append(">, Месяц: <").append(dateOfDeal.getMonthValue())
+                                .append(">, Год: <").append(dateOfDeal.getYear()).append(">");
+                        System.out.println(strb);
                         break;
                     }
                 }
-                deals[i] = new Deal(users[0], users[1], products, dateDeal);
+                deals[i] = new Deal(users[0], users[1], products, dateOfDeal);
                 //deals[i].getDeal();
                 //Можно показать сделку, можно просто написать сделка добавлена
                 System.out.println("Сделка добавлена");
@@ -75,28 +93,32 @@ public class DealDemo {
         }
         // можно сделать меню, основываясь на не нулевых элементах массива deals и предлагать ввести номер сделки (Пример, создали 7,
         // проверили массив на не нулевые, узнали что их 7, предложили пользователю выбрать сделку 1-7)
-        System.out.println("Выберите вариант: (1) - Проверить сделки,(2) - Напечатать чеки всех сделок");
-        if (scan.nextInt() == 1) {
-            scan.nextLine();
+        int menu;
+        System.out.println("Выберите вариант: (1) - Проверить сделки,(2) - Напечатать чеки всех сделок, (3) - Выйти из программы");
+        menu = scan.nextInt();
+        scan.nextLine();
+        if (menu == 1) {
             for (int j = 0; j < deals.length; j++) {
                 if (deals[j] != null) {
                     deals[j].getDeal();
                     System.out.println("Выберите вариант: (1) - Зайти в меню сделки,(2) - Перейти к следующей сделке");
-                    if (scan.nextInt() == 1) {
+                    menu = scan.nextInt();
+                    scan.nextLine();
+                    if (menu == 1) {
                         while (true) {
-                            System.out.println("Выберите вариант: (1) - Удалить продукт,(2) - Добавить продукт,(3) - Высчитать сумму сделки, (4) - Перейти к следующей сделке, (5) - Напечатать чек");
-                            int menu = scan.nextInt();
+                            System.out.println("Выберите вариант: (1) - Удалить продукт,(2) - Добавить продукт,(3) - Высчитать сумму сделки, (4) - Напечатать чек, (5) - Перейти к следующей сделке");
+                            menu = scan.nextInt();
                             scan.nextLine();
                             if (menu == 1) {
                                 deals[j].getDeal();
-                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                                 System.out.println("Введите название продукта, который вы хотите удалить");
-                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                                 deals[j].removeProduct(scan.nextLine());
                                 System.out.println("Продукт удален");
                             } else if (menu == 2) {
                                 deals[j].getDeal();
-                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||");
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                                 product = createProduct();
                                 if (product != null) {
                                     deals[j].addProduct(product);
@@ -104,11 +126,15 @@ public class DealDemo {
                                 System.out.println("Продукт добавлен");
                             } else if (menu == 3) {
                                 deals[j].getDeal();
-                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||");
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                                 System.out.println("Сумма сделки: " + deals[j].getSumDeal());
-                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||");
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                                 System.out.println();
                             } else if (menu == 4) {
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                                deals[j].getPriceList();
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                            } else if (menu == 5) {
                                 break;
                             }
 
@@ -117,6 +143,17 @@ public class DealDemo {
                 }
             }
             System.out.println("Сделки закончились");
+        } else if (menu == 2) {
+            System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+            System.out.println("Чеки");
+            System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+            for (Deal a : deals
+            ) {
+                if (a != null) {
+                    a.getPriceList();
+                    System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                }
+            }
         }
         System.out.println("Спасибо за сделки");
         scan.close();
@@ -140,19 +177,36 @@ public class DealDemo {
             }
         }
         if (isBuyer) {
-            users[0] = new User(nk1[0], isBuyer, nk1[2], nk1[1], nk1[3]);
+            users[0] = new User(nk1[0], isBuyer, dateOfBirth, nk1[1], nk1[3]);
         } else {
-            users[1] = new User(nk1[0], isBuyer, nk1[2], nk1[1], nk1[3]);
+            users[1] = new User(nk1[0], isBuyer, dateOfBirth, nk1[1], nk1[3]);
         }
     }
 
     // Когда проверяю поля с помощью валидаторов повторно просить ввести данные если что-то неправильно введено
     public static boolean chekUser(String[] str) {
-        boolean result;
-        if (str.length == 4 && str[0] != null && TimeValidator.dateValidate(str[2])
+        boolean result = false;
+        if (str.length == 4 && str[0] != null
                 && new BelarusPhoneValidator().validate(str[1])
                 && emailValidator.validate(str[3])) {
-            result = true;
+            StringBuilder strb = new StringBuilder();
+            if (TimeValidator.dateValidate(str[2], format1, date1)) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format1);
+                dateOfBirth = LocalDate.parse(str[2], formatter);
+                strb.append("День: <").append(dateOfBirth.getDayOfMonth())
+                        .append(">, Месяц: <").append(dateOfBirth.getMonthValue())
+                        .append(">, Год: <").append(dateOfBirth.getYear()).append(">");
+                System.out.println(strb);
+                result = true;
+            } else if (TimeValidator.dateValidate(str[2], format2, date2)) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format2);
+                dateOfBirth = LocalDate.parse(str[2], formatter);
+                strb.append("День: <").append(dateOfBirth.getDayOfMonth())
+                        .append(">, Месяц: <").append(dateOfBirth.getMonthValue())
+                        .append(">, Год: <").append(dateOfBirth.getYear()).append(">");
+                System.out.println(strb);
+                result = true;
+            }
         } else {
             result = false;
         }

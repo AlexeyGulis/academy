@@ -23,6 +23,13 @@ public class Chips extends Product {
         return result;
     }
 
+    public String[] getFeature() {
+        String[] prodFeature = new String[2];
+        prodFeature[0] = name;
+        prodFeature[1] = taste;
+        return prodFeature;
+    }
+
     public String getNameChips() {
         return name;
     }
@@ -35,7 +42,7 @@ public class Chips extends Product {
         return taste;
     }
 
-    public void settaste(String taste) {
+    public void setTaste(String taste) {
         this.taste = taste;
     }
 
@@ -45,9 +52,9 @@ public class Chips extends Product {
         sb.append("{Имя продукта = '").append(getName()).append('\'');
         sb.append(", Название чипсов = ").append(getNameChips());
         sb.append(", Вкус чипсов = ").append(getTaste());
-        sb.append(", Цена (включая скидку) = ").append(String.format("%.2f",getPrice()));
+        sb.append(", Цена (включая скидку) = ").append(String.format("%.2f", getPrice()));
         sb.append(", Количество = ").append(getQuantity());
-        sb.append(", Общая цена = ").append(String.format("%.2f",getSumPrice()));
+        sb.append(", Общая цена = ").append(String.format("%.2f", getSumPrice()));
         sb.append('}');
         return sb.toString();
     }

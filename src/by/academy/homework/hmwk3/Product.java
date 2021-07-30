@@ -37,6 +37,8 @@ public abstract class Product {
 
     protected abstract double getDiscount();
 
+    public abstract String[] getFeature();
+
     public double getSumPrice() {
         return (1.0 - getDiscount()) * price * quantity;
     }

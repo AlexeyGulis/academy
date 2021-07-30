@@ -3,11 +3,11 @@ package by.academy.homework.hmwk3;
 import java.util.Date;
 
 public class Peach extends Product {
-    private static double ageDis = 5.0;
-    private static String typeDis = "Frost";
-    private String type;
-    private double age;
-    private double discount = 0.15;
+    protected static double ageDis = 5.0;
+    protected static String typeDis = "Frost";
+    protected String type;
+    protected double age;
+    protected double discount = 0.15;
 
     public Peach(String name, double price, int quantity, double age, String type) {
         super(name, price, quantity);
@@ -21,6 +21,13 @@ public class Peach extends Product {
             result = discount;
         }
         return result;
+    }
+
+    public String[] getFeature() {
+        String[] prodFeature = new String[2];
+        prodFeature[0] = type;
+        prodFeature[1] = String.valueOf(age);
+        return prodFeature;
     }
 
     public String getType() {
@@ -46,9 +53,9 @@ public class Peach extends Product {
         sb.append("{Имя продукта = '").append(getName()).append('\'');
         sb.append(", Тип персика = ").append(getType());
         sb.append(", Возраст = ").append(getAge());
-        sb.append(", Цена (включая скидку) = ").append(String.format("%.2f",getPrice()));
+        sb.append(", Цена (включая скидку) = ").append(String.format("%.2f", getPrice()));
         sb.append(", Количество = ").append(getQuantity());
-        sb.append(", Общая цена = ").append(String.format("%.2f",getSumPrice()));
+        sb.append(", Общая цена = ").append(String.format("%.2f", getSumPrice()));
         sb.append('}');
         return sb.toString();
     }

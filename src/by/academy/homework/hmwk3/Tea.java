@@ -1,11 +1,25 @@
 package by.academy.homework.hmwk3;
 
 public class Tea extends Product {
-    private static String typeDis = "Chernyi";
-    private static int countPackDis = 20;
-    private int countPack;
-    private String type;
-    private double discount = 0.25;
+    protected static String typeDis = "Chernyi";
+    protected static int countPackDis = 20;
+    protected int countPack;
+    protected String type;
+    protected double discount = 0.25;
+
+
+    public Tea(String name, double price, int quantity, int countPack, String type) {
+        super(name, price, quantity);
+        this.countPack = countPack;
+        this.type = type;
+    }
+
+    public String[] getFeature() {
+        String[] prodFeature = new String[2];
+        prodFeature[0] = type;
+        prodFeature[1] = String.valueOf(countPack);
+        return prodFeature;
+    }
 
     protected double getDiscount() {
         double result = 0.0;
@@ -13,12 +27,6 @@ public class Tea extends Product {
             result = discount;
         }
         return result;
-    }
-
-    public Tea(String name, double price, int quantity, int countPack, String type) {
-        super(name, price, quantity);
-        this.countPack = countPack;
-        this.type = type;
     }
 
     public int getCountPack() {
@@ -43,9 +51,9 @@ public class Tea extends Product {
         sb.append("{Имя продукта = '").append(getName()).append('\'');
         sb.append(", Тип чая = ").append(getType());
         sb.append(", Количество пакетиков = ").append(getCountPack());
-        sb.append(", Цена (включая скидку) = ").append(String.format("%.2f",getPrice()));
+        sb.append(", Цена (включая скидку) = ").append(String.format("%.2f", getPrice()));
         sb.append(", Количество = ").append(getQuantity());
-        sb.append(", Общая цена = ").append(String.format("%.2f",getSumPrice()));
+        sb.append(", Общая цена = ").append(String.format("%.2f", getSumPrice()));
         sb.append('}');
         return sb.toString();
     }
