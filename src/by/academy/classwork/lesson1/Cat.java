@@ -1,6 +1,8 @@
 package by.academy.classwork.lesson1;
 
-public class Cat {
+import java.io.Serializable;
+
+public class Cat extends Animal implements Serializable {
     int age;
     String name;
     private int money;
