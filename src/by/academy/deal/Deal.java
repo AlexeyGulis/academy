@@ -52,14 +52,14 @@ public class Deal {
         for (int i = 0; i < products.length; i++) {
             f = new Formatter();
             System.out.println();
-            f.format("%1$-10s%2$-25s%3$-10s%4$10s", products[i].getName(), products[i].getFeature()[0] + ", " + products[i].getFeature()[1], products[i].getQuantity(), products[i].getSumPrice() + " $");
+            f.format("%1$-10s%2$-25s%3$-10s%4$10s", products[i].getName(), products[i].getFeature()[0] + ", " + products[i].getFeature()[1], products[i].getQuantity(), String.format("%.2f", products[i].getSumPrice()) + " $");
             System.out.println(f);
         }
         System.out.println();
         System.out.println("-------------------------------------------------------");
         System.out.println();
         f = new Formatter();
-        f.format("%1$-30s%2$25s", "Сумма сделки:", this.getSumDeal() + " $");
+        f.format("%1$-30s%2$25s", "Сумма сделки:", String.format("%.2f", this.getSumDeal()) + " $");
         System.out.println(f);
         System.out.println();
     }
