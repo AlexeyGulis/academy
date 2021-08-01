@@ -86,12 +86,12 @@ public class User {
         StringBuilder str = new StringBuilder();
         if (sellerOrbuyer) {
             str.append("Имя продовца - ").append(name).append(", ");
-            str.append("Дата рождения - ").append(dateOfBirth).append(", ");
+            str.append("Дата рождения - ").append(dateOfBirth.format(Deal.formatter)).append(", ");
             str.append("Номер телефона - ").append(phone).append(", ");
             str.append("Электронный ящик - ").append(email).append(";");
         } else {
             str.append("Имя покупателя - ").append(name).append(", ");
-            str.append("Дата рождения - ").append(dateOfBirth).append(", ");
+            str.append("Дата рождения - ").append(dateOfBirth.format(Deal.formatter)).append(", ");
             str.append("Номер телефона - ").append(phone).append(", ");
             str.append("Электронный ящик - ").append(email).append(";");
         }

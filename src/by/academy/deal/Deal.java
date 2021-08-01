@@ -1,6 +1,7 @@
 package by.academy.deal;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Formatter;
 
@@ -10,6 +11,7 @@ public class Deal {
     private User buyer;
     private LocalDate dateOfDeal;
     private LocalDate deadlineDate;
+    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public Deal(User buyer, User seller, Product[] products, LocalDate dateOfDeal) {
         this.seller = seller;
@@ -33,14 +35,14 @@ public class Deal {
         }
         str.setLength(0);
         str.append("Дата сделки: ");
-        str.append(dateOfDeal).append(";");
+        str.append(dateOfDeal.format(formatter)).append(";");
         System.out.println(str.toString());
     }
 
     public void getPriceList() {
         System.out.println();
         Formatter f = new Formatter();
-        f.format("%1$-25s%2$30s", "Дата:", dateOfDeal);
+        f.format("%1$-25s%2$30s", "Дата:", dateOfDeal.format(formatter));
         System.out.println(f);
         System.out.println();
         f = new Formatter();
