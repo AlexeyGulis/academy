@@ -1,4 +1,4 @@
-package by.academy.homework.hmwk3;
+package by.academy.deal;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

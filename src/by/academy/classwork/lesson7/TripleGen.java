@@ -2,7 +2,7 @@ package by.academy.classwork.lesson7;
 
 import java.io.Serializable;
 import by.academy.classwork.lesson1.*;
-import by.academy.homework.hmwk3.Validator;
+import by.academy.deal.Validator;
 
 public class TripleGen<T extends Comparable<String>,V extends Animal & Serializable,K extends Number> {
     T ob1;

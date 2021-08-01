@@ -1,8 +1,8 @@
-package by.academy.homework.hmwk3;
+package by.academy.deal;
 
 public class Peach extends Product {
-    protected static double ageDis = 5.0;
-    protected static String typeDis = "Кардинал";
+    protected double ageDis = 5.0;
+    protected String typeDis = "Кардинал";
     protected String type;
     protected double age;
     protected double discount = 0.15;
@@ -40,12 +40,27 @@ public class Peach extends Product {
         return age;
     }
 
-    public void setage(double age) {
+    public void setAge(double age) {
         this.age = age;
     }
 
-    @Override
+    public double getAgeDis() {
+        return ageDis;
+    }
 
+    public void setAgeDis(double ageDis) {
+        this.ageDis = ageDis;
+    }
+
+    public String getTypeDis() {
+        return typeDis;
+    }
+
+    public void setTypeDis(String typeDis) {
+        this.typeDis = typeDis;
+    }
+
+    @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer();
         sb.append("{Имя продукта = '").append(getName()).append('\'');
@@ -56,5 +71,29 @@ public class Peach extends Product {
         sb.append(", Общая цена = ").append(String.format("%.2f", getSumPrice()));
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Peach peach = (Peach) o;
+
+        if (Double.compare(peach.age, age) != 0) return false;
+        if (Double.compare(peach.discount, discount) != 0) return false;
+        return type != null ? type.equals(peach.type) : peach.type == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = type != null ? type.hashCode() : 0;
+        temp = Double.doubleToLongBits(age);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(discount);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }

@@ -1,4 +1,4 @@
-package by.academy.homework.hmwk3;
+package by.academy.deal;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -7,15 +7,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DealDemo {
-    //Вопросы: что на счет методов, добавлять все сеттеры геттеры хеш и иквлс или можно удалять неюзаемые
-    //Весь проект будет лежать в папке homework/hmwrk3?
-    //
-    //static Pattern email = Pattern.compile("[a-zA-Z0-9._]+@[a-zA-Z0-9]+\\.[a-zA-Z]");
+
     static Pattern date1 = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19[0-9]{2}|2[0-9][0-9][0-9])$");
     static String format1 = "dd/MM/yyyy";
     static Pattern date2 = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9]{2}|2[0-9][0-9][0-9])$");
     static String format2 = "dd-MM-yyyy";
     static Pattern email = Pattern.compile("^.*?@.*?\\..*$");
+    //можно использовать второй метод на email
+    //static Pattern email = Pattern.compile("[a-zA-Z0-9._]+@[a-zA-Z0-9]+\\.[a-zA-Z]");
     static Deal[] deals = new Deal[20];
     static Validator emailValidator;
     static Product[] products;
@@ -85,7 +84,7 @@ public class DealDemo {
                                 .append(">, Год: <").append(dateOfDeal.getYear()).append(">");
                         System.out.println(strb);
                         break;
-                    }else {
+                    } else {
                         System.out.println("Дата введена неправильно");
                     }
                 }
@@ -104,7 +103,7 @@ public class DealDemo {
         scan.nextLine();
         int j = 0;
         if (menu == 1) {
-             while(j<deals.length){
+            while (j < deals.length) {
                 if (deals[j] != null) {
                     deals[j].getDeal();
                     System.out.println("Выберите вариант: (1) - Зайти в меню сделки,(2) - Перейти к следующей сделке,(3) - Перейти к предыдущей сделке, (4) - Выйти из программы");
@@ -141,27 +140,27 @@ public class DealDemo {
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                                 deals[j].getPriceList();
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-                            } else if (menu == 5 && j!=deals.length-1) {
+                            } else if (menu == 5 && j != deals.length - 1) {
                                 j++;
                                 break;
-                            } else if (menu == 6 && j!=0) {
+                            } else if (menu == 6 && j != 0) {
                                 j--;
                                 break;
-                            } else if(menu == 7){
+                            } else if (menu == 7) {
                                 break;
                             }
                         }
-                    }else if(menu == 2 && j!=deals.length-1){
+                    } else if (menu == 2 && j != deals.length - 1) {
                         j++;
-                    }else if(menu == 3 && j!=0){
+                    } else if (menu == 3 && j != 0) {
                         j--;
-                    }else if(menu == 4){
+                    } else if (menu == 4) {
                         break;
                     }
-                }else if(j==0 || j==deals.length-1){
+                } else if (j == 0 || j == deals.length - 1) {
                     System.out.println("Сделки закончились");
                     break;
-                }else {
+                } else {
                     j--;
                 }
             }
@@ -229,7 +228,7 @@ public class DealDemo {
                         .append(">, Год: <").append(dateOfBirth.getYear()).append(">");
                 System.out.println(strb);
                 result = true;
-            }else {
+            } else {
                 System.out.println("Дата введена неправильно");
             }
         } else {
@@ -259,12 +258,11 @@ public class DealDemo {
                 nk3[3] = scan.nextLine();
                 System.out.println("Введите количество пакетиков");
                 nk3[4] = scan.nextLine();
-                try{
+                try {
                     Double.valueOf(nk3[1]);
                     Integer.valueOf(nk3[2]);
                     Integer.valueOf(nk3[4]);
-                }
-                catch(NumberFormatException e){
+                } catch (NumberFormatException e) {
                     System.out.println("Некоректные данные");
                     continue;
                 }
@@ -273,14 +271,13 @@ public class DealDemo {
             } else if (availableProducts[1].equals(nk3[0])) {
                 System.out.println("Введите тип персиков");
                 nk3[3] = scan.nextLine();
-                System.out.println("Введите возраст персиков");
+                System.out.println("Введите возраст персиков(количество дней)");
                 nk3[4] = scan.nextLine();
-                try{
+                try {
                     Double.valueOf(nk3[1]);
                     Integer.valueOf(nk3[2]);
                     Double.valueOf(nk3[4]);
-                }
-                catch(NumberFormatException e){
+                } catch (NumberFormatException e) {
                     System.out.println("Некоректные данные");
                     continue;
                 }
@@ -291,11 +288,10 @@ public class DealDemo {
                 nk3[3] = scan.nextLine();
                 System.out.println("Введите с каким вкусом");
                 nk3[4] = scan.nextLine();
-                try{
+                try {
                     Double.valueOf(nk3[1]);
                     Integer.valueOf(nk3[2]);
-                }
-                catch(NumberFormatException e){
+                } catch (NumberFormatException e) {
                     System.out.println("Некоректные данные");
                     continue;
                 }

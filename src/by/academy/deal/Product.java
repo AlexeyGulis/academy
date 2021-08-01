@@ -1,4 +1,4 @@
-package by.academy.homework.hmwk3;
+package by.academy.deal;
 
 public abstract class Product {
     protected String name;
@@ -41,6 +41,29 @@ public abstract class Product {
 
     public double getSumPrice() {
         return (1.0 - getDiscount()) * price * quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (Double.compare(product.price, price) != 0) return false;
+        if (quantity != product.quantity) return false;
+        return name != null ? name.equals(product.name) : product.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = name != null ? name.hashCode() : 0;
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + quantity;
+        return result;
     }
 
     @Override

@@ -1,6 +1,7 @@
-package by.academy.homework.hmwk3;
+package by.academy.deal;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Formatter;
 
 public class Deal {
@@ -141,5 +142,70 @@ public class Deal {
             }
         }
         return sumdeal;
+    }
+
+    public Product[] getProducts() {
+        return products;
+    }
+
+    public void setProducts(Product[] products) {
+        this.products = products;
+    }
+
+    public User getSeller() {
+        return seller;
+    }
+
+    public void setSeller(User seller) {
+        this.seller = seller;
+    }
+
+    public User getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
+    }
+
+    public LocalDate getDateOfDeal() {
+        return dateOfDeal;
+    }
+
+    public void setDateOfDeal(LocalDate dateOfDeal) {
+        this.dateOfDeal = dateOfDeal;
+    }
+
+    public LocalDate getDeadlineDate() {
+        return deadlineDate;
+    }
+
+    public void setDeadlineDate(LocalDate deadlineDate) {
+        this.deadlineDate = deadlineDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Deal deal = (Deal) o;
+
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        if (!Arrays.equals(products, deal.products)) return false;
+        if (seller != null ? !seller.equals(deal.seller) : deal.seller != null) return false;
+        if (buyer != null ? !buyer.equals(deal.buyer) : deal.buyer != null) return false;
+        if (dateOfDeal != null ? !dateOfDeal.equals(deal.dateOfDeal) : deal.dateOfDeal != null) return false;
+        return deadlineDate != null ? deadlineDate.equals(deal.deadlineDate) : deal.deadlineDate == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.hashCode(products);
+        result = 31 * result + (seller != null ? seller.hashCode() : 0);
+        result = 31 * result + (buyer != null ? buyer.hashCode() : 0);
+        result = 31 * result + (dateOfDeal != null ? dateOfDeal.hashCode() : 0);
+        result = 31 * result + (deadlineDate != null ? deadlineDate.hashCode() : 0);
+        return result;
     }
 }

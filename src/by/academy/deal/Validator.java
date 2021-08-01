@@ -1,4 +1,4 @@
-package by.academy.homework.hmwk3;
+package by.academy.deal;
 
 public interface Validator {
     boolean validate(String t);

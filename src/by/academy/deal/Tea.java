@@ -1,8 +1,8 @@
-package by.academy.homework.hmwk3;
+package by.academy.deal;
 
 public class Tea extends Product {
-    protected static String typeDis = "Черный";
-    protected static int countPackDis = 20;
+    protected String typeDis = "Черный";
+    protected int countPackDis = 20;
     protected int countPack;
     protected String type;
     protected double discount = 0.25;
@@ -43,6 +43,49 @@ public class Tea extends Product {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getTypeDis() {
+        return typeDis;
+    }
+
+    public void setTypeDis(String typeDis) {
+        this.typeDis = typeDis;
+    }
+
+    public int getCountPackDis() {
+        return countPackDis;
+    }
+
+    public void setCountPackDis(int countPackDis) {
+        this.countPackDis = countPackDis;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Tea tea = (Tea) o;
+
+        if (countPackDis != tea.countPackDis) return false;
+        if (countPack != tea.countPack) return false;
+        if (Double.compare(tea.discount, discount) != 0) return false;
+        if (typeDis != null ? !typeDis.equals(tea.typeDis) : tea.typeDis != null) return false;
+        return type != null ? type.equals(tea.type) : tea.type == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = typeDis != null ? typeDis.hashCode() : 0;
+        result = 31 * result + countPackDis;
+        result = 31 * result + countPack;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        temp = Double.doubleToLongBits(discount);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 
     @Override

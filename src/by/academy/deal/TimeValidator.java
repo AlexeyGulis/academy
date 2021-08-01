@@ -1,4 +1,4 @@
-package by.academy.homework.hmwk3;
+package by.academy.deal;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
