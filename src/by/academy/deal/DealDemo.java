@@ -106,7 +106,7 @@ public class DealDemo {
             while (j < deals.length) {
                 if (deals[j] != null) {
                     deals[j].getDeal();
-                    System.out.println("Выберите вариант: (1) - Зайти в меню сделки,(2) - Перейти к следующей сделке,(3) - Перейти к предыдущей сделке, (4) - Выйти из программы");
+                    System.out.println("Выберите вариант: (1) - Зайти в меню сделки,(2) - Перейти к следующей сделке,(3) - Перейти к предыдущей сделке, (4) - Напечатать все чеки и выйти из программы");
                     menu = scan.nextInt();
                     scan.nextLine();
                     if (menu == 1) {
@@ -155,6 +155,16 @@ public class DealDemo {
                     } else if (menu == 3 && j != 0) {
                         j--;
                     } else if (menu == 4) {
+                        System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                        System.out.println("Чеки");
+                        System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                        for (Deal a : deals
+                        ) {
+                            if (a != null) {
+                                a.getPriceList();
+                                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                            }
+                        }
                         break;
                     }
                 } else if (j == 0 || j == deals.length - 1) {
