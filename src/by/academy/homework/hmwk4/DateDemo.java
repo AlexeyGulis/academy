@@ -1,31 +1,29 @@
 package by.academy.homework.hmwk4;
 
-import java.text.ParseException;
 import java.util.Scanner;
 
 public class DateDemo {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         String date;
         Scanner scan = new Scanner(System.in);
-        System.out.println("Введите дату: ");
+        System.out.println("Введите дату (Формат:dd-MM-yyyy): ");
         date = scan.nextLine();
         Date date1 = new Date(date);
         if (date1.getDate() != "Date Invalid") {
-            date1.getDayOfWeek();
+            date1.getDayOfWeekE();
             System.out.println("LeapYear -> " + date1.isLeapYear(date1.y.getYear()));
-            date1.getDateInDays();
             System.out.println(date1.getDate());
         }
-       /* System.out.println("Введите дату: ");
+        System.out.println("Введите дату (Формат:dd-MM-yyyy): ");
         date = scan.nextLine();
         Date date2 = new Date(date);
         if (date2.getDate() != "Date Invalid") {
-            date2.getDayOfWeek();
+            date2.getDayOfWeekE();
             System.out.println("LeapYear -> " + date2.isLeapYear(date2.y.getYear()));
+            System.out.println(date2.getDate());
         }
-        System.out.println(date2.getDate());
-        */
+        System.out.println("------");
+        date1.getDateInDays(date2);
         scan.close();
-
     }
 }

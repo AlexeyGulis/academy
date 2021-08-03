@@ -1,28 +1,57 @@
 package by.academy.homework.hmwk4;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;;
+
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Date {
     private String date;
-    static Pattern dateP = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9]{2}|2[0-9][0-9][0-9])$");
+    String format;
+    DateTimeFormatter formatter;
+    Pattern dateP;
+    LocalDate localDate;
     Year y;
     Month m;
     Day d;
 
+    Date() {
+        String format = "dd-MM-yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        dateP = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9]{2}|2[0-9][0-9][0-9])$");
+        localDate = LocalDate.now();
+        d = new Day(localDate.getDayOfMonth());
+        m = new Month(localDate.getMonthValue());
+        y = new Year(localDate.getYear());
+    }
+
     Date(String date) {
+        format = "dd-MM-yyyy";
+        formatter = DateTimeFormatter.ofPattern(format);
+        dateP = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9]{2}|2[0-9][0-9][0-9])$");
         if (validateDate(date)) {
             this.date = date;
-            String[] nk = date.split("-");
-            d = new Day(Integer.valueOf(nk[0]));
-            m = new Month(Integer.valueOf(nk[1]));
-            y = new Year(Integer.valueOf(nk[2]));
+            localDate = LocalDate.parse(date, formatter);
+            d = new Day(localDate.getDayOfMonth());
+            m = new Month(localDate.getMonthValue());
+            y = new Year(localDate.getYear());
+        } else {
+            this.date = "Date invalid";
+        }
+    }
 
+    Date(String date, String format, Pattern pattern) {
+        this.date = date;
+        this.format = format;
+        this.formatter = DateTimeFormatter.ofPattern(format);
+        this.dateP = pattern;
+        if (validateDate(date)) {
+            localDate = LocalDate.parse(date, formatter);
+            d = new Day(localDate.getDayOfMonth());
+            m = new Month(localDate.getMonthValue());
+            y = new Year(localDate.getYear());
         } else {
             this.date = "Date invalid";
         }
@@ -77,7 +106,7 @@ public class Date {
     }
 
     enum DayOfWeek {
-        Sunday(1), Monday(2), Tuesday(3), Wednesday(4), Thursday(5), Friday(6), Saturday(7);
+        Sunday(7), Monday(1), Tuesday(2), Wednesday(3), Thursday(4), Friday(5), Saturday(6);
         int dayOfWeek;
 
         DayOfWeek(int d) {
@@ -93,79 +122,77 @@ public class Date {
     public void setDate(String date) {
         if (validateDate(date)) {
             this.date = date;
-            String[] nk = date.split("-");
-            d.setDay(Integer.valueOf(nk[0]));
-            m.setMonth(Integer.valueOf(nk[1]));
-            y.setYear(Integer.valueOf(nk[2]));
+            localDate = LocalDate.parse(date, formatter);
+            d = new Day(localDate.getDayOfMonth());
+            m = new Month(localDate.getMonthValue());
+            y = new Year(localDate.getYear());
 
         } else {
             this.date = "Date invalid";
         }
     }
 
-    public void getDayOfWeek() throws ParseException {
-        Calendar calendar = new GregorianCalendar();
-        java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(this.date);
-        calendar.setTime(date);
+    public void getDayOfWeekE() {
         for (DayOfWeek a : DayOfWeek.values()) {
-            //if(calendar.get(Calendar.DAY_OF_WEEK)==(a.ordinal()+1)){
-            //    System.out.println(a);
-            //}
-            if (calendar.get(Calendar.DAY_OF_WEEK) == a.getDayOfWeek()) {
+            if (localDate.getDayOfWeek().getValue() == a.getDayOfWeek()) {
                 System.out.println(a);
             }
         }
     }
 
-    public static boolean validateDate(String date) {
+    public boolean validateDate(String date) {
         Matcher match = dateP.matcher(date);
         boolean result = false;
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        dateFormat.setLenient(false);
+        LocalDate dateLocal;
         if (match.find()) {
             try {
-                dateFormat.parse(match.group());
-                System.out.println("Date valid");
+                dateLocal = LocalDate.parse(date, formatter);
                 result = true;
-            } catch (Exception e) {
-                System.out.println("Date invalid");
-                result = false;
+            } catch (DateTimeException e) {
+                return false;
             }
+            if (LocalDate.now().isBefore(dateLocal)) {
+                result = false;
+            } else {
+                result = true;
+            }
+
         } else {
-            System.out.println("Date invalid");
             result = false;
         }
         return result;
     }
 
-    public void getDateInDays() {
-        int result = 0;
-        for (int j = 1; j < y.getYear(); j++) {
-            if (isLeapYear(j)) {
-                result += 366;
-            } else {
-                result += 365;
-            }
-        }
-        for (int i = 1; i < m.getMonth(); i++) {
-            if (i == 4 || i == 6 || i == 9 || i == 11) {
-                result += 30;
-            } else if (i == 2) {
-                if (isLeapYear(y.getYear())) {
-                    result += 29;
+    public void getDateInDays(Date obj) {
+        int days = 0;
+        LocalDate temp;
+        temp = getLocalDate().plusDays(days);
+        if (getLocalDate().isBefore(obj.getLocalDate())) {
+            while (true) {
+                if (temp.isEqual(obj.getLocalDate())) {
+                    break;
                 } else {
-                    result += 28;
+                    temp = getLocalDate().plusDays(++days);
                 }
-            } else {
-                result+=31;
+            }
+        } else {
+            while (true) {
+                if (temp.isEqual(obj.getLocalDate())) {
+                    break;
+                } else {
+                    temp = getLocalDate().minusDays(++days);
+                }
             }
         }
-        result+=d.getDay()-1;
-        System.out.println("Days start from 01.01.0001  =  " + result);
+        System.out.println("Days between " + getLocalDate().format(formatter) + " and " + obj.getLocalDate().format(formatter) + " = " + days);
     }
 
     public String getDate() {
         return date;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
     }
 
     public static boolean isLeapYear(int y) {
