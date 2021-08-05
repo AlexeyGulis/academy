@@ -60,6 +60,7 @@ public class DealDemo {
                     product = createProduct();
                     if (product != null) {
                         products[j] = product;
+                        product.test();
                     }
                     System.out.println("Продукт добавлен");
                 }

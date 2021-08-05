@@ -1,5 +1,8 @@
 package by.academy.deal;
 
+import by.academy.deal.annotations.ProductProvider;
+
+@ProductProvider(lifeTime = 20,parts = {""})
 public class Chips extends Product {
     protected String nameDis = "Лейс";
     protected String tasteDis = "С сыром";

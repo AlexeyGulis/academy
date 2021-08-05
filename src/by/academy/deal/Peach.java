@@ -1,5 +1,8 @@
 package by.academy.deal;
 
+import by.academy.deal.annotations.ProductProvider;
+
+@ProductProvider(country = "China",lifeTime = 15,parts = {"ящик","пакет"})
 public class Peach extends Product {
     protected double ageDis = 5.0;
     protected String typeDis = "Кардинал";

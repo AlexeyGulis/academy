@@ -1,5 +1,8 @@
 package by.academy.deal;
 
+import by.academy.deal.annotations.ProductProvider;
+
+@ProductProvider(country = "India",lifeTime = 200,parts = {"коробка"})
 public class Tea extends Product {
     protected String typeDis = "Черный";
     protected int countPackDis = 20;

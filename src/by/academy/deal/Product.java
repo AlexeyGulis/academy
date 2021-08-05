@@ -43,6 +43,11 @@ public abstract class Product {
         return (1.0 - getDiscount()) * price * quantity;
     }
 
+    @Deprecated
+    public void test(){
+        System.out.println("Nothing");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
