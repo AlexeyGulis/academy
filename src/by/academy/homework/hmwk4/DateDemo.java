@@ -10,16 +10,16 @@ public class DateDemo {
         date = scan.nextLine();
         Date date1 = new Date(date);
         if (date1.getDate() != "Date Invalid") {
-            date1.getDayOfWeekE();
-            System.out.println("LeapYear -> " + date1.isLeapYear(date1.y.getYear()));
+            date1.getDayOfWeekEnum();
+            System.out.println("LeapYear -> " + date1.isLeapYear());
             System.out.println(date1.getDate());
         }
         System.out.println("Введите дату (Формат:dd-MM-yyyy): ");
         date = scan.nextLine();
         Date date2 = new Date(date);
         if (date2.getDate() != "Date Invalid") {
-            date2.getDayOfWeekE();
-            System.out.println("LeapYear -> " + date2.isLeapYear(date2.y.getYear()));
+            date2.getDayOfWeekEnum();
+            System.out.println("LeapYear -> " + date2.isLeapYear());
             System.out.println(date2.getDate());
         }
         System.out.println("------");
