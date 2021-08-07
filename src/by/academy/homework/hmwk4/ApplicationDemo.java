@@ -52,9 +52,9 @@ public class ApplicationDemo {
         array2.set(2, 5);
         System.out.println(Arrays.toString(array2.getItems()));
         System.out.println(array1.getLast());
-        Iterator<Integer> iter = array1.iterator();
-        while (iter.hasNext()) {
-            System.out.print(iter.next() + " ");
+        Iterator<Integer> iterator = array1.iterator();
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
         }
     }
 }

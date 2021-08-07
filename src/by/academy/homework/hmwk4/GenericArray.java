@@ -102,33 +102,19 @@ public class GenericArray<T> implements Iterable<T> {
     public void remove(T obj) {
         if (obj != null) {
             int index = 0;
-            while(true){
+            while (true) {
                 if (obj.equals(items[index])) {
-                        remove(index);
-                }else if(++index>=items.length){
+                    remove(index);
+                } else if (++index >= items.length) {
                     System.out.println("Элементы удалены");
                     break;
                 }
             }
         }
     }
-    public ArrayIterator<T> iterator(){
-        return new ArrayIterator<>();
-    }
-    public class ArrayIterator<T> implements Iterator<T> {
 
-        private int index = 0;
-        public boolean hasNext(){
-            if(size == 0){
-                System.out.println("Элементы не найдены");
-                return false;
-            }
-            return ++index<size;
-        }
-
-        @Override
-        public T next() {
-            return (T) items[index];
-        }
+    public ArrayIterator<T> iterator() {
+        return new ArrayIterator<>(lastAddIndex()+1, getItems());
     }
+
 }
