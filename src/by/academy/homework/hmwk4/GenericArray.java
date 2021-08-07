@@ -1,21 +1,22 @@
 package by.academy.homework.hmwk4;
 
-import java.util.Arrays;
 
-public class Application<T> {
+import java.util.Iterator;
+
+public class GenericArray<T> implements Iterable<T> {
     private T[] items;
     private int size = 0;
 
-    public Application() {
+    public GenericArray() {
         items = (T[]) new Object[16];
     }
 
-    public Application(int size) {
+    public GenericArray(int size) {
         this.items = (T[]) new Object[size];
 
     }
 
-    public Application(T[] items) {
+    public GenericArray(T[] items) {
         this.items = items;
     }
 
@@ -27,10 +28,18 @@ public class Application<T> {
     }
 
     public T getLast() {
+        if (size == 0) {
+            System.out.println("Элементы не найдены");
+            return null;
+        }
         return items[size - 1];
     }
 
     public T getFirst() {
+        if (size == 0) {
+            System.out.println("Элементы не найдены");
+            return null;
+        }
         return items[0];
     }
 
@@ -39,7 +48,11 @@ public class Application<T> {
     }
 
     public int lastAddIndex() {
-        return size-1;
+        if (size == 0) {
+            System.out.println("Элементы не добавлены");
+            return size;
+        }
+        return size - 1;
     }
 
     private void growth() {
@@ -89,14 +102,33 @@ public class Application<T> {
     public void remove(T obj) {
         if (obj != null) {
             int index = 0;
-            for (T item : items
-            ) {
-                if (obj.equals(item)) {
-                    remove(index);
+            while(true){
+                if (obj.equals(items[index])) {
+                        remove(index);
+                }else if(++index>=items.length){
+                    System.out.println("Элементы удалены");
+                    break;
                 }
-                index++;
             }
         }
     }
+    public ArrayIterator<T> iterator(){
+        return new ArrayIterator<>();
+    }
+    public class ArrayIterator<T> implements Iterator<T> {
 
+        private int index = 0;
+        public boolean hasNext(){
+            if(size == 0){
+                System.out.println("Элементы не найдены");
+                return false;
+            }
+            return ++index<size;
+        }
+
+        @Override
+        public T next() {
+            return (T) items[index];
+        }
+    }
 }
