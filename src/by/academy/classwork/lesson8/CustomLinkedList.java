@@ -38,11 +38,19 @@ public class CustomLinkedList<T> implements Iterable<T> {
         list.add(4);
         list.add(55);
         list.add(23);
+        list.add(23);
+        list.add(53);
+        list.add(213);
+        list.add(25);
 
         list.print();
 
-        list.remove(2);
+        list.remove(5);
         list.print();
+        Iterator<Integer> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
+        }
     }
 
     public void remove(int index) {
@@ -98,7 +106,7 @@ public class CustomLinkedList<T> implements Iterable<T> {
         return new InnerIterator<>();
     }
 
-    class InnerIterator<T> implements Iterator<T> {
+    public class InnerIterator<T> implements Iterator<T> {
         Node<T> current = null;
 
         @Override
@@ -112,9 +120,11 @@ public class CustomLinkedList<T> implements Iterable<T> {
         @Override
         public T next() {
             if (current == null) {
-                //current = head;
+                current = (Node<T>) head;
             }
-            return current.next.value;
+            T value = current.value;
+            current = current.next;
+            return value;
         }
     }
 
