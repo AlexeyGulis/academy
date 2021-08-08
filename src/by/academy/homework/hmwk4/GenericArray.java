@@ -1,6 +1,7 @@
 package by.academy.homework.hmwk4;
 
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class GenericArray<T> implements Iterable<T> {
@@ -114,7 +115,33 @@ public class GenericArray<T> implements Iterable<T> {
     }
 
     public ArrayIterator<T> iterator() {
-        return new ArrayIterator<>(lastAddIndex()+1, getItems());
+        return new ArrayIterator<>(lastAddIndex() + 1, getItems());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GenericArray<?> that = (GenericArray<?>) o;
+
+        if (size != that.size) return false;
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        return Arrays.equals(items, that.items);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.hashCode(items);
+        result = 31 * result + size;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "GenericArray{" +
+                "items=" + Arrays.toString(items) +
+                ", size=" + size +
+                '}';
+    }
 }

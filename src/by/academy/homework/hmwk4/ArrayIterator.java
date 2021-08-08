@@ -7,7 +7,7 @@ public class ArrayIterator<T> implements Iterator<T> {
     private int size = 0;
     T[] items;
 
-    ArrayIterator(int size, final T[] items) {
+    public ArrayIterator(int size, final T[] items) {
         this.size = size;
         this.items = items;
     }

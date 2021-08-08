@@ -17,7 +17,7 @@ public class Date {
     protected Month month;
     protected Day day;
 
-    Date() {
+    public Date() {
         String format = "dd-MM-yyyy";
         formatter = DateTimeFormatter.ofPattern(format);
         dateP = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9]{2}|2[0-9][0-9][0-9])$");
@@ -27,7 +27,7 @@ public class Date {
         year = new Year(localDate.getYear());
     }
 
-    Date(String date) {
+    public Date(String date) {
         format = "dd-MM-yyyy";
         formatter = DateTimeFormatter.ofPattern(format);
         dateP = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9]{2}|2[0-9][0-9][0-9])$");
@@ -42,7 +42,7 @@ public class Date {
         }
     }
 
-    Date(String date, String format, Pattern pattern) {
+    public Date(String date, String format, Pattern pattern) {
         this.date = date;
         this.format = format;
         this.formatter = DateTimeFormatter.ofPattern(format);
@@ -60,7 +60,7 @@ public class Date {
     protected class Year {
         private int year;
 
-        Year(int year) {
+        public Year(int year) {
             this.year = year;
         }
 
@@ -71,12 +71,34 @@ public class Date {
         public void setYear(int year) {
             this.year = year;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Year year1 = (Year) o;
+
+            return year == year1.year;
+        }
+
+        @Override
+        public int hashCode() {
+            return year;
+        }
+
+        @Override
+        public String toString() {
+            return "Year{" +
+                    "year=" + year +
+                    '}';
+        }
     }
 
     protected class Month {
         private int month;
 
-        Month(int month) {
+        public Month(int month) {
             this.month = month;
         }
 
@@ -87,12 +109,34 @@ public class Date {
         public void setMonth(int month) {
             this.month = month;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Month month1 = (Month) o;
+
+            return month == month1.month;
+        }
+
+        @Override
+        public int hashCode() {
+            return month;
+        }
+
+        @Override
+        public String toString() {
+            return "Month{" +
+                    "month=" + month +
+                    '}';
+        }
     }
 
     protected class Day {
         private int day;
 
-        Day(int day) {
+        public Day(int day) {
             this.day = day;
         }
 
@@ -102,6 +146,28 @@ public class Date {
 
         public void setDay(int day) {
             this.day = day;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Day day1 = (Day) o;
+
+            return day == day1.day;
+        }
+
+        @Override
+        public int hashCode() {
+            return day;
+        }
+
+        @Override
+        public String toString() {
+            return "Day{" +
+                    "day=" + day +
+                    '}';
         }
     }
 
@@ -197,6 +263,43 @@ public class Date {
 
     public boolean isLeapYear() {
         return localDate.isLeapYear();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Date date1 = (Date) o;
+
+        if (date != null ? !date.equals(date1.date) : date1.date != null) return false;
+        if (format != null ? !format.equals(date1.format) : date1.format != null) return false;
+        if (formatter != null ? !formatter.equals(date1.formatter) : date1.formatter != null) return false;
+        if (dateP != null ? !dateP.equals(date1.dateP) : date1.dateP != null) return false;
+        if (localDate != null ? !localDate.equals(date1.localDate) : date1.localDate != null) return false;
+        if (year != null ? !year.equals(date1.year) : date1.year != null) return false;
+        if (month != null ? !month.equals(date1.month) : date1.month != null) return false;
+        return day != null ? day.equals(date1.day) : date1.day == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = date != null ? date.hashCode() : 0;
+        result = 31 * result + (format != null ? format.hashCode() : 0);
+        result = 31 * result + (formatter != null ? formatter.hashCode() : 0);
+        result = 31 * result + (dateP != null ? dateP.hashCode() : 0);
+        result = 31 * result + (localDate != null ? localDate.hashCode() : 0);
+        result = 31 * result + (year != null ? year.hashCode() : 0);
+        result = 31 * result + (month != null ? month.hashCode() : 0);
+        result = 31 * result + (day != null ? day.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Date{" +
+                "localDate=" + localDate +
+                '}';
     }
 }
 
