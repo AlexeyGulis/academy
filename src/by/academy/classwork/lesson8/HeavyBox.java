@@ -65,8 +65,11 @@ class HeavyBox {
         list.add(new HeavyBox(3,5,3,5));
         list.add(new HeavyBox(1,2,1,1));
         list.forEach((n) -> System.out.println(n));
+        System.out.println();
+        System.out.println();
+        System.out.println();
         list.get(0).setWeight(1);
         list.remove(list.get(list.size()-1));
-
+        list.forEach((n) -> System.out.print(n+ "  "));
     }
 }
