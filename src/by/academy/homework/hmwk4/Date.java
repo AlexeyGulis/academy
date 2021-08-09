@@ -6,14 +6,13 @@ import java.time.format.DateTimeFormatter;
 public class Date {
     private String date;
     private String format = "dd-MM-yyyy";
-    private DateTimeFormatter formatter;
+    private DateTimeFormatter formatter= DateTimeFormatter.ofPattern(format);
     private LocalDate localDate;
     protected Year year;
     protected Month month;
     protected Day day;
 
     public Date() {
-        formatter = DateTimeFormatter.ofPattern(format);
         localDate = LocalDate.now();
         day = new Day(localDate.getDayOfMonth());
         month = new Month(localDate.getMonthValue());
@@ -21,7 +20,6 @@ public class Date {
     }
 
     public Date(String date) {
-        formatter = DateTimeFormatter.ofPattern(format);
         this.date = date;
         localDate = LocalDate.parse(date, formatter);
         day = new Day(localDate.getDayOfMonth());
