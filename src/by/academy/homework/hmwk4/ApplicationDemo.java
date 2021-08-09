@@ -69,6 +69,8 @@ public class ApplicationDemo {
         array2.set(2, 5);
         System.out.println(Arrays.toString(array2.getItems()));
         System.out.println(array1.getLast());
+        System.out.println();
+        System.out.println("Задание 3");
         Iterator<Integer> iterator = array1.iterator();
         while (iterator.hasNext()) {
             System.out.print(iterator.next() + " ");
