@@ -2,7 +2,6 @@ package by.academy.homework.hmwk4;
 
 
 import java.util.Arrays;
-import java.util.Iterator;
 
 public class GenericArray<T> implements Iterable<T> {
     private T[] items;
