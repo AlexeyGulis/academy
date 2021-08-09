@@ -8,9 +8,9 @@ public class Date {
     private String format = "dd-MM-yyyy";
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
     private LocalDate localDate;
-    protected Year year;
-    protected Month month;
-    protected Day day;
+    private Year year;
+    private Month month;
+    private Day day;
 
     public Date() {
         localDate = LocalDate.now();
