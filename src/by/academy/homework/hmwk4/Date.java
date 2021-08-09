@@ -34,6 +34,14 @@ public class Date {
             this.year = year;
         }
 
+        public int getYear() {
+            return year;
+        }
+
+        public void setYear(int year) {
+            this.year = year;
+        }
+
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
@@ -61,6 +69,14 @@ public class Date {
         private int month;
 
         public Month(int month) {
+            this.month = month;
+        }
+
+        public int getMonth() {
+            return month;
+        }
+
+        public void setMonth(int month) {
             this.month = month;
         }
 
@@ -94,6 +110,13 @@ public class Date {
             this.day = day;
         }
 
+        public int getDay() {
+            return day;
+        }
+
+        public void setDay(int day) {
+            this.day = day;
+        }
 
         @Override
         public boolean equals(Object o) {
