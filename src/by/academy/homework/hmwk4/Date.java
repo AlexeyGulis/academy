@@ -120,15 +120,15 @@ public class Date {
         }
     }
 
-    private enum DayOfWeek {
+    public enum DayOfWeek {
         Sunday(7), Monday(1), Tuesday(2), Wednesday(3), Thursday(4), Friday(5), Saturday(6);
-        int dayOfWeek;
+        public int dayOfWeek;
 
         DayOfWeek(int d) {
             this.dayOfWeek = d;
         }
 
-        int getDayOfWeek() {
+        public int getDayOfWeek() {
             return dayOfWeek;
         }
     }
