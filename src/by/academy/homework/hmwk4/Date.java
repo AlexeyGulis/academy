@@ -57,18 +57,10 @@ public class Date {
         }
     }
 
-    protected class Year {
+    private class Year {
         private int year;
 
         public Year(int year) {
-            this.year = year;
-        }
-
-        public int getYear() {
-            return year;
-        }
-
-        public void setYear(int year) {
             this.year = year;
         }
 
@@ -95,18 +87,10 @@ public class Date {
         }
     }
 
-    protected class Month {
+    private class Month {
         private int month;
 
         public Month(int month) {
-            this.month = month;
-        }
-
-        public int getMonth() {
-            return month;
-        }
-
-        public void setMonth(int month) {
             this.month = month;
         }
 
@@ -133,20 +117,13 @@ public class Date {
         }
     }
 
-    protected class Day {
+    private class Day {
         private int day;
 
         public Day(int day) {
             this.day = day;
         }
 
-        public int getDay() {
-            return day;
-        }
-
-        public void setDay(int day) {
-            this.day = day;
-        }
 
         @Override
         public boolean equals(Object o) {
@@ -171,7 +148,7 @@ public class Date {
         }
     }
 
-    protected enum DayOfWeek {
+    private enum DayOfWeek {
         Sunday(7), Monday(1), Tuesday(2), Wednesday(3), Thursday(4), Friday(5), Saturday(6);
         int dayOfWeek;
 
@@ -189,9 +166,9 @@ public class Date {
         if (validateDate(date)) {
             this.date = date;
             localDate = LocalDate.parse(date, formatter);
-            day = new Day(localDate.getDayOfMonth());
-            month = new Month(localDate.getMonthValue());
-            year = new Year(localDate.getYear());
+            day.day = localDate.getDayOfMonth();
+            month.month = localDate.getMonthValue();
+            year.year = localDate.getYear();
 
         } else {
             this.date = "Date invalid";
@@ -216,11 +193,6 @@ public class Date {
                 result = true;
             } catch (DateTimeException e) {
                 return false;
-            }
-            if (LocalDate.now().isBefore(dateLocal)) {
-                result = false;
-            } else {
-                result = true;
             }
 
         } else {

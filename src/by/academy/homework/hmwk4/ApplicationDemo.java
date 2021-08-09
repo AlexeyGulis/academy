@@ -2,6 +2,7 @@ package by.academy.homework.hmwk4;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class ApplicationDemo {
     public static void main(String[] args) {
@@ -21,7 +22,9 @@ public class ApplicationDemo {
             System.out.println("LeapYear -> " + date1.isLeapYear());
         }
         Date date2 = new Date();
-        date2.setDate("18-06-1979");
+        Scanner scanner = new Scanner(System.in);
+        System.out.printf("Введите дату(Формат dd-MM-yyyy)");
+        date2.setDate(scanner.nextLine());
         if (date2.getDate() != "Date Invalid") {
             System.out.println(date2.getDate());
             date2.getDayOfWeek();
@@ -29,6 +32,7 @@ public class ApplicationDemo {
         }
         System.out.println("------");
         date1.getDateInDays(date2);
+        scanner.close();
     }
 
     public static void demoGenericArray() {
