@@ -245,9 +245,6 @@ public class Date {
         Date date1 = (Date) o;
 
         if (date != null ? !date.equals(date1.date) : date1.date != null) return false;
-        if (format != null ? !format.equals(date1.format) : date1.format != null) return false;
-        if (formatter != null ? !formatter.equals(date1.formatter) : date1.formatter != null) return false;
-        if (dateP != null ? !dateP.equals(date1.dateP) : date1.dateP != null) return false;
         if (localDate != null ? !localDate.equals(date1.localDate) : date1.localDate != null) return false;
         if (year != null ? !year.equals(date1.year) : date1.year != null) return false;
         if (month != null ? !month.equals(date1.month) : date1.month != null) return false;
@@ -257,9 +254,6 @@ public class Date {
     @Override
     public int hashCode() {
         int result = date != null ? date.hashCode() : 0;
-        result = 31 * result + (format != null ? format.hashCode() : 0);
-        result = 31 * result + (formatter != null ? formatter.hashCode() : 0);
-        result = 31 * result + (dateP != null ? dateP.hashCode() : 0);
         result = 31 * result + (localDate != null ? localDate.hashCode() : 0);
         result = 31 * result + (year != null ? year.hashCode() : 0);
         result = 31 * result + (month != null ? month.hashCode() : 0);
