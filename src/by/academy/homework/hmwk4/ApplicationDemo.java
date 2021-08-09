@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class ApplicationDemo {
     public static void main(String[] args) {
+        System.out.println("Задание 1");
         ApplicationDemo.demoDate();
         System.out.println();
-        System.out.println();
-        System.out.println();
+        System.out.println("Задание 2");
         ApplicationDemo.demoGenericArray();
     }
 
@@ -29,7 +29,7 @@ public class ApplicationDemo {
             System.out.println("Invalid date");
             flag = false;
         }
-        System.out.printf("Введите дату(Формат dd-MM-yyyy)");
+        System.out.println("Введите дату(Формат dd-MM-yyyy)");
         date = scanner.nextLine();
         if (dateValid.validateDate(date)) {
             date2 = new Date(date);
