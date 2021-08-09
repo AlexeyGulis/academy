@@ -20,7 +20,7 @@ public class ApplicationDemo {
         Date date1 = null;
         Date date2 = null;
         boolean flag = true;
-        if (dateValid.validateDate(date)) {
+        if (dateValid.validate(date)) {
             date1 = new Date(date);
             System.out.println(date1.getDate());
             date1.getDayOfWeek();
@@ -31,7 +31,7 @@ public class ApplicationDemo {
         }
         System.out.println("Введите дату(Формат dd-MM-yyyy)");
         date = scanner.nextLine();
-        if (dateValid.validateDate(date)) {
+        if (dateValid.validate(date)) {
             date2 = new Date(date);
             date2.setDate(date);
             System.out.println(date2.getDate());
