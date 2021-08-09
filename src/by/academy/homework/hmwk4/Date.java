@@ -151,7 +151,7 @@ public class Date {
         }
     }
 
-    public void getDateInDays(Date date) {
+    public void getDaysBetweenDates(Date date) {
         int days = 0;
         LocalDate temp;
         temp = getLocalDate().plusDays(days);

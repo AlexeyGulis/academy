@@ -43,7 +43,7 @@ public class ApplicationDemo {
         }
         if(flag){
             System.out.println("------");
-            date1.getDateInDays(date2);
+            date1.getDaysBetweenDates(date2);
         }
         scanner.close();
     }
