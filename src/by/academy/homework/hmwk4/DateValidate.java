@@ -14,7 +14,7 @@ public class DateValidate {
         Matcher match = dateP.matcher(date);
         boolean result = false;
         LocalDate dateLocal;
-        if (match.find()) {
+        if (match.matches()) {
             try {
                 dateLocal = LocalDate.parse(date, formatter);
                 result = true;
