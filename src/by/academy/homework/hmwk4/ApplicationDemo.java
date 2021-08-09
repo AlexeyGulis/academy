@@ -41,7 +41,7 @@ public class ApplicationDemo {
             System.out.println("Invalid date");
             flag = false;
         }
-        if(flag){
+        if (flag) {
             System.out.println("------");
             date1.getDaysBetweenDates(date2);
         }
