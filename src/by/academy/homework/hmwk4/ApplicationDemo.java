@@ -14,24 +14,37 @@ public class ApplicationDemo {
     }
 
     public static void demoDate() {
+        Scanner scanner = new Scanner(System.in);
         String date = "01-10-2004";
-        Date date1 = new Date(date);
-        if (date1.getDate() != "Date Invalid") {
+        DateValidate dateValid = new DateValidate();
+        Date date1 = null;
+        Date date2 = null;
+        boolean flag = true;
+        if (dateValid.validateDate(date)) {
+            date1 = new Date(date);
             System.out.println(date1.getDate());
             date1.getDayOfWeek();
             System.out.println("LeapYear -> " + date1.isLeapYear());
+        } else {
+            System.out.println("Invalid date");
+            flag = false;
         }
-        Date date2 = new Date();
-        Scanner scanner = new Scanner(System.in);
         System.out.printf("Введите дату(Формат dd-MM-yyyy)");
-        date2.setDate(scanner.nextLine());
-        if (date2.getDate() != "Date Invalid") {
+        date = scanner.nextLine();
+        if (dateValid.validateDate(date)) {
+            date2 = new Date(date);
+            date2.setDate(date);
             System.out.println(date2.getDate());
             date2.getDayOfWeek();
             System.out.println("LeapYear -> " + date2.isLeapYear());
+        } else {
+            System.out.println("Invalid date");
+            flag = false;
         }
-        System.out.println("------");
-        date1.getDateInDays(date2);
+        if(flag){
+            System.out.println("------");
+            date1.getDateInDays(date2);
+        }
         scanner.close();
     }
 

@@ -1,26 +1,19 @@
 package by.academy.homework.hmwk4;
 
-
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Date {
     private String date;
-    private String format;
+    private String format = "dd-MM-yyyy";
     private DateTimeFormatter formatter;
-    private Pattern dateP;
     private LocalDate localDate;
     protected Year year;
     protected Month month;
     protected Day day;
 
     public Date() {
-        String format = "dd-MM-yyyy";
         formatter = DateTimeFormatter.ofPattern(format);
-        dateP = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9]{2}|2[0-9][0-9][0-9])$");
         localDate = LocalDate.now();
         day = new Day(localDate.getDayOfMonth());
         month = new Month(localDate.getMonthValue());
@@ -28,33 +21,12 @@ public class Date {
     }
 
     public Date(String date) {
-        format = "dd-MM-yyyy";
         formatter = DateTimeFormatter.ofPattern(format);
-        dateP = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9]{2}|2[0-9][0-9][0-9])$");
-        if (validateDate(date)) {
-            this.date = date;
-            localDate = LocalDate.parse(date, formatter);
-            day = new Day(localDate.getDayOfMonth());
-            month = new Month(localDate.getMonthValue());
-            year = new Year(localDate.getYear());
-        } else {
-            this.date = "Date invalid";
-        }
-    }
-
-    public Date(String date, String format, Pattern pattern) {
         this.date = date;
-        this.format = format;
-        this.formatter = DateTimeFormatter.ofPattern(format);
-        this.dateP = pattern;
-        if (validateDate(date)) {
-            localDate = LocalDate.parse(date, formatter);
-            day = new Day(localDate.getDayOfMonth());
-            month = new Month(localDate.getMonthValue());
-            year = new Year(localDate.getYear());
-        } else {
-            this.date = "Date invalid";
-        }
+        localDate = LocalDate.parse(date, formatter);
+        day = new Day(localDate.getDayOfMonth());
+        month = new Month(localDate.getMonthValue());
+        year = new Year(localDate.getYear());
     }
 
     private class Year {
@@ -163,16 +135,12 @@ public class Date {
 
 
     public void setDate(String date) {
-        if (validateDate(date)) {
-            this.date = date;
-            localDate = LocalDate.parse(date, formatter);
-            day.day = localDate.getDayOfMonth();
-            month.month = localDate.getMonthValue();
-            year.year = localDate.getYear();
+        this.date = date;
+        localDate = LocalDate.parse(date, formatter);
+        day.day = localDate.getDayOfMonth();
+        month.month = localDate.getMonthValue();
+        year.year = localDate.getYear();
 
-        } else {
-            this.date = "Date invalid";
-        }
     }
 
     public void getDayOfWeek() {
@@ -181,24 +149,6 @@ public class Date {
                 System.out.println(a);
             }
         }
-    }
-
-    private boolean validateDate(String date) {
-        Matcher match = dateP.matcher(date);
-        boolean result = false;
-        LocalDate dateLocal;
-        if (match.find()) {
-            try {
-                dateLocal = LocalDate.parse(date, formatter);
-                result = true;
-            } catch (DateTimeException e) {
-                return false;
-            }
-
-        } else {
-            result = false;
-        }
-        return result;
     }
 
     public void getDateInDays(Date date) {
