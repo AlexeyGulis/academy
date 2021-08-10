@@ -9,10 +9,10 @@ class HeavyBox {
     int width;
 
     HeavyBox(int w, int h, int d, int m) {
-        width = w;
+        weight = w;
         height = h;
         depth = d;
-        weight = m;
+        width = m;
     }
 
     public int getWeight() {
@@ -70,6 +70,6 @@ class HeavyBox {
         System.out.println();
         list.get(0).setWeight(1);
         list.remove(list.get(list.size()-1));
-        list.forEach((n) -> System.out.print(n+ "  "));
+        list.forEach((n) -> System.out.print(n + "  "));
     }
 }
