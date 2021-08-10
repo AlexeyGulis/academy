@@ -5,7 +5,7 @@ import java.util.*;
 public class Application {
     public static void main(String[] args) {
         Integer[] numb = {1, 2, 3, 4, 1, 6, 8, 3, 1, 5, 6};
-        ArrayList<Integer> arr = new ArrayList<Integer>(Arrays.asList(numb));
+        LinkedList<Integer> arr = new LinkedList<Integer>(Arrays.asList(numb));
         arr.forEach((n) -> {
             System.out.print(n + " ");
         });
@@ -21,12 +21,12 @@ public class Application {
 
         ArrayList<Integer> timeArrayList = new ArrayList<>();
         LinkedList<Integer> timeLinkedList = new LinkedList<>();
-        addElem(timeLinkedList);
+        /*addElem(timeLinkedList);
         addElem(timeArrayList);
         timeLinkedList.forEach((n) -> {
             System.out.print(n + " ");
         });
-        getElemArray(timeArrayList);
+        getElemArray(timeArrayList);*/
     }
 
     public static void addElem(Collection<Integer> collection) {
