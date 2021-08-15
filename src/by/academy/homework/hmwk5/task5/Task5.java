@@ -14,10 +14,10 @@ public class Task5 {
         char[] chars = text.toCharArray();
         Map<Character, Integer> freqChar = new HashMap<>();
         for (int i = 0; i < chars.length; i++) {
-            if(freqChar.get(chars[i])==null){
-                freqChar.put(chars[i],1);
-            }else{
-                freqChar.put(chars[i],freqChar.get(chars[i])+1);
+            if (freqChar.get(chars[i]) == null) {
+                freqChar.put(chars[i], 1);
+            } else {
+                freqChar.put(chars[i], freqChar.get(chars[i]) + 1);
             }
         }
         freqChar.forEach((k, v) -> System.out.print(k + " в количестве " + v + "; "));

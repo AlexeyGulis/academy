@@ -18,7 +18,7 @@ public class Task4 {
         int temp;
         Iterator<Integer> iterator = markList.iterator();
         while (iterator.hasNext()) {
-             temp = iterator.next();
+            temp = iterator.next();
             if (maxMark < temp) {
                 maxMark = temp;
             }

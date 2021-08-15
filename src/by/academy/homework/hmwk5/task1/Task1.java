@@ -18,6 +18,7 @@ public class Task1 {
         });
         System.out.println();
     }
+
     public static Collection<?> noDuplicates(Collection<?> collection) {
         Collection<?> noDuplicates = new ArrayList<>(new HashSet<>(collection));
         return noDuplicates;

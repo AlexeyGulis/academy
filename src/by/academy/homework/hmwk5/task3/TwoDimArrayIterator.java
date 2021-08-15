@@ -51,7 +51,7 @@ public class TwoDimArrayIterator<T> implements Iterator<T> {
             } else {
                 return false;
             }
-        }else {
+        } else {
             return false;
         }
     }

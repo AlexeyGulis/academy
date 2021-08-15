@@ -66,8 +66,7 @@ public class Solution {
             if (head.next != null) {
                 DoublyLinkedListNode tailToHead = reverse(head.next);
                 if (head.prev != null) {
-                    DoublyLinkedListNode temp = null;
-                    temp = head.next;
+                    DoublyLinkedListNode temp = head.next;
                     head.next = head.prev;
                     head.prev = temp;
                     return tailToHead;
