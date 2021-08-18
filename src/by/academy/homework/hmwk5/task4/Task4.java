@@ -2,13 +2,15 @@ package by.academy.homework.hmwk5.task4;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 public class Task4 {
     public static void main(String[] args) {
         Random r = new Random();
-        ArrayList<Integer> markList = new ArrayList<>();
+        List<Integer> markList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
+
             markList.add(r.nextInt(10) + 1);
         }
         for (Integer integer : markList) {

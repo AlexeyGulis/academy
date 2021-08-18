@@ -8,7 +8,6 @@ public class TwoDimArrayIterator<T> implements Iterator<T> {
     private int columnIndex = 0;
     private int lineIndex = 0;
     private int line = 0;
-    private int column = 0;
     T[][] items;
 
     public TwoDimArrayIterator(T[][] items) {
@@ -25,32 +24,24 @@ public class TwoDimArrayIterator<T> implements Iterator<T> {
     }
 
     public boolean hasNext() {
-        if (column == 0 && line == 0) {
+        if (line == 0 && elements == 0) {
             System.out.println("Элементы не найдены");
             return false;
         }
         if (lineIndex < line - 1) {
-            column = items[lineIndex].length;
-            if (columnIndex == column) {
-                columnIndex = 0;
-                int i = 1;
+            if (columnIndex == items[lineIndex].length) {
                 if (count < elements) {
-                    while (items[lineIndex + i].length == 0) {
-                        i++;
+                    while (items[lineIndex + 1].length == 0) {
+                        lineIndex++;
                     }
-                    lineIndex += i;
+                    columnIndex = 0;
                 } else {
                     return false;
                 }
             }
             return true;
-        } else if (lineIndex == line - 1) {
-            column = items[lineIndex].length;
-            if (columnIndex < column) {
-                return true;
-            } else {
-                return false;
-            }
+        } else if (lineIndex == line - 1 && columnIndex < items[lineIndex].length) {
+            return true;
         } else {
             return false;
         }
