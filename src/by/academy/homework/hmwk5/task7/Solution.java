@@ -52,48 +52,16 @@ public class Solution {
         }
     }
 
-    // Complete the reverse function below.
-
-    /*
-     * For your reference:
-     *
-     * DoublyLinkedListNode { int data; DoublyLinkedListNode next;
-     * DoublyLinkedListNode prev; }
-     *
-     */
-    public static DoublyLinkedListNode reverse(DoublyLinkedListNode head) {
-        if (head != null) {
-            if (head.next != null) {
-                DoublyLinkedListNode tailToHead = reverse(head.next);
-                if (head.prev != null) {
-                    DoublyLinkedListNode temp = head.next;
-                    head.next = head.prev;
-                    head.prev = temp;
-                    return tailToHead;
-                } else {
-                    head.prev = head.next;
-                    head.next = null;
-                    return tailToHead;
-                }
-            } else {
-                head.next = head.prev;
-                head.prev = null;
-                return head;
-            }
-        }
-        return null;
-    }
-
     public static DoublyLinkedListNode reverse(DoublyLinkedList list) {
         if (list.head != null && list.tail != null) {
             DoublyLinkedListNode temp1 = list.tail.prev;
             list.tail.next = list.tail.prev;
             list.tail.prev = null;
             while (temp1.prev != null) {
-                DoublyLinkedListNode temp = temp1.prev;
+                DoublyLinkedListNode temp2 = temp1.prev;
                 temp1.prev = temp1.next;
-                temp1.next = temp;
-                temp1 = temp;
+                temp1.next = temp2;
+                temp1 = temp2;
             }
             list.head.prev = list.head.next;
             list.head.next = null;
@@ -121,8 +89,6 @@ public class Solution {
         }
 
         DoublyLinkedListNode head = reverse(llist);
-
-        //DoublyLinkedListNode llist1 = reverse(llist.head);
 
         printDoublyLinkedList(head, " ");
         scanner.close();
