@@ -8,16 +8,17 @@ public class Task2 {
         List<Number> timeLinkedList = new LinkedList<>();
         addElemementsToList(timeArrayList);
         addElemementsToList(timeLinkedList);
-        System.out.println( "Time for get elements ArrayList -> " + getTime(timeArrayList) + " ms");
-        System.out.println( "Time for get elements LinkedList -> " + getTime(timeLinkedList) + " ms");
+        System.out.println("Time for get elements ArrayList -> " + getTime(timeArrayList) + " ms");
+        System.out.println("Time for get elements LinkedList -> " + getTime(timeLinkedList) + " ms");
     }
 
-    public static void addElemementsToList(List<Number> list) {
+    private static void addElemementsToList(List<Number> list) {
         for (int i = 0; i < 1_000_000; i++) {
             list.add(i);
         }
     }
-    public static void getElementsFromList(List<Number> list){
+
+    private static void getElementsFromList(List<Number> list) {
         Random r = new Random();
         for (int i = 0; i < 100_000; i++) {
             list.get(r.nextInt(1_000_000));

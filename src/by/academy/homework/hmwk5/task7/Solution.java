@@ -84,7 +84,7 @@ public class Solution {
         return null;
     }
 
-    public static DoublyLinkedListNode reverseList(DoublyLinkedList list) {
+    public static DoublyLinkedListNode reverse(DoublyLinkedList list) {
         if (list.head != null && list.tail != null) {
             DoublyLinkedListNode temp1 = list.tail.prev;
             list.tail.next = list.tail.prev;
@@ -120,7 +120,7 @@ public class Solution {
             llist.insertNode(llistItem);
         }
 
-        DoublyLinkedListNode head = reverseList(llist);
+        DoublyLinkedListNode head = reverse(llist);
 
         //DoublyLinkedListNode llist1 = reverse(llist.head);
 
