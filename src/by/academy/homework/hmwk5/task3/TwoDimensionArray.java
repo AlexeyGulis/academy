@@ -2,7 +2,7 @@ package by.academy.homework.hmwk5.task3;
 
 import java.util.Arrays;
 
-public class Task3 {
+public class TwoDimensionArray {
     public static void main(String[] args) {
         Integer[][] numb = {{}, {11, 12, 13}, {}, {}, {18, 19, 20, 21, 22}, {1, 9, 0, 1, 22}, {}, {}};
         for (int i = 0; i < numb.length; i++) {

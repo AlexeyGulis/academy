@@ -1,6 +1,6 @@
 package by.academy.homework.hmwk5.task6;
 
-public class Task6 {
+public class ArrayException {
     public static void main(String[] args) {
         int[] arrayInt = new int[8];
         try {

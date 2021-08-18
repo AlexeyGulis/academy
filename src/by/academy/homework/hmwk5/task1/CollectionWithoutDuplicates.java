@@ -2,7 +2,7 @@ package by.academy.homework.hmwk5.task1;
 
 import java.util.*;
 
-public class Task1 {
+public class CollectionWithoutDuplicates {
     public static void main(String[] args) {
         Integer[] numb = {1, 2, 3, 4, 1, 6, 8, 3, 1, 5, 6};
         List<Integer> arr = new LinkedList<>(Arrays.asList(numb));

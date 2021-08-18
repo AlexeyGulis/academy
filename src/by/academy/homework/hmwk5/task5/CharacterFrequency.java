@@ -3,7 +3,7 @@ package by.academy.homework.hmwk5.task5;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Task5 {
+public class CharacterFrequency {
     public static void main(String[] args) {
         String text = "11122334444456vvvvvvvvv";
         String text1 = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. " +

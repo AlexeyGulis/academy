@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class Task4 {
+public class ListMarks {
     public static void main(String[] args) {
         Random r = new Random();
         List<Integer> markList = new ArrayList<>();

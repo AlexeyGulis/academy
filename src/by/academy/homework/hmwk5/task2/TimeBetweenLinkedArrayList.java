@@ -2,7 +2,7 @@ package by.academy.homework.hmwk5.task2;
 
 import java.util.*;
 
-public class Task2 {
+public class TimeBetweenLinkedArrayList {
     public static void main(String[] args) {
         List<Number> timeArrayList = new ArrayList<>();
         List<Number> timeLinkedList = new LinkedList<>();
