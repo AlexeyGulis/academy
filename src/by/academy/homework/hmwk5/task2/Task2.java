@@ -4,32 +4,29 @@ import java.util.*;
 
 public class Task2 {
     public static void main(String[] args) {
-        ArrayList<Number> timeArrayList = new ArrayList<>();
-        LinkedList<Number> timeLinkedList = new LinkedList<>();
-        addElemementsToList(timeArrayList, timeLinkedList);
-        getElementsFromList(timeArrayList, timeLinkedList);
+        List<Number> timeArrayList = new ArrayList<>();
+        List<Number> timeLinkedList = new LinkedList<>();
+        addElemementsToList(timeArrayList);
+        addElemementsToList(timeLinkedList);
+        System.out.println( "Time for get elements ArrayList -> " + getTime(timeArrayList) + " ms");
+        System.out.println( "Time for get elements LinkedList -> " + getTime(timeLinkedList) + " ms");
     }
 
-    public static void addElemementsToList(ArrayList<Number> arrayList, LinkedList<Number> linkedList) {
+    public static void addElemementsToList(List<Number> list) {
         for (int i = 0; i < 1_000_000; i++) {
-            arrayList.add(i);
-            linkedList.add(i);
+            list.add(i);
+        }
+    }
+    public static void getElementsFromList(List<Number> list){
+        Random r = new Random();
+        for (int i = 0; i < 100_000; i++) {
+            list.get(r.nextInt(1_000_000));
         }
     }
 
-    public static void getElementsFromList(ArrayList<Number> arrayList, LinkedList<Number> linkedList) {
-        Random r = new Random();
+    public static long getTime(List<Number> list) {
         long startTimeList = System.currentTimeMillis();
-        for (int i = 0; i < 100_000; i++) {
-            arrayList.get(r.nextInt(1_000_000));
-        }
-        long resultTimeArrayList = System.currentTimeMillis() - startTimeList;
-        System.out.println("Time for ArrayList = " + resultTimeArrayList);
-        startTimeList = System.currentTimeMillis();
-        for (int i = 0; i < 100_000; i++) {
-            linkedList.get(r.nextInt(1_000_000));
-        }
-        long resultTimeLinkedList = System.currentTimeMillis() - startTimeList;
-        System.out.println("Time for LinkedList = " + resultTimeLinkedList);
+        getElementsFromList(list);
+        return System.currentTimeMillis() - startTimeList;
     }
 }
