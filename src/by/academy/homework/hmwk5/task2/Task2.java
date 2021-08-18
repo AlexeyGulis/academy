@@ -25,9 +25,17 @@ public class Task2 {
         }
     }
 
-    public static long getTime(List<Number> list) {
+    private static long getTime(List<Number> list) {
         long startTimeList = System.currentTimeMillis();
         getElementsFromList(list);
         return System.currentTimeMillis() - startTimeList;
     }
 }
+
+/*
+Как можно видеть доступ к элементам в ArrayList намного быстрее чем в LinkedList.
+Время доступа к элементу в ArrayList константое,
+тогда как в LinkedList оно будет зависить от того где элемент находится,
+то есть будет линейная функция, в зависимости от индекса.
+(Стоит учесть что доступ в LinkedList к первому и последнему элементу такая же константа как и в ArrayList)
+ */
