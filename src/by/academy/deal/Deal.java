@@ -1,11 +1,17 @@
 package by.academy.deal;
 
+import by.academy.deal.entities.Product;
+import by.academy.deal.entities.User;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Formatter;
+import java.util.List;
 
 public class Deal {
+    private List<Product> productsTest;
     private Product[] products;
     private User seller;
     private User buyer;
@@ -16,6 +22,7 @@ public class Deal {
     public Deal(User buyer, User seller, Product[] products, LocalDate dateOfDeal) {
         this.seller = seller;
         this.buyer = buyer;
+        productsTest = new ArrayList<>(Arrays.asList(products));
         this.products = products;
         this.dateOfDeal = dateOfDeal;
         LocalDate currentDate = LocalDate.now();

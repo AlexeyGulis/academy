@@ -1,4 +1,4 @@
-package by.academy.deal;
+package by.academy.deal.entities;
 
 import by.academy.deal.annotations.ProductProvider;
 

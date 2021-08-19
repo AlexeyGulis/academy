@@ -1,4 +1,4 @@
-package by.academy.deal;
+package by.academy.deal.services;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;

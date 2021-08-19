@@ -1,4 +1,6 @@
-package by.academy.deal;
+package by.academy.deal.services;
+
+import by.academy.deal.services.interfaces.Validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,4 +1,4 @@
-package by.academy.deal;
+package by.academy.deal.entities;
 
 public abstract class Product {
     protected String name;

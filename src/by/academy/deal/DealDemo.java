@@ -1,5 +1,10 @@
 package by.academy.deal;
 
+import by.academy.deal.entities.*;
+import by.academy.deal.services.BelarusPhoneValidator;
+import by.academy.deal.services.TimeValidator;
+import by.academy.deal.services.interfaces.Validator;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
