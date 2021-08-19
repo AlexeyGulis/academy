@@ -1,7 +1,5 @@
 package by.academy.deal.entities;
 
-import by.academy.deal.Deal;
-
 import java.time.LocalDate;
 
 public class User {
@@ -11,7 +9,7 @@ public class User {
     private String email;
     private LocalDate dateOfBirth;
 
-    User(String name, boolean sellerOrbuyer, LocalDate dateOfBirth, String phone, String email) {
+    public User(String name, boolean sellerOrbuyer, LocalDate dateOfBirth, String phone, String email) {
         this.name = name;
         this.sellerOrbuyer = sellerOrbuyer;
         this.dateOfBirth = dateOfBirth;

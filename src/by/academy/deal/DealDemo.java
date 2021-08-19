@@ -126,14 +126,14 @@ public class DealDemo {
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                                 System.out.println("Введите название продукта, который вы хотите удалить");
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-                                deals[j].removeProduct(scan.nextLine());
+                                deals[j].removeProductFromDeal(scan.nextLine());
                                 System.out.println("Продукт удален");
                             } else if (menu == 2) {
                                 deals[j].getDeal();
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                                 product = createProduct();
                                 if (product != null) {
-                                    deals[j].addProduct(product);
+                                    deals[j].addProductToDeal(product);
                                 }
                                 System.out.println("Продукт добавлен");
                             } else if (menu == 3) {
@@ -144,7 +144,7 @@ public class DealDemo {
                                 System.out.println();
                             } else if (menu == 4) {
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-                                deals[j].getPriceList();
+                                deals[j].getPriceListOfDeal();
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                             } else if (menu == 5 && j != deals.length - 1) {
                                 j++;
@@ -167,7 +167,7 @@ public class DealDemo {
                         for (Deal a : deals
                         ) {
                             if (a != null) {
-                                a.getPriceList();
+                                a.getPriceListOfDeal();
                                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                             }
                         }
@@ -188,7 +188,7 @@ public class DealDemo {
             for (Deal a : deals
             ) {
                 if (a != null) {
-                    a.getPriceList();
+                    a.getPriceListOfDeal();
                     System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                 }
             }

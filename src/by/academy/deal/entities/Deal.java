@@ -1,7 +1,6 @@
-package by.academy.deal;
+package by.academy.deal.entities;
 
-import by.academy.deal.entities.Product;
-import by.academy.deal.entities.User;
+import by.academy.deal.DealDemo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -46,7 +45,7 @@ public class Deal {
         System.out.println(str.toString());
     }
 
-    public void getPriceList() {
+    public void getPriceListOfDeal() {
         System.out.println();
         Formatter f = new Formatter();
         f.format("%1$-25s%2$30s", "Дата:", dateOfDeal.format(formatter));
@@ -73,7 +72,7 @@ public class Deal {
         System.out.println();
     }
 
-    public void addProduct(Product product) {
+    public void addProductToDeal(Product product) {
         Product[] temp = new Product[products.length + 1];
         for (int i = 0; i < products.length; i++) {
             temp[i] = products[i];
@@ -82,7 +81,7 @@ public class Deal {
         products = temp;
     }
 
-    public void removeProduct(String name) {
+    public void removeProductFromDeal(String name) {
         if (products.length != 0 && name != null) {
             boolean flag = false;
             int[] remProdInd = new int[products.length];
