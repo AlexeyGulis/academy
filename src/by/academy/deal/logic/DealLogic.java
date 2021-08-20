@@ -72,7 +72,7 @@ public class DealLogic {
             } else if (menu.equals("3")) {
                 deals.getDealList();
                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-                System.out.println("Сумма сделки: " + deals.getSumDealList());
+                System.out.println("Сумма сделки: " + String.format("%.2f", deals.getSumDealList()));
                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                 System.out.println();
             } else if (menu.equals("4")) {

@@ -121,6 +121,7 @@ public class Deal {
                     productsList.remove(index);
                     break;
                 } else {
+                    index++;
                     continue;
                 }
             }
