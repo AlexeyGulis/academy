@@ -1,51 +1,51 @@
 package by.academy.deal.entities;
 
-import by.academy.deal.DealDemo;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Formatter;
 import java.util.List;
 
+import static by.academy.deal.logic.DealLogic.scan;
+
 public class Deal {
-    private List<Product> productsTest;
-    private Product[] products;
+    private List<Product> productsList;
     private User seller;
     private User buyer;
     private LocalDate dateOfDeal;
     private LocalDate deadlineDate;
     public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-    public Deal(User buyer, User seller, Product[] products, LocalDate dateOfDeal) {
+    public Deal(User buyer, User seller, List<Product> productsList, LocalDate dateOfDeal) {
         this.seller = seller;
         this.buyer = buyer;
-        productsTest = new ArrayList<>(Arrays.asList(products));
-        this.products = products;
+        this.productsList = productsList;
         this.dateOfDeal = dateOfDeal;
         LocalDate currentDate = LocalDate.now();
         deadlineDate = currentDate.plusDays(10L);
     }
 
-    public void getDeal() {
+    public void getDealList() {
         StringBuilder str = new StringBuilder();
         str.append(seller);
-        System.out.println(str.toString());
+        System.out.println(str);
         str.setLength(0);
         str.append(buyer);
-        System.out.println(str.toString());
+        System.out.println(str);
         System.out.println("Таблица продуктов:");
-        for (int i = 0; i < products.length; i++) {
-            System.out.println(products[i]);
+        for (Product p : productsList
+        ) {
+            if (p != null) System.out.println(p);
         }
         str.setLength(0);
         str.append("Дата сделки: ");
         str.append(dateOfDeal.format(formatter)).append(";");
-        System.out.println(str.toString());
+        System.out.println(str);
     }
 
-    public void getPriceListOfDeal() {
+
+    public void getPriceListOfDealList() {
         System.out.println();
         Formatter f = new Formatter();
         f.format("%1$-25s%2$30s", "Дата:", dateOfDeal.format(formatter));
@@ -57,107 +57,93 @@ public class Deal {
         System.out.println();
 
         System.out.println("-------------------------------------------------------");
-        for (int i = 0; i < products.length; i++) {
-            f = new Formatter();
-            System.out.println();
-            f.format("%1$-10s%2$-25s%3$-10s%4$10s", products[i].getName(), products[i].getFeature()[0] + ", " + products[i].getFeature()[1], products[i].getQuantity(), String.format("%.2f", products[i].getSumPrice()) + " $");
-            System.out.println(f);
+        for (Product p : productsList
+        ) {
+            if (p != null) {
+                f = new Formatter();
+                System.out.println();
+                f.format("%1$-10s%2$-25s%3$-10s%4$10s", p.getName(), p.getFeature()[0] + ", " + p.getFeature()[1], p.getQuantity(), String.format("%.2f", p.getSumPrice()) + " $");
+                System.out.println(f);
+            }
         }
         System.out.println();
         System.out.println("-------------------------------------------------------");
         System.out.println();
         f = new Formatter();
-        f.format("%1$-30s%2$25s", "Сумма сделки:", String.format("%.2f", this.getSumDeal()) + " $");
+        f.format("%1$-30s%2$25s", "Сумма сделки:", String.format("%.2f", this.getSumDealList()) + " $");
         System.out.println(f);
         System.out.println();
     }
 
-    public void addProductToDeal(Product product) {
-        Product[] temp = new Product[products.length + 1];
-        for (int i = 0; i < products.length; i++) {
-            temp[i] = products[i];
+    public void getReversePriceListOfDealList() {
+        System.out.println();
+        Formatter f = new Formatter();
+        f.format("%1$-25s%2$30s", "Дата:", dateOfDeal.format(formatter));
+        System.out.println(f);
+        System.out.println();
+        f = new Formatter();
+        f.format("%1$-10s%2$-25s%3$-10s%4$10s", "Продукт", "Характеристики продукта", "Количество", "Цена");
+        System.out.println(f);
+        System.out.println();
+
+        System.out.println("-------------------------------------------------------");
+        for (int i = productsList.size() - 1; i >= 0 ; i--) {
+            if (productsList.get(i) != null){
+                f = new Formatter();
+                System.out.println();
+                f.format("%1$-10s%2$-25s%3$-10s%4$10s", productsList.get(i).getName(), productsList.get(i).getFeature()[0] + ", " + productsList.get(i).getFeature()[1], productsList.get(i).getQuantity(), String.format("%.2f", productsList.get(i).getSumPrice()) + " $");
+                System.out.println(f);
+            }
         }
-        temp[products.length] = product;
-        products = temp;
+        System.out.println();
+        System.out.println("-------------------------------------------------------");
+        System.out.println();
+        f = new Formatter();
+        f.format("%1$-30s%2$25s", "Сумма сделки:", String.format("%.2f", this.getSumDealList()) + " $");
+        System.out.println(f);
+        System.out.println();
     }
 
-    public void removeProductFromDeal(String name) {
-        if (products.length != 0 && name != null) {
-            boolean flag = false;
-            int[] remProdInd = new int[products.length];
-            for (int i = 0; i < products.length; i++) {
-                remProdInd[i] = 0;
-            }
-            int countRemProd = 0;
-            for (int i = 0; i < products.length; i++) {
-                if (name.equals(products[i].getName())) {
-                    flag = true;
-                    remProdInd[i] = 1;
-                    countRemProd++;
-                }
-            }
-            if (flag) {
-                int j = 0;
-                int menuRemove = 0;
-                while (true) {
-                    System.out.println("Выберите вариант: (1) - Удалить i-ый продукт, (2) - Удалить все названные продукты");
-                    menuRemove = DealDemo.scan.nextInt();
-                    DealDemo.scan.nextLine();
-                    if (menuRemove == 1) {
-                        for (int i = 0; i < remProdInd.length; i++) {
-                            if (remProdInd[i] == 1) {
-                                System.out.println("Номер " + i + "  " + products[i]);
-                            }
-                        }
-                        System.out.println("Выберите номер продукта");
-                        j = DealDemo.scan.nextInt();
-                        DealDemo.scan.nextLine();
-                        Product[] temp = new Product[products.length - 1];
-                        int index = 0;
-                        for (int i = 0; i < products.length; i++) {
-                            if (j != i) {
-                                temp[index++] = products[i];
-                            }
-                        }
-                        products = temp;
-                        break;
-                    } else if (menuRemove == 2) {
-                        Product[] temp = new Product[products.length - countRemProd];
-                        int index = 0;
-                        for (int i = 0; i < products.length; i++) {
-                            if (remProdInd[i] != 1) {
-                                temp[index++] = products[i];
-                            }
-                        }
-                        products = temp;
-                        break;
-                    }
-                }
-            } else {
-                System.out.println("Продукта с таким именем не существует");
-            }
+    public void addProductToDealList(Product product) {
+        productsList.add(product);
+    }
 
-        } else {
-            System.out.println("Продукта с таким именем не существует");
+    public void removeProductFromDealList(String name) {
+        int index = 0;
+        for (Product p : productsList
+        ) {
+            if (p != null && p.getName().equals(name)) {
+                System.out.println(p);
+                System.out.println("Удалить - 1, Не удалять - все остальное");
+                String str = scan.nextLine();
+                if (str.equals("1")) {
+                    System.out.println("Продукт " + name + " удален");
+                    productsList.remove(index);
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            index++;
         }
     }
 
-    public double getSumDeal() {
-        double sumdeal = 0;
-        for (int i = 0; i < products.length; i++) {
-            if (products[i] != null) {
-                sumdeal += products[i].getSumPrice();
+    public double getSumDealList() {
+        double sumdeal = 0.0;
+        for (int i = 0; i < productsList.size(); i++) {
+            if (productsList.get(i) != null) {
+                sumdeal += productsList.get(i).getSumPrice();
             }
         }
         return sumdeal;
     }
 
-    public Product[] getProducts() {
-        return products;
+    public List<Product> getProductsList() {
+        return productsList;
     }
 
-    public void setProducts(Product[] products) {
-        this.products = products;
+    public void setProductsList(List<Product> productsList) {
+        this.productsList = productsList;
     }
 
     public User getSeller() {
@@ -192,6 +178,15 @@ public class Deal {
         this.deadlineDate = deadlineDate;
     }
 
+    public void sortProductList(){
+        Collections.sort(productsList, new Comparator() {
+            public int compare(Object obj1, Object obj2) {
+                return ((Product) obj1).getName()
+                        .compareTo(((Product) obj2).getName());
+            }
+        });
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -199,8 +194,7 @@ public class Deal {
 
         Deal deal = (Deal) o;
 
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        if (!Arrays.equals(products, deal.products)) return false;
+        if (productsList != null ? !productsList.equals(deal.productsList) : deal.productsList != null) return false;
         if (seller != null ? !seller.equals(deal.seller) : deal.seller != null) return false;
         if (buyer != null ? !buyer.equals(deal.buyer) : deal.buyer != null) return false;
         if (dateOfDeal != null ? !dateOfDeal.equals(deal.dateOfDeal) : deal.dateOfDeal != null) return false;
@@ -209,7 +203,7 @@ public class Deal {
 
     @Override
     public int hashCode() {
-        int result = Arrays.hashCode(products);
+        int result = productsList != null ? productsList.hashCode() : 0;
         result = 31 * result + (seller != null ? seller.hashCode() : 0);
         result = 31 * result + (buyer != null ? buyer.hashCode() : 0);
         result = 31 * result + (dateOfDeal != null ? dateOfDeal.hashCode() : 0);
