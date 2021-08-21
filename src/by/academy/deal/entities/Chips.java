@@ -2,8 +2,6 @@ package by.academy.deal.entities;
 
 import by.academy.deal.annotations.ProductProvider;
 
-import java.io.Serializable;
-
 @ProductProvider(lifeTime = 20,parts = {""})
 public class Chips extends Product {
     protected String nameDis = "Лейс";
