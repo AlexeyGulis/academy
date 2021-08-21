@@ -2,11 +2,13 @@ package by.academy.deal.entities;
 
 import by.academy.deal.annotations.ProductProvider;
 
+import java.io.Serializable;
+
 @ProductProvider(lifeTime = 20,parts = {""})
 public class Chips extends Product {
     protected String nameDis = "Лейс";
     protected String tasteDis = "С сыром";
-    protected String name;
+    protected transient String name;
     protected String taste;
     protected double discount = 0.05;
 

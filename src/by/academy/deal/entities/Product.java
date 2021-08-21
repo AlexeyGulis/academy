@@ -1,6 +1,8 @@
 package by.academy.deal.entities;
 
-public abstract class Product {
+import java.io.Serializable;
+
+public abstract class Product implements Serializable{
     protected String name;
     protected double price;
     protected int quantity;
