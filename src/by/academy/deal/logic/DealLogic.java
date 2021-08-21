@@ -2,8 +2,11 @@ package by.academy.deal.logic;
 
 import by.academy.deal.entities.*;
 import by.academy.deal.services.BelarusPhoneValidator;
+import by.academy.deal.services.DealFile;
 import by.academy.deal.services.TimeValidator;
 
+import javax.imageio.IIOException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -50,10 +53,11 @@ public class DealLogic {
         System.out.println("Меню:");
         String menu;
         while (true) {
-            System.out.println("Выберите вариант: (1) - Удалить продукт,(2) - Добавить продукт," +
-                    "(3) - Высчитать сумму сделки, (4) - Напечатать чек, " +
-                    "(5) - Напечатать чек (список в обратном порядке), (6) - Отсортировать список продуктов по Имени , " +
-                    "(Все остальное) - Выйти из меню");
+            System.out.println("Выберите вариант: (1) - Удалить продукт,(2) - Добавить продукт,");
+            System.out.println("(3) - Высчитать сумму сделки, (4) - Отсортировать список продуктов по Имени,");
+            System.out.println("(5) - Напечатать чек и выйти из меню,");
+            System.out.println("(6) - Напечатать чек (список в обратном порядке) и выйти из меню,");
+            System.out.println("(Все остальное) - Выйти из меню");
             menu = scan.nextLine();
             if (menu.equals("1")) {
                 deals.getDealList();
@@ -77,17 +81,25 @@ public class DealLogic {
                 System.out.println();
             } else if (menu.equals("4")) {
                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-                deals.getPriceListOfDealList();
-                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-            } else if (menu.equals("5")) {
-                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-                deals.getReversePriceListOfDealList();
-                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-            } else if (menu.equals("6")) {
-                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                 deals.sortProductList();
                 deals.getDealList();
                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+
+            } else if (menu.equals("5")) {
+                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                try{
+                    DealFile.createFile(deals.getPriceListOfDealList(),deals.getDateOfDeal().toString());
+                    System.out.println("Создан файл чека");
+                }catch(IOException e){
+                    System.out.println("Проблема с файлом");
+                }
+                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                break;
+            } else if (menu.equals("6")) {
+                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                deals.getReversePriceListOfDealList();
+                System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+                break;
             } else {
                 break;
             }

@@ -2,10 +2,7 @@ package by.academy.deal.entities;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Formatter;
-import java.util.List;
+import java.util.*;
 
 import static by.academy.deal.logic.DealLogic.scan;
 
@@ -45,14 +42,17 @@ public class Deal {
     }
 
 
-    public void getPriceListOfDealList() {
+    public String[] getPriceListOfDealList() {
+        List<String> list = new ArrayList<>();
         System.out.println();
         Formatter f = new Formatter();
         f.format("%1$-25s%2$30s", "Дата:", dateOfDeal.format(formatter));
+        list.add(f.toString());
         System.out.println(f);
         System.out.println();
         f = new Formatter();
         f.format("%1$-10s%2$-25s%3$-10s%4$10s", "Продукт", "Характеристики продукта", "Количество", "Цена");
+        list.add(f.toString());
         System.out.println(f);
         System.out.println();
 
@@ -63,6 +63,7 @@ public class Deal {
                 f = new Formatter();
                 System.out.println();
                 f.format("%1$-10s%2$-25s%3$-10s%4$10s", p.getName(), p.getFeature()[0] + ", " + p.getFeature()[1], p.getQuantity(), String.format("%.2f", p.getSumPrice()) + " $");
+                list.add(f.toString());
                 System.out.println(f);
             }
         }
@@ -71,8 +72,10 @@ public class Deal {
         System.out.println();
         f = new Formatter();
         f.format("%1$-30s%2$25s", "Сумма сделки:", String.format("%.2f", this.getSumDealList()) + " $");
+        list.add(f.toString());
         System.out.println(f);
         System.out.println();
+        return list.toArray(new String[list.size()]);
     }
 
     public void getReversePriceListOfDealList() {
