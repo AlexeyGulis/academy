@@ -62,7 +62,7 @@ public class Deal {
             if (p != null) {
                 f = new Formatter();
                 System.out.println();
-                f.format("%1$-10s%2$-25s%3$-10s%4$10s", p.getName(), p.getFeature()[0] + ", " + p.getFeature()[1], p.getQuantity(), String.format("%.2f", p.getSumPrice()) + " $");
+                f.format("%1$-10s%2$-25s%3$-10s%4$10s", p.getName(), p.getFeature()[0] + ", " + p.getFeature()[1], p.getQuantity(), String.format("%.2f", p.getSumPrice()) + " РУБ");
                 str.append("\r\n").append(f);
                 System.out.println(f);
             }
@@ -71,21 +71,24 @@ public class Deal {
         System.out.println("-------------------------------------------------------");
         System.out.println();
         f = new Formatter();
-        f.format("%1$-30s%2$25s", "Сумма сделки:", String.format("%.2f", this.getSumDealList()) + " $");
+        f.format("%1$-30s%2$25s", "Сумма сделки:", String.format("%.2f", this.getSumDealList()) + " РУБ");
         str.append("\r\n").append(f);
         System.out.println(f);
         System.out.println();
         return str.toString();
     }
 
-    public void getReversePriceListOfDealList() {
+    public String getReversePriceListOfDealList() {
+        StringBuilder str = new StringBuilder();
         System.out.println();
         Formatter f = new Formatter();
         f.format("%1$-25s%2$30s", "Дата:", dateOfDeal.format(formatter));
+        str.append("\r\n").append(f);
         System.out.println(f);
         System.out.println();
         f = new Formatter();
         f.format("%1$-10s%2$-25s%3$-10s%4$10s", "Продукт", "Характеристики продукта", "Количество", "Цена");
+        str.append("\r\n").append(f);
         System.out.println(f);
         System.out.println();
 
@@ -94,7 +97,8 @@ public class Deal {
             if (productsList.get(i) != null){
                 f = new Formatter();
                 System.out.println();
-                f.format("%1$-10s%2$-25s%3$-10s%4$10s", productsList.get(i).getName(), productsList.get(i).getFeature()[0] + ", " + productsList.get(i).getFeature()[1], productsList.get(i).getQuantity(), String.format("%.2f", productsList.get(i).getSumPrice()) + " $");
+                f.format("%1$-10s%2$-25s%3$-10s%4$10s", productsList.get(i).getName(), productsList.get(i).getFeature()[0] + ", " + productsList.get(i).getFeature()[1], productsList.get(i).getQuantity(), String.format("%.2f", productsList.get(i).getSumPrice()) + " РУБ");
+                str.append("\r\n").append(f);
                 System.out.println(f);
             }
         }
@@ -102,9 +106,11 @@ public class Deal {
         System.out.println("-------------------------------------------------------");
         System.out.println();
         f = new Formatter();
-        f.format("%1$-30s%2$25s", "Сумма сделки:", String.format("%.2f", this.getSumDealList()) + " $");
+        f.format("%1$-30s%2$25s", "Сумма сделки:", String.format("%.2f", this.getSumDealList()) + " РУБ");
+        str.append("\r\n").append(f);
         System.out.println(f);
         System.out.println();
+        return str.toString();
     }
 
     public void addProductToDealList(Product product) {
@@ -117,7 +123,7 @@ public class Deal {
         ) {
             if (p != null && p.getName().equals(name)) {
                 System.out.println(p);
-                System.out.println("Удалить - 1, Не удалять - все остальное");
+                System.out.println("(1) - Удалить, (все остальное) - Не удалять, перейти к следующему");
                 String str = scan.nextLine();
                 if (str.equals("1")) {
                     System.out.println("Продукт " + name + " удален");

@@ -24,19 +24,17 @@ public class DealLogic {
     static private Deal deals;
     static private Product product;
     final static private String[] availableProducts = {"Чай", "Персик", "Чипсы"};
-    static private List<Product> productList = new ArrayList<>();
     static public Scanner scan = new Scanner(System.in);
     static private User[] users = new User[2];
     static private LocalDate dateOfDeal;
     static private LocalDate dateOfBirth;
 
     public DealLogic() {
-        createProductList();
+        super();
     }
 
-    public void startDeals() {
-        String[] us1 = {"Name1", "+375-29-123-32-12", "02-10-1992", "abc@bss.by"};
-        String[] us2 = {"Name2", "+375-29-333-31-32", "15-06-1996", "ccc@aass.bcy"};
+    public void startDeals(String[] us1, String[] us2, List<Product> productList) {
+
         if (!createUser(us1, true) || !createUser(us2, false)) {
             System.out.println("Некорректно введены данные покупателя-продавца");
             return;
@@ -87,17 +85,22 @@ public class DealLogic {
 
             } else if (menu.equals("5")) {
                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-                try{
-                    DealFile.createFile(deals.getPriceListOfDealList(),deals.getDateOfDeal().toString());
+                try {
+                    DealFile.createFile(deals.getPriceListOfDealList(), deals.getDateOfDeal().toString());
                     System.out.println("Создан файл чека");
-                }catch(IOException e){
+                } catch (IOException e) {
                     System.out.println("Проблема с файлом");
                 }
                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                 break;
             } else if (menu.equals("6")) {
                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-                deals.getReversePriceListOfDealList();
+                try {
+                    DealFile.createFile(deals.getReversePriceListOfDealList(), deals.getDateOfDeal().toString());
+                    System.out.println("Создан файл чека");
+                } catch (IOException e) {
+                    System.out.println("Проблема с файлом");
+                }
                 System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
                 break;
             } else {
@@ -183,23 +186,6 @@ public class DealLogic {
             result = false;
         }
         return result;
-    }
-
-    private void createProductList() {
-        Product chips1 = new Chips("Чипсы", 120.12, 5, "Лейс", "С сыром");
-        Product chips2 = new Chips("Чипсы", 140.51, 2, "Эстрэлла", "Краб");
-        Product chips3 = new Chips("Чипсы", 250, 2, "Принглз", "Чили");
-        Product tea1 = new Tea("Чай", 45, 1, 50, "Черный");
-        Product tea2 = new Tea("Чай", 25, 2, 20, "Китайский");
-        Product peach1 = new Peach("Персик", 70, 2, 5, "Домашний");
-        Product peach2 = new Peach("Персик", 110.95, 3, 9, "Кардинал");
-        productList.add(chips1);
-        productList.add(chips2);
-        productList.add(chips3);
-        productList.add(tea1);
-        productList.add(peach1);
-        productList.add(tea2);
-        productList.add(peach2);
     }
 
     private static Product createProduct() {
