@@ -4,6 +4,7 @@ import by.academy.deal.entities.*;
 import by.academy.deal.services.BelarusPhoneValidator;
 import by.academy.deal.services.DealFile;
 import by.academy.deal.services.TimeValidator;
+import by.academy.deal.services.exceptions.ParseException;
 
 import javax.imageio.IIOException;
 import java.io.IOException;
@@ -15,8 +16,9 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import static by.academy.deal.DealDemo.emailValidator;
+import static by.academy.deal.DealDemo.scan;
 
-public class DealLogic {
+public class DealLogic{
     static private Pattern date1 = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19[0-9]{2}|2[0-9][0-9][0-9])$");
     static private String format1 = "dd/MM/yyyy";
     static private Pattern date2 = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9]{2}|2[0-9][0-9][0-9])$");
@@ -24,7 +26,6 @@ public class DealLogic {
     static private Deal deals;
     static private Product product;
     final static private String[] availableProducts = {"Чай", "Персик", "Чипсы"};
-    static public Scanner scan = new Scanner(System.in);
     static private User[] users = new User[2];
     static private LocalDate dateOfDeal;
     static private LocalDate dateOfBirth;
@@ -33,7 +34,7 @@ public class DealLogic {
         super();
     }
 
-    public void startDeals(String[] us1, String[] us2, List<Product> productList) {
+    public void startDeals(String[] us1, String[] us2, List<Product> productList) throws ParseException {
 
         if (!createUser(us1, true) || !createUser(us2, false)) {
             System.out.println("Некорректно введены данные покупателя-продавца");
@@ -109,7 +110,7 @@ public class DealLogic {
         }
     }
 
-    private static boolean createUser(String[] user, boolean isBuyer) {
+    private static boolean createUser(String[] user, boolean isBuyer) throws ParseException {
         if (isBuyer) {
             if (checkUser(user)) {
                 users[0] = new User(user[0], true, dateOfBirth, user[1], user[3]);
@@ -129,7 +130,7 @@ public class DealLogic {
         }
     }
 
-    private static void dateOfDeal() {
+    private static void dateOfDeal() throws ParseException {
         String dateDeal;
         while (true) {
             System.out.println("Дата сделки (Форма даты: dd-MM-yyyy|dd/MM/yyyy)");
@@ -157,7 +158,7 @@ public class DealLogic {
         }
     }
 
-    private static boolean checkUser(String[] str) {
+    private static boolean checkUser(String[] str) throws ParseException {
         boolean result = false;
         if (str.length == 4 && str[0] != null
                 && new BelarusPhoneValidator().validate(str[1])

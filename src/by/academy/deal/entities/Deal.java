@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import static by.academy.deal.logic.DealLogic.scan;
+import static by.academy.deal.DealDemo.scan;
 
 public class Deal {
     private List<Product> productsList;

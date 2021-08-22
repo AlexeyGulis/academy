@@ -5,12 +5,17 @@ import by.academy.deal.entities.Peach;
 import by.academy.deal.entities.Product;
 import by.academy.deal.entities.Tea;
 import by.academy.deal.logic.DealLogic;
+import by.academy.deal.services.exceptions.ParseException;
 import by.academy.deal.services.interfaces.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+// Создать свое исключение, при возникновении исключения парсинга (когда пользователь ввел неправильный формат данных в дате/почте) оборачивать стандартное исключение в своё.
+// Когда будете ловить исключение в методе main(на самом верху), в обработке исключения вывести на экран через syso текст ошибки.
 
 public class DealDemo {
     static public Pattern email = Pattern.compile("^.*?@.*?\\..*$");
@@ -18,26 +23,31 @@ public class DealDemo {
     static public String[] us1 = {"Name1", "+375-29-123-32-12", "02-10-1992", "abc@bss.by"};
     static public String[] us2 = {"Name2", "+375-29-333-31-32", "15-06-1996", "ccc@aass.bcy"};
     static private List<Product> productList = new ArrayList<>();
+    static public Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) {
         System.out.println("Сделка");
         emailValidator = new Validator() {
             @Override
-            public boolean validate(String t) {
+            public boolean validate(String t) throws ParseException {
                 Matcher matcher = email.matcher(t);
                 boolean result;
                 if (matcher.find()) {
                     result = true;
                 } else {
-                    System.out.println("Неправильно введена электронная почта");
-                    result = false;
+                    throw new ParseException("Неправильно введена электронная почта");
                 }
                 return result;
             }
         };
 
         DealLogic deals = new DealLogic();
-        deals.startDeals(us1,us2,createProductList());
+        try{
+            deals.startDeals(us1,us2,createProductList());
+        }catch (ParseException e){
+            System.out.println(e.getMessage());
+        }
+
     }
     private static List<Product> createProductList() {
         Product chips1 = new Chips("Чипсы", 120.12, 5, "Лейс", "С сыром");
