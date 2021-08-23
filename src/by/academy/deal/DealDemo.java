@@ -14,8 +14,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// Создать свое исключение, при возникновении исключения парсинга (когда пользователь ввел неправильный формат данных в дате/почте) оборачивать стандартное исключение в своё.
-// Когда будете ловить исключение в методе main(на самом верху), в обработке исключения вывести на экран через syso текст ошибки.
 
 public class DealDemo {
     static public Pattern email = Pattern.compile("^.*?@.*?\\..*$");
@@ -42,13 +40,14 @@ public class DealDemo {
         };
 
         DealLogic deals = new DealLogic();
-        try{
-            deals.startDeals(us1,us2,createProductList());
-        }catch (ParseException e){
+        try {
+            deals.startDeals(us1, us2, createProductList());
+        } catch (ParseException e) {
             System.out.println(e.getMessage());
         }
 
     }
+
     private static List<Product> createProductList() {
         Product chips1 = new Chips("Чипсы", 120.12, 5, "Лейс", "С сыром");
         Product chips2 = new Chips("Чипсы", 140.51, 2, "Эстрэлла", "Краб");

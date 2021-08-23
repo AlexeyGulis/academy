@@ -6,19 +6,16 @@ import by.academy.deal.services.DealFile;
 import by.academy.deal.services.TimeValidator;
 import by.academy.deal.services.exceptions.ParseException;
 
-import javax.imageio.IIOException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import static by.academy.deal.DealDemo.emailValidator;
 import static by.academy.deal.DealDemo.scan;
 
-public class DealLogic{
+public class DealLogic {
     static private Pattern date1 = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19[0-9]{2}|2[0-9][0-9][0-9])$");
     static private String format1 = "dd/MM/yyyy";
     static private Pattern date2 = Pattern.compile("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9]{2}|2[0-9][0-9][0-9])$");

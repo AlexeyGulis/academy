@@ -3,7 +3,6 @@ package by.academy.deal.services;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 
 public class DealFile {
     public static void createFile(String data, String date) throws IOException {

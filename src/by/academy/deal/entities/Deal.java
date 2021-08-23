@@ -93,8 +93,8 @@ public class Deal {
         System.out.println();
 
         System.out.println("-------------------------------------------------------");
-        for (int i = productsList.size() - 1; i >= 0 ; i--) {
-            if (productsList.get(i) != null){
+        for (int i = productsList.size() - 1; i >= 0; i--) {
+            if (productsList.get(i) != null) {
                 f = new Formatter();
                 System.out.println();
                 f.format("%1$-10s%2$-25s%3$-10s%4$10s", productsList.get(i).getName(), productsList.get(i).getFeature()[0] + ", " + productsList.get(i).getFeature()[1], productsList.get(i).getQuantity(), String.format("%.2f", productsList.get(i).getSumPrice()) + " РУБ");
@@ -188,7 +188,7 @@ public class Deal {
         this.deadlineDate = deadlineDate;
     }
 
-    public void sortProductList(){
+    public void sortProductList() {
         Collections.sort(productsList, new Comparator() {
             public int compare(Object obj1, Object obj2) {
                 return ((Product) obj1).getName()
