@@ -24,8 +24,8 @@ public class DeleteSpaces {
         try (FileInputStream inputStream = new FileInputStream(sourceFile);
              FileOutputStream outputStream = new FileOutputStream(resultFile)) {
             int b = inputStream.read();
-            while( b!=-1){
-                if(b != (int) ' '){
+            while (b != -1) {
+                if (b != (int) ' ') {
                     outputStream.write(b);
                 }
                 b = inputStream.read();

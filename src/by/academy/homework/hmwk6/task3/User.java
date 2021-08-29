@@ -2,11 +2,12 @@ package by.academy.homework.hmwk6.task3;
 
 import java.io.Serializable;
 
-public class User implements Serializable{
+public class User implements Serializable {
     private String firstName;
     private String secondName;
     private int age;
-    public User(String firstName,String secondName,int age){
+
+    public User(String firstName, String secondName, int age) {
         super();
         this.firstName = firstName;
         this.secondName = secondName;
