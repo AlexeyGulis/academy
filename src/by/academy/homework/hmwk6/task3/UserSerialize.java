@@ -6,16 +6,16 @@ import java.util.ArrayList;
 public class UserSerialize {
     public static void main(String[] args) {
         ArrayList<User> users = new ArrayList<>();
-        users.add(new User("a1", "b1", 15));
-        users.add(new User("a2", "b2", 16));
-        users.add(new User("a3", "b3", 17));
-        users.add(new User("a4", "b4", 18));
-        users.add(new User("a5", "b5", 19));
-        users.add(new User("a6", "b6", 20));
-        users.add(new User("a7", "b7", 21));
-        users.add(new User("a8", "b8", 22));
-        users.add(new User("a9", "b9", 23));
-        users.add(new User("a10", "b10", 24));
+        users.add(new User("Овчаренко", "Феликс", 25));
+        users.add(new User("Дорофеев", "Ярослав", 16));
+        users.add(new User("Передрий", "Устин", 32));
+        users.add(new User("Максимов", "Ян", 46));
+        users.add(new User("Бутко", "Юлий", 29));
+        users.add(new User("Егорова", "Зинаида", 20));
+        users.add(new User("Матвеева", "Светлана", 27));
+        users.add(new User("Рымар", "Елизавета", 33));
+        users.add(new User("Колесникова", "Василиса", 24));
+        users.add(new User("Афанасьева", "Розалина", 39));
         File dir = new File("src\\by\\academy\\homework\\hmwk6\\task3\\users");
         if (!dir.exists()) {
             dir.mkdirs();
