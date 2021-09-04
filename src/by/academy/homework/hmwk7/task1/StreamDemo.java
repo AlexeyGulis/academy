@@ -1,8 +1,6 @@
 package by.academy.homework.hmwk7.task1;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -12,7 +10,7 @@ public class StreamDemo {
     public static void main(String[] args) {
         List<Integer> list = generateList(100, 100);
         map = list.stream().peek(n -> n = (int) (n * Math.PI) - 20).filter(n -> n < 100)
-                .sorted().skip(3).distinct().collect(Collectors.toMap(k -> "Number: " + k, v -> v));
+                .sorted().skip(3).distinct().collect(Collectors.toMap(k -> "Number: " + k, v -> v, (k,v) -> k, LinkedHashMap::new));
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             System.out.println("Key - " + entry.getKey() + "; Value - " + entry.getValue());
         }
