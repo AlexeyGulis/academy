@@ -37,4 +37,8 @@ public class User extends Person{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void printUserInfo(){
+        System.out.println("Login - " + login + "; Email - " + email);
+    }
 }
