@@ -1,5 +1,7 @@
 package by.academy.homework.hmwk6.task3;
 
+import by.academy.deal.entities.Chips;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -34,6 +36,17 @@ public class UserSerialize {
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
                 objectOutputStream.writeObject(user);
             } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        File[] userGet = dir.listFiles();
+        for (File f : userGet
+        ) {
+            try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(f))) {
+                ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+                User userSer = (User) objectInputStream.readObject();
+                System.out.println(userSer);
+            } catch (ClassNotFoundException | IOException e) {
                 System.out.println(e.getMessage());
             }
         }
