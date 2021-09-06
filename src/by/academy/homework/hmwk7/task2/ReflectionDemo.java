@@ -4,47 +4,109 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
 
-public class ReflectionDemo{
+public class ReflectionDemo {
     public static void main(String[] args) {
-        User user1 = new User("alex","bil",23, LocalDate.now(),"alex123","lex32123","bil_alex@gmail.ru");
-        Person person1 = new Person("alex","bil",23, LocalDate.now());
+        User user1 = new User("alex", "bil", 23, LocalDate.now(), "alex123", "lex32123", "bil_alex@gmail.ru");
+        Person person1 = new Person("alex", "bil", 23, LocalDate.now());
         Class<? extends User> us1 = user1.getClass();
         Class<? extends Person> ps1 = person1.getClass();
-        userField(us1);
-        userFieldDeclared(us1);
+        getFieldsAndMethods(us1);
+        setValueField(us1);
+        getValueField(us1);
+    }
+
+    public static void setValueField(Class<? extends User> us1){
+
+    }
+
+    public static void getValueField(Class<? extends User> us1){
+
+    }
+
+    public static void getFieldsAndMethods(Class<? extends User> us1){
+        System.out.println("Доступные поля");
+        userFields(us1);
+        System.out.println("Все поля");
+        userFieldsDeclared(us1);
+        System.out.println("Доступные методы");
         userMethods(us1);
+        System.out.println("Все методы");
         userMethodsDeclared(us1);
+        System.out.println("Доступный метод getName");
+        userMethod(us1, "getName");
+        System.out.println("Недоступный метод getPassword");
+        userMethodDeclared(us1, "getPassword");
+        System.out.println("Доступное поле login");
+        userField(us1, "login");
+        System.out.println("Недоступное поле password");
+        userFieldDeclared(us1, "password");
     }
-    public static void userField(Class<? extends User> us1){
+
+    public static void userFields(Class<? extends User> us1) {
         Field[] userFields = us1.getFields();
-        System.out.println("Fields from User");
         for (Field t : userFields
         ) {
             System.out.println(t);
         }
     }
-    public static void userFieldDeclared(Class<? extends User> us1){
+
+    public static void userField(Class<? extends User> us1, String nameField) {
+        try {
+            Field userField = us1.getField(nameField);
+            System.out.println(userField);
+        } catch (NoSuchFieldException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void userFieldsDeclared(Class<? extends User> us1) {
         Field[] userFields = us1.getDeclaredFields();
-        System.out.println("Fields from User");
         for (Field t : userFields
         ) {
             System.out.println(t);
         }
     }
-    public static void userMethods(Class<? extends User> us1){
+
+    public static void userFieldDeclared(Class<? extends User> us1, String nameField) {
+        try {
+            Field userField = us1.getDeclaredField(nameField);
+            System.out.println(userField);
+        } catch (NoSuchFieldException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void userMethods(Class<? extends User> us1) {
         Method[] userMethods = us1.getMethods();
-        System.out.println("Methods from User");
-        for (Method t: userMethods
+        for (Method t : userMethods
         ) {
             System.out.println(t);
         }
     }
-    public static void userMethodsDeclared(Class<? extends User> us1){
+
+    public static void userMethod(Class<? extends User> us1, String nameMethod) {
+        try {
+            Method userField = us1.getMethod(nameMethod);
+            System.out.println(userField);
+        } catch (NoSuchMethodException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void userMethodsDeclared(Class<? extends User> us1) {
         Method[] userMethods = us1.getDeclaredMethods();
-        System.out.println("Methods from User");
-        for (Method t: userMethods
+        for (Method t : userMethods
         ) {
             System.out.println(t);
+        }
+    }
+
+    public static void userMethodDeclared(Class<? extends User> us1, String nameMethod) {
+        try {
+            Method userField = us1.getDeclaredMethod(nameMethod);
+            System.out.println(userField);
+        } catch (NoSuchMethodException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
