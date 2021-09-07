@@ -22,7 +22,7 @@ public class ReflectionDemo {
             System.out.println("Method toString");
             Method toStringMethod = us1.getDeclaredMethod("toString");
             toStringMethod.setAccessible(true);
-            toStringMethod.invoke(u1);
+            System.out.println(toStringMethod.invoke(u1));
         }catch(NoSuchMethodException | InvocationTargetException | IllegalAccessException e){
             System.out.println(e.getMessage());
         }
