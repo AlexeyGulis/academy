@@ -41,4 +41,12 @@ public class User extends Person{
     public void printUserInfo(){
         System.out.println("Login - " + login + "; Email - " + email);
     }
+    @Override
+    public String toString() {
+        return "User{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

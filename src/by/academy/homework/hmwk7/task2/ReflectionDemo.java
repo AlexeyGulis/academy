@@ -1,6 +1,7 @@
 package by.academy.homework.hmwk7.task2;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
 
@@ -11,16 +12,50 @@ public class ReflectionDemo {
         Class<? extends User> us1 = user1.getClass();
         Class<? extends Person> ps1 = person1.getClass();
         getFieldsAndMethods(us1);
-        setValueField(us1);
-        getValueField(us1);
+        setValueField(us1,user1);
+        getValueField(us1,user1);
+        toStringValue(us1,user1);
     }
 
-    public static void setValueField(Class<? extends User> us1){
-
+    public static void toStringValue(Class<? extends User> us1,User u1){
+        try{
+            System.out.println("Method toString");
+            Method toStringMethod = us1.getDeclaredMethod("toString");
+            toStringMethod.setAccessible(true);
+            toStringMethod.invoke(u1);
+        }catch(NoSuchMethodException | InvocationTargetException | IllegalAccessException e){
+            System.out.println(e.getMessage());
+        }
     }
 
-    public static void getValueField(Class<? extends User> us1){
+    public static void setValueField(Class<? extends User> us1,User u1){
+        try{
+            System.out.println("Изменияем пароль");
+            Field passField = us1.getDeclaredField("password");
+            passField.setAccessible(true);
+            passField.set(u1,"111111");
+            passField = us1.getDeclaredField("login");
+            passField.set(u1,"admin");
+            passField = us1.getDeclaredField("email");
+            passField.set(u1,"admin@contoso.com");
 
+        }catch(NoSuchFieldException | IllegalAccessException e){
+            e.getMessage();
+        }
+    }
+
+    public static void getValueField(Class<? extends User> us1,User u1){
+        try{
+            Field passField = us1.getDeclaredField("login");
+            System.out.println("Теперь логин: " + passField.get(u1));
+            passField = us1.getDeclaredField("password");
+            passField.setAccessible(true);
+            System.out.println("Теперь пароль: " + passField.get(u1));
+            passField = us1.getDeclaredField("email");
+            System.out.println("Теперь email: " + passField.get(u1));
+        }catch(NoSuchFieldException | IllegalAccessException e){
+            e.getMessage();
+        }
     }
 
     public static void getFieldsAndMethods(Class<? extends User> us1){
