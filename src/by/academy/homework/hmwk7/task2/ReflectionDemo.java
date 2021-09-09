@@ -19,6 +19,7 @@ public class ReflectionDemo {
 
     public static void toStringValue(Class<? extends User> us1,User u1){
         try{
+            System.out.println();
             System.out.println("Method toString");
             Method toStringMethod = us1.getDeclaredMethod("toString");
             toStringMethod.setAccessible(true);
@@ -30,6 +31,7 @@ public class ReflectionDemo {
 
     public static void setValueField(Class<? extends User> us1,User u1){
         try{
+            System.out.println();
             System.out.println("Изменияем пароль");
             Field passField = us1.getDeclaredField("password");
             passField.setAccessible(true);
@@ -61,18 +63,31 @@ public class ReflectionDemo {
     public static void getFieldsAndMethods(Class<? extends User> us1){
         System.out.println("Доступные поля");
         userFields(us1);
+        System.out.println();
         System.out.println("Все поля");
         userFieldsDeclared(us1);
+        System.out.println();
         System.out.println("Доступные методы");
         userMethods(us1);
+        System.out.println();
         System.out.println("Все методы");
         userMethodsDeclared(us1);
-        System.out.println("Доступный метод getName");
-        userMethod(us1, "getName");
-        System.out.println("Недоступный метод getPassword");
+        System.out.println();
+        System.out.println("Доступный метод getLogin,setLogin,getEmail,setEmail,printUserInfo");
+        userMethod(us1, "getLogin");
+        userMethod(us1, "setLogin");
+        userMethod(us1, "getEmail");
+        userMethod(us1, "setEmail");
+        userMethod(us1, "printUserInfo");
+        System.out.println();
+        System.out.println("Недоступный метод getPassword,setPassword");
         userMethodDeclared(us1, "getPassword");
+        userMethodDeclared(us1, "setPassword");
+        System.out.println();
         System.out.println("Доступное поле login");
         userField(us1, "login");
+        userField(us1, "email");
+        System.out.println();
         System.out.println("Недоступное поле password");
         userFieldDeclared(us1, "password");
     }
