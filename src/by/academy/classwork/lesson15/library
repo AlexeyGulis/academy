@@ -1,0 +1,48 @@
+{
+  "library": [
+    {
+      "book1": {
+        "pages": 3,
+        "text": [
+          {
+            "page": {
+              "number": 1,
+              "str": "something"
+            }
+          },
+          {
+            "page": {
+              "number": 2,
+              "str": "something"
+            }
+          },
+          {
+            "page": {
+              "number": 3,
+              "str": "something"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "book2": {
+        "pages": 2,
+        "text": [
+          {
+            "page": {
+              "number": 1,
+              "str": "something"
+            }
+          },
+          {
+            "page": {
+              "number": 2,
+              "str": "something1"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
