@@ -8,6 +8,10 @@ public class PunctuationMarks extends Word {
         this.punctuationMark = punctuationMark;
     }
 
+    public String getWord() {
+        return punctuationMark;
+    }
+
     public String toString() {
         final StringBuffer sb = new StringBuffer();
         sb.append(punctuationMark);

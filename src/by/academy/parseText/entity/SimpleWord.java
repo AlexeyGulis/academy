@@ -1,10 +1,15 @@
 package by.academy.parseText.entity;
 
-public class SimpleWord extends Word{
+public class SimpleWord extends Word {
     public String simpleWord;
-    public SimpleWord(String simpleWord){
+
+    public SimpleWord(String simpleWord) {
         super();
         this.simpleWord = simpleWord;
+    }
+
+    public String getWord() {
+        return simpleWord;
     }
 
     @Override

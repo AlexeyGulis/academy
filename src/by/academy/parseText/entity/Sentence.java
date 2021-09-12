@@ -9,8 +9,13 @@ public class Sentence {
     public void addWord(Word t) {
         wordList.add(t);
     }
-    public int getCountWords(){
+
+    public int getCountWords() {
         return wordList.size();
+    }
+
+    public List<Word> getWordList() {
+        return wordList;
     }
 
     @Override
