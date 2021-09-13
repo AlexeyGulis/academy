@@ -23,7 +23,7 @@ public class LogicParse {
         System.out.println("Sentences: " + text.getCountSentence());
         System.out.println("Paragraphs: " + text.getCountParagraph());
         //task2(text);
-        //task3(text);
+        task3(text);
         System.out.println();
         System.out.println("Text from Objects");
         System.out.println(text);
