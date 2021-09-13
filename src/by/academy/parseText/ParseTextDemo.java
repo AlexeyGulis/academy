@@ -7,18 +7,10 @@ import by.academy.parseText.services.ReadFile;
 import java.io.IOException;
 
 public class ParseTextDemo {
+    public static String parseText = null;
     public static void main(String[] args) {
-        String parseText = null;
         Text text = new Text();
-        try {
-            parseText = LogicParse.readFile();
-        } catch (IOException e) {
-            e.getMessage();
-        }
-        LogicParse.parseText(text, parseText);
-        System.out.println("Words: " + text.getCountWords());
-        System.out.println("Sentences: " + text.getCountSentence());
-        System.out.println("Paragraphs: " + text.getCountParagraph());
-        System.out.println(text);
+        LogicParse logic = new LogicParse();
+        logic.logicParse(text);
     }
 }

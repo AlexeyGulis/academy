@@ -23,6 +23,15 @@ public class Text {
         return result;
     }
 
+    public List<Sentence> getTextSentenceList(){
+        List<Sentence> sentenceList = new ArrayList<>();
+        for (Paragraph t : paragraphList
+             ) {
+            sentenceList.addAll(t.getSentenceList());
+        }
+        return sentenceList;
+    }
+
     public int getCountWords() {
         int result = 0;
         for (Paragraph t : paragraphList

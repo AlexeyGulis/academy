@@ -14,6 +14,10 @@ public class Paragraph {
         return sentenceList.size();
     }
 
+    public List<Sentence> getSentenceList(){
+        return sentenceList;
+    }
+
     public int getCountWords() {
         int result = 0;
         for (Sentence t : sentenceList) {
