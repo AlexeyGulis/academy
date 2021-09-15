@@ -27,6 +27,8 @@ public class LogicParse {
         //task4(text,6);
         //task6(text);
         //task7(text);
+        //task8(text);
+        task9(text,'а');
         System.out.println();
         System.out.println("Text from Objects");
         System.out.println(text);
@@ -61,5 +63,11 @@ public class LogicParse {
     }
     public static void task7(Text text){
         SortedWordsVowelsToConsonants.sort(text.getTextWordsList());
+    }
+    public static void task8(Text text){
+        SortConsonantsLetter.sort(text.getTextWordsList());
+    }
+    public static void task9(Text text,char letter){
+        SortCountLetter.sort(text.getTextWordsList(),letter);
     }
 }
