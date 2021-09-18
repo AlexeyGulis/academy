@@ -1,64 +1,40 @@
 package by.academy.classwork.lesson16.callcenter;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 public class CallCenter {
     private LinkedList<Operator> operators;
-    public CallCenter(LinkedList<Operator> operators){
+
+    public CallCenter(LinkedList<Operator> operators) {
         this.operators = operators;
     }
-    public synchronized void takeOperator(){
-        Operator operator = operators.poll();
-        if(operator == null){
+
+    public synchronized Operator takeOperator() {
+        Random rand = new Random();
+        Operator operator;
+
+        operator = operators.poll();
+        while (operator == null) {
             try {
+                System.out.println("Ожидайте свободного оператора.");
+                if (rand.nextInt(10) > 5) {
+                    System.out.println(Thread.currentThread().getName() + " перезвонит");
+                    Thread.sleep(10000);
+                    return null;
+                }
                 wait();
-                System.out.println("123");
-                operator.takeCall();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }else{
-            operator.takeCall();
+            operator = operators.poll();
         }
+        return operator;
     }
-    public synchronized void returnOperator(){
 
+    public synchronized void returnOperator(Operator operator) {
+        operators.add(operator);
+        System.out.println("Звонок c " + Thread.currentThread().getName() + " завершен. Оператор " + operator.name + " освободился");
+        notify();
     }
-    //public synchronized void callClient(){
-    //        numberCalls++;
-    //        while(numberSpareOperators < 1){
-    //            try {
-    //                System.out.println("Ожидайте оператора или перезвоните в другое время. Количество ожидающих: " + numberCalls);
-    //                wait();
-    //            } catch (InterruptedException e) {
-    //                e.printStackTrace();
-    //            }
-    //        }
-    //        numberSpareOperators--;
-    //        notify();
-    //        System.out.println(Thread.currentThread().getName() + " на ваш вызов отвечают. Осталось свободных операторов " + numberSpareOperators);
-    //        try {
-    //            Thread.sleep(15000 + (long) (Math.random()*10000));
-    //        } catch (InterruptedException e) {
-    //            e.printStackTrace();
-    //        }
-    //        numberSpareOperators++;
-    //    }
-    //    public synchronized void callOperator(){
-    //        while(numberCalls < 1){
-    //            try {
-    //                System.out.println("Ожидание звонков");
-    //                wait();
-    //            } catch (InterruptedException e) {
-    //                e.printStackTrace();
-    //            }
-    //        }
-    //        System.out.println(Thread.currentThread().getName() + " ответил на звонок. Колличество звонков " + numberCalls);
-    //        numberCalls--;
-    //        notify();
-    //    }
-    //    public synchronized void addOperator(){
-    //        numberSpareOperators++;
-    //    }
-
 }

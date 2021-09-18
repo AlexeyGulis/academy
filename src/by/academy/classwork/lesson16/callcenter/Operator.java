@@ -8,6 +8,11 @@ public class Operator extends Thread{
         this.name = name;
     }
     public void takeCall(){
-        System.out.println("Hello");
+        System.out.println("Оператор " + name + " отвечает на звонок " + Thread.currentThread().getName());
+        try {
+            sleep(7000 + (long) (Math.random()*3000));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
