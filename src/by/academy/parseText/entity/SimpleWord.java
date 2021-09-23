@@ -12,6 +12,10 @@ public class SimpleWord extends Word {
         return simpleWord;
     }
 
+    public void setWord(String simpleWord){
+        this.simpleWord = simpleWord;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer();

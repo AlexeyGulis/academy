@@ -8,7 +8,10 @@ import by.academy.parseText.services.ReadFile;
 import by.academy.parseText.services.tasks.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LogicParse {
 
@@ -25,10 +28,15 @@ public class LogicParse {
         //task2(text);
         //task3(text);
         //task4(text,6);
+        //task5(text);
         //task6(text);
         //task7(text);
         //task8(text);
-        task9(text,'а');
+        //task9(text, 'а');
+        //task10(text);
+        //task11(text,'о', 'о');
+        //task12(text,6);
+        //task13(text,'а');
         System.out.println();
         System.out.println("Text from Objects");
         System.out.println(text);
@@ -55,19 +63,44 @@ public class LogicParse {
     public static void task3(Text text) {
         SearchUniqueWord.searchWord(text.getTextSentenceList());
     }
-    public static void task4(Text text, int size){
+
+    public static void task4(Text text, int size) {
         InterrogativeSentence.searchInterrogativeSentence(text.getTextSentenceList(), size);
     }
-    public static void task6(Text text){
+
+    public static void task5(Text text){
+        ReplaceFirstLastWord.replace(text.getTextSentenceList());
+    }
+
+    public static void task6(Text text) {
         SortTextWordsAlphabet.sortTextWordsByAlphabet(text.getTextWordsList());
     }
-    public static void task7(Text text){
+
+    public static void task7(Text text) {
         SortedWordsVowelsToConsonants.sort(text.getTextWordsList());
     }
-    public static void task8(Text text){
+
+    public static void task8(Text text) {
         SortConsonantsLetter.sort(text.getTextWordsList());
     }
-    public static void task9(Text text,char letter){
-        SortCountLetter.sort(text.getTextWordsList(),letter);
+
+    public static void task9(Text text, char letter) {
+        SortCountLetter.sort(text.getTextWordsList(), letter);
+    }
+    public static void task10(Text text){
+        Map<String,Integer> wordList = new HashMap<>();
+        wordList.put("реализации", 0);
+        wordList.put("что", 0);
+        wordList.put("структуры", 0);
+        SortListWord.sort(text.getTextSentenceList(),wordList);
+    }
+    public static void task11(Text text, char start, char end){
+        RemoveSubString.remove(text.getTextSentenceList(),start,end);
+    }
+    public static void task12(Text text,int length){
+        RemoveWords.remove(text.getTextSentenceList(),length);
+    }
+    public static void task13(Text text,char ch){
+        SortWordCountChar.sort(text.getTextWordsList(),ch);
     }
 }

@@ -18,6 +18,10 @@ public class Paragraph {
         return sentenceList;
     }
 
+    public void setSentenceList(List<Sentence> sentenceList) {
+        this.sentenceList = sentenceList;
+    }
+
     public int getCountWords() {
         int result = 0;
         for (Sentence t : sentenceList) {

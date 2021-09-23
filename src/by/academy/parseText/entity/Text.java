@@ -10,6 +10,10 @@ public class Text {
         paragraphList.add(t);
     }
 
+    public void setParagraphList(List<Paragraph> paragraphList) {
+        this.paragraphList = paragraphList;
+    }
+
     public int getCountParagraph() {
         return paragraphList.size();
     }

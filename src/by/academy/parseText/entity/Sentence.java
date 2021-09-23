@@ -18,6 +18,10 @@ public class Sentence {
         return wordList;
     }
 
+    public void setWordList(List<Word> wordList){
+        this.wordList = wordList;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer();
