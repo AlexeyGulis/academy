@@ -12,6 +12,10 @@ public class PunctuationMarks extends Word {
         return punctuationMark;
     }
 
+    public void setWord(String punctuationMark){
+        this.punctuationMark = punctuationMark;
+    }
+
     public String toString() {
         final StringBuffer sb = new StringBuffer();
         sb.append(punctuationMark);

@@ -1,16 +1,13 @@
 package by.academy.parseText.logic;
 
 import by.academy.parseText.ParseTextDemo;
-import by.academy.parseText.entity.Sentence;
 import by.academy.parseText.entity.Text;
 import by.academy.parseText.services.ParseParagraph;
 import by.academy.parseText.services.ReadFile;
 import by.academy.parseText.services.tasks.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LogicParse {
@@ -22,9 +19,12 @@ public class LogicParse {
             e.getMessage();
         }
         parseText(text, ParseTextDemo.parseText);
+        System.out.println("Text from Objects");
+        System.out.println(text);
         System.out.println("Words: " + text.getCountWords());
         System.out.println("Sentences: " + text.getCountSentence());
         System.out.println("Paragraphs: " + text.getCountParagraph());
+        task1(text);
         //task2(text);
         //task3(text);
         //task4(text,6);
@@ -37,8 +37,11 @@ public class LogicParse {
         //task11(text,'о', 'о');
         //task12(text,6);
         //task13(text,'а');
+        //task14(text);
+        //task15(text);
+        //task16(text,8);
         System.out.println();
-        System.out.println("Text from Objects");
+        System.out.println("Text from Task");
         System.out.println(text);
     }
 
@@ -55,7 +58,9 @@ public class LogicParse {
             ParseParagraph.parsePattern(parseText, text);
         }
     }
-
+    public static void task1(Text text){
+        CountSentenceWithDuplicate.search(text.getTextSentenceList());
+    }
     public static void task2(Text text) {
         SortSentenceByCountWords.sortSentence(text);
     }
@@ -102,5 +107,15 @@ public class LogicParse {
     }
     public static void task13(Text text,char ch){
         SortWordCountChar.sort(text.getTextWordsList(),ch);
+    }
+    public static void task14(Text text){
+        SearchMaxLengthPalindrome.search(text);
+    }
+    public static void task15(Text text){
+        TransformWord.transformWithoutFirstChar(text.getTextWordsList());
+        //TransformWord.transformWithoutLastChar(text.getTextWordsList());
+    }
+    public static void task16(Text text, int length){
+        ReplaceWordWithSubString.replace(text.getTextSentenceList(),length);
     }
 }
