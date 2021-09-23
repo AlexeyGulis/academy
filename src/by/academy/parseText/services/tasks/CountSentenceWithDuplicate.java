@@ -10,10 +10,15 @@ import java.util.Set;
 public class CountSentenceWithDuplicate {
     public static void search(List<Sentence> sentenceList){
         int count = 0;
+        Set<String> wordSetNoDupl;
         for (Sentence s : sentenceList
              ) {
             List<Word> wordList = s.getWordList();
-            Set<Word> wordSetNoDupl = new HashSet<>(wordList);
+            wordSetNoDupl = new HashSet<>();
+            for (Word t : wordList
+                 ) {
+                wordSetNoDupl.add(t.getWord());
+            }
             if(wordList.size() != wordSetNoDupl.size()){
                 count++;
             }
