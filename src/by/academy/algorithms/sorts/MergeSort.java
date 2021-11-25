@@ -13,9 +13,9 @@ public class MergeSort {
         int i = low;
         int j = mid + 1;
         for (int k = low; k < high; k++) {
-            if(i > mid) array[k] = arrayCopy[j++];
-            else if(j > high) array[k] = arrayCopy[i++];
-            else if(arrayCopy[j] < arrayCopy[i]) array[k] = arrayCopy[j++];
+            if (i > mid) array[k] = arrayCopy[j++];
+            else if (j > high) array[k] = arrayCopy[i++];
+            else if (arrayCopy[j] < arrayCopy[i]) array[k] = arrayCopy[j++];
             else array[k] = arrayCopy[i++];
         }
 

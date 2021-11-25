@@ -25,7 +25,7 @@ public class Way3QuickSort {
             else if (a[i] > temp) exch(a, i, ht--);
             else i++;
         }
-        sort(a, low , lt - 1);
+        sort(a, low, lt - 1);
         sort(a, ht + 1, high);
     }
 }

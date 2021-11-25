@@ -10,14 +10,14 @@ public class QuickSort<T> {
         int i = low;
         int j = high + 1;
         int temp;
-        while (true){
-            while(a[++i] < a[low]){
-                if(i == high) break;
+        while (true) {
+            while (a[++i] < a[low]) {
+                if (i == high) break;
             }
-            while(a[--j] > a[low]){
-                if(j == low) break;
+            while (a[--j] > a[low]) {
+                if (j == low) break;
             }
-            if(i>=j)break;
+            if (i >= j) break;
             temp = a[i];
             a[i] = a[j];
             a[j] = temp;
@@ -51,15 +51,15 @@ public class QuickSort<T> {
         t1 = System.nanoTime();
         MergeSort.sort(a);
         t2 = System.nanoTime();
-        StdOut.println(t2 - t1);
+        StdOut.println((double) (t2 - t1) / 1_000_000_000);
         t1 = System.nanoTime();
         QuickSort.sort(a);
         t2 = System.nanoTime();
-        StdOut.println(t2 - t1);
+        StdOut.println((double) (t2 - t1) / 1_000_000_000);
         t1 = System.nanoTime();
         Way3QuickSort.sort(a);
         t2 = System.nanoTime();
-        StdOut.println(t2 - t1);
+        StdOut.println((double) (t2 - t1) / 1_000_000_000);
         for (int i = 0; i < N - 1; i++) {
             if (a[i] > a[i + 1]) {
                 StdOut.println("not sorted");
