@@ -1,57 +1,51 @@
 package by.academy.algorithms.sorts;
 
-import java.util.Arrays;
-import java.util.Random;
+
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
 
 public class MergeSort {
-    static int[] buf;
-    static int count = 0;
 
-    public static void mergeSort(int array[], int low, int high) {
-        if (high > low) {
-            int mid = low + (high - low) / 2;
-            mergeSort(array, low, mid);
-            mergeSort(array, mid + 1, high);
-            buf = Arrays.copyOf(array, array.length);
-            int i = low, j = mid + 1;
-            for (int k = low; k <= high; k++) {
-                if(i > mid){
-                    array[k]=buf[j];
-                    j++;
-                    count++;
-                }else if(j > high){
-                    array[k]=buf[i];
-                    i++;
-                    count++;
-                }else if(buf[i] > buf[j]){
-                    array[k] = buf[j];
-                    j++;
-                    count++;
-                }else {
-                    array[k] = buf[i];
-                    i++;
-                    count++;
-                }
-            }
-
-        } else {
-            return;
+    public static void merge(int[] array, int[] arrayCopy, int low, int mid, int high) {
+        for (int i = low; i < high; i++) {
+            arrayCopy[i] = array[i];
         }
+        int i = low;
+        int j = mid + 1;
+        for (int k = low; k < high; k++) {
+            if(i > mid) array[k] = arrayCopy[j++];
+            else if(j > high) array[k] = arrayCopy[i++];
+            else if(arrayCopy[j] < arrayCopy[i]) array[k] = arrayCopy[j++];
+            else array[k] = arrayCopy[i++];
+        }
+
+
+    }
+
+    public static void sort(int[] array, int[] arrayCopy, int low, int high) {
+        if (low >= high) return;
+        int mid = low + (high - low) / 2;
+        sort(array, arrayCopy, low, mid);
+        sort(array, arrayCopy, mid + 1, high);
+        merge(array, arrayCopy, low, mid, high);
+    }
+
+    public static void sort(int[] array) {
+        int[] arrayCopy = new int[array.length];
+        sort(array, arrayCopy, 0, array.length - 1);
     }
 
     public static void main(String[] args) {
-        int[] m1;
-        Random rand = new Random();
-        m1 = new int[10000];
-        for (int i = 0; i < m1.length; i++) {
-            m1[i] = rand.nextInt(100);
+        int N = 100_000_000;
+        int[] a = new int[N];
+        long t1;
+        long t2;
+        for (int i = 0; i < N; i++) {
+            a[i] = StdRandom.uniform(255);
         }
-        buf = new int[m1.length];
-        System.out.println("Sort array: ");
-        System.out.println(Arrays.toString(m1));
-        mergeSort(m1, 0, m1.length - 1);
-        System.out.println("Res");
-        System.out.println(Arrays.toString(m1));
-        System.out.println("Count = " + count);
+        t1 = System.nanoTime();
+        MergeSort.sort(a);
+        t2 = System.nanoTime();
+        StdOut.println(t2 - t1);
     }
 }

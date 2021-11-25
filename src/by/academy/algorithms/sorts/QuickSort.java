@@ -6,28 +6,26 @@ import edu.princeton.cs.algs4.StdRandom;
 
 public class QuickSort<T> {
 
-    public static int partition(int[] a, int i, int j) {
-        if (i >= j) return i;
+    public static int partition(int[] a, int low, int high) {
+        int i = low;
+        int j = high + 1;
         int temp;
-        int low = i;
-        while (true) {
-            while (a[low] <= a[j] ) {
-                if(j == i) break;
-                j--;
+        while (true){
+            while(a[++i] < a[low]){
+                if(i == high) break;
             }
-            while (a[low] >= a[i]) {
-                if(i == j) break;
-                i++;
+            while(a[--j] > a[low]){
+                if(j == low) break;
             }
-            if (i >= j) break;
-            temp = a[j];
-            a[j] = a[i];
-            a[i] = temp;
+            if(i>=j)break;
+            temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
         }
         temp = a[low];
-        a[low] = a[i];
-        a[i] = temp;
-        return i;
+        a[low] = a[j];
+        a[j] = temp;
+        return j;
     }
 
     public static void sort(int[] a) {
@@ -35,15 +33,15 @@ public class QuickSort<T> {
         sort(a, 0, a.length - 1);
     }
 
-    public static void sort(int[] a, int i, int j) {
-        if (i >= j) return;
-        int low = partition(a, i, j);
-        sort(a, i, low - 1);
-        sort(a, low + 1, j);
+    public static void sort(int[] a, int low, int high) {
+        if (low >= high) return;
+        int j = partition(a, low, high);
+        sort(a, low, j - 1);
+        sort(a, j + 1, high);
     }
 
     public static void main(String[] args) {
-        int N = 2000000;
+        int N = 50000000;
         int[] a = new int[N];
         long t1;
         long t2;
@@ -51,13 +49,18 @@ public class QuickSort<T> {
             a[i] = StdRandom.uniform(255);
         }
         t1 = System.nanoTime();
+        MergeSort.sort(a);
+        t2 = System.nanoTime();
+        StdOut.println(t2 - t1);
+        t1 = System.nanoTime();
         QuickSort.sort(a);
         t2 = System.nanoTime();
-        StdOut.println(t2-t1);
+        StdOut.println(t2 - t1);
         for (int i = 0; i < N - 1; i++) {
-            if(a[i]>a[i+1]){
+            if (a[i] > a[i + 1]) {
                 StdOut.println("not sorted");
             }
         }
+
     }
 }
