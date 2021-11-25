@@ -56,6 +56,10 @@ public class QuickSort<T> {
         QuickSort.sort(a);
         t2 = System.nanoTime();
         StdOut.println(t2 - t1);
+        t1 = System.nanoTime();
+        Way3QuickSort.sort(a);
+        t2 = System.nanoTime();
+        StdOut.println(t2 - t1);
         for (int i = 0; i < N - 1; i++) {
             if (a[i] > a[i + 1]) {
                 StdOut.println("not sorted");
